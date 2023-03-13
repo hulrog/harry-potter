@@ -1,0 +1,23 @@
+.link {
+    width: 120px;
+    text-align: center;
+    background-color: #e9ecef;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.link:hover {
+    background-color: #FFAD14;
+}
+
+.logo {
+    color: white;
+    margin-left: 20px;
+}
+.logo:hover {
+    color: #FFAD14;
+}
+
+.navbar {
+    background-color: #2C2A29;
+}
