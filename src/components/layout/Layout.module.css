@@ -1,23 +1,23 @@
 .link {
-    width: 120px;
-    text-align: center;
-    background-color: #e9ecef;
-    margin-right: 10px;
-    border-radius: 10px;
+  width: 120px;
+  text-align: center;
+  background-color: #e9ecef;
+  margin-right: 10px;
+  border-radius: 10px;
 }
 
 .link:hover {
-    background-color: #FFAD14;
+  background-color: #ffad14;
 }
 
 .logo {
-    color: white;
-    margin-left: 20px;
+  color: white;
+  margin-left: 20px;
 }
 .logo:hover {
-    color: #FFAD14;
+  color: #ffad14;
 }
 
 .navbar {
-    background-color: #2C2A29;
+  background-color: #2c2a29;
 }

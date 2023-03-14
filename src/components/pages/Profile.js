@@ -2,24 +2,44 @@ import ButtonRow from "../layout/ButtonRow";
 import Card from "../layout/Card";
 import Statistics from "../Statistics";
 import User from "../User";
+import { useState } from "react";
+import EditUser from "../EditUser";
+import Modal from "../layout/Modal";
 
-function ProfilePage() { 
-    return <div> 
-        <Card>
-            <User></User>
-        </Card>
+function ProfilePage() {
+  const [showEditModal, setShowEditModal] = useState(false);
 
-        <Card>
-            <Statistics></Statistics>
-        </Card>
+  const handleEditProfileClick = () => {
+    setShowEditModal(true);
+  };
 
-        <Card>
-        <ButtonRow> 
-                <button> Log Out </button>
-                <button> Edit Profile </button>
+  const handleModalClose = () => {
+    setShowEditModal(false);
+  };
+  return (
+    <div>
+      <Card>
+        <User></User>
+      </Card>
+
+      <Card>
+        <Statistics></Statistics>
+      </Card>
+
+      <Card>
+        <ButtonRow>
+          <button> Log Out </button>
+          <button onClick={handleEditProfileClick}> Edit Profile </button>
         </ButtonRow>
-        </Card>
+      </Card>
+
+      {showEditModal && (
+        <Modal onClose={handleModalClose}>
+          <EditUser />
+        </Modal>
+      )}
     </div>
+  );
 }
-    
+
 export default ProfilePage;
