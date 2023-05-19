@@ -3,13 +3,27 @@ import { useState } from "react"; // treba kad se poveze sa backom ubaciti i use
 //import axios from "axios";
 
 function EditUser() {
-  const [firstName, setFirstName] = useState("Harry");
-  const [lastName, setLastName] = useState("Potter");
-  const [country, setCountry] = useState("UK");
-  const [gender, setGender] = useState("male");
-  const [birthday, setBirthday] = useState("01/07/1980");
-  const [email, setEmail] = useState("harry.potter@gmail.com");
-  const [bioText, setBioText] = useState("He is a transphobe.");
+  const userData = {
+    firstName: "Petar",
+    lastName: "Tomić",
+    country: "Serbia",
+    gender: "male",
+    email: "petar99t@gmail.com",
+    house: "ravenclaw",
+    role: "admin",
+    popularity: 2000,
+    birthDate: "1999-11-06",
+    memberSince: "2023-05-19",
+    bio: "Co-creator of the website and master of the dark arts.",
+  };
+
+  const [firstName, setFirstName] = useState(userData.firstName);
+  const [lastName, setLastName] = useState(userData.lastName);
+  const [country, setCountry] = useState(userData.country);
+  const [gender, setGender] = useState(userData.gender);
+  const [birthDate, setBirthDate] = useState(userData.birthDate);
+  const [email, setEmail] = useState(userData.email);
+  const [bio, setBio] = useState(userData.bio);
   // useEffect(() => {
   //   // Fetch user data from backend
   //   axios
@@ -115,8 +129,8 @@ function EditUser() {
                 <td className={classes.value}>
                   <input
                     type="date"
-                    value={birthday}
-                    onChange={(event) => setBirthday(event.target.value)}
+                    value={birthDate}
+                    onChange={(event) => setBirthDate(event.target.value)}
                   />
                 </td>
               </tr>
@@ -130,21 +144,23 @@ function EditUser() {
                   />
                 </td>
               </tr>
-              <tr>
-                <td className={classes.label}>Bio Text:</td>
-                <td className={classes.value}>
-                  <input
-                    type="text"
-                    value={bioText}
-                    onChange={(event) => setBioText(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <button type="submit">Save Changes</button>
-              </tr>
             </tbody>
           </table>
+        </div>
+        <div className={classes.bio}>
+          <p className={classes.bioTitle}>Bio</p>
+          <textarea
+            className={classes.bioText}
+            value={bio}
+            onChange={(event) => setBio(event.target.value)}
+          ></textarea>
+        </div>
+        <div className={classes.btnRow}>
+          <div>
+            <button type="submit" className={classes.submitBtn}>
+              Save Changes
+            </button>
+          </div>
         </div>
       </div>
     </form>

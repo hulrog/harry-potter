@@ -1,6 +1,5 @@
 import ButtonRow from "../layout/ButtonRow";
 import Card from "../layout/Card";
-import Statistics from "../Statistics";
 import User from "../User";
 import { useState } from "react";
 import EditUser from "../EditUser";
@@ -20,10 +19,6 @@ function ProfilePage() {
     <div>
       <Card>
         <User></User>
-      </Card>
-
-      <Card>
-        <Statistics></Statistics>
       </Card>
 
       <Card>

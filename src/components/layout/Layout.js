@@ -18,6 +18,9 @@ function Layout(props) {
             <Nav.Link href="/blog" className={classes.link}>
               Blog
             </Nav.Link>
+            <Nav.Link href="/great-hall" className={classes.link}>
+              Great Hall
+            </Nav.Link>
             <Nav.Link href="/profile" className={classes.link}>
               Profile
             </Nav.Link>

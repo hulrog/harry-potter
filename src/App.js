@@ -5,6 +5,7 @@ import Layout from "./components/layout/Layout";
 import BlogPage from "./components/pages/Blog";
 import HomePage from "./components/pages/Home";
 import ProfilePage from "./components/pages/Profile";
+import GreatHallPage from "./components/pages/GreatHall";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/great-hall" element={<GreatHallPage />} />
         </Routes>
       </Layout>
     </div>
