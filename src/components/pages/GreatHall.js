@@ -1,5 +1,5 @@
-import Floor from "../Floor";
-import HighTable from "../HighTable";
+import Floor from "../great-hall/Floor";
+import HighTable from "../great-hall/HighTable";
 
 function GreatHallPage() {
   return (

@@ -94,10 +94,63 @@ function Floor() {
       memberSince: "2021-09-01",
       bio: "Nature lover and caretaker of magical plants.",
     },
-    // Add more user objects here...
+    {
+      firstName: "Sophia",
+      lastName: "Chen",
+      country: "China",
+      gender: "female",
+      email: "sophia.chen@example.com",
+      house: "ravenclaw",
+      role: "user",
+      popularity: 500,
+      birthDate: "1997-04-03",
+      memberSince: "2021-09-01",
+      bio: "Nature lover and caretaker of magical plants.",
+    },
+    {
+      firstName: "Number",
+      lastName: "Four",
+      country: "China",
+      gender: "female",
+      email: "sophia.chen@example.com",
+      house: "ravenclaw",
+      role: "user",
+      popularity: 500,
+      birthDate: "1997-04-03",
+      memberSince: "2021-09-01",
+      bio: "Nature lover and caretaker of magical plants.",
+    },
+    {
+      firstName: "Number",
+      lastName: "Five",
+      country: "China",
+      gender: "female",
+      email: "sophia.chen@example.com",
+      house: "ravenclaw",
+      role: "user",
+      popularity: 500,
+      birthDate: "1997-04-03",
+      memberSince: "2021-09-01",
+      bio: "Nature lover and caretaker of magical plants.",
+    },
+    {
+      firstName: "Schone",
+      lastName: "Gorilla",
+      country: "Serbia",
+      gender: "male",
+      email: "schonegorilla@gmail.com",
+      house: "slytherin",
+      role: "user",
+      popularity: 1200,
+      birthDate: "1999-02-27",
+      memberSince: "2023-02-18",
+      bio: "Enthusiast of the banana and lover of monkeys.",
+    },
   ];
 
-  // Filter users based on house
+  const slytherinStudents = usersData.filter(
+    (user) => user.house === "slytherin"
+  );
   const ravenclawStudents = usersData.filter(
     (user) => user.house === "ravenclaw"
   );
@@ -107,16 +160,13 @@ function Floor() {
   const hufflepuffStudents = usersData.filter(
     (user) => user.house === "hufflepuff"
   );
-  const slytherinStudents = usersData.filter(
-    (user) => user.house === "slytherin"
-  );
 
   return (
-    <div>
+    <div className={classes.floor}>
+      <Table students={slytherinStudents} />
       <Table students={ravenclawStudents} />
       <Table students={gryffindorStudents} />
       <Table students={hufflepuffStudents} />
-      <Table students={slytherinStudents} />
     </div>
   );
 }

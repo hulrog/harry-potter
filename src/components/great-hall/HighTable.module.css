@@ -1,0 +1,44 @@
+.highTableContainer {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2px auto;
+}
+.seatsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.leftSeat {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+}
+
+.rightSeat {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+}
+
+.highTable {
+  width: 60vw;
+  height: 10vh;
+  background-color: #553624;
+  margin-bottom: 20px;
+  border: 5px solid black;
+  border-radius: 5px;
+}
