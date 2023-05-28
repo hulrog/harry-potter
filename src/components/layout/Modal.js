@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import styles from "./Modal.module.css";
+import classes from "./Modal.module.css";
 
 function Modal({ onClose, children }) {
   useEffect(() => {
@@ -26,8 +26,8 @@ function Modal({ onClose, children }) {
   };
 
   return (
-    <div className={styles.backdrop} onClick={handleBackdropClick}>
-      <div className={styles.modal}>{children}</div>
+    <div className={classes.backdrop} onClick={handleBackdropClick}>
+      <div className={classes.modal}>{children}</div>
     </div>
   );
 }

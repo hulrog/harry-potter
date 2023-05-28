@@ -1,20 +1,6 @@
 import classes from "./User.module.css";
 
-function User() {
-  const userData = {
-    firstName: "Petar",
-    lastName: "Tomić",
-    country: "Serbia",
-    gender: "male",
-    email: "petar99t@gmail.com",
-    house: "ravenclaw",
-    role: "admin",
-    popularity: 2000,
-    birthDate: "1999-11-06",
-    memberSince: "2023-05-19",
-    bio: "Co-creator of the website and master of the dark arts.",
-  };
-
+function User({ userData }) {
   var houseImage = "sigils/house_unknown.png";
   var houseName = userData.house;
 
@@ -22,19 +8,19 @@ function User() {
   switch (houseName) {
     case "gryffindor":
       houseName = "Gryffindor";
-      houseImage = "sigils/house_gryffindor.png";
+      houseImage = "/sigils/house_gryffindor.png";
       break;
     case "slytherin":
       houseName = "Slytherin";
-      houseImage = "sigils/house_slytherin.png";
+      houseImage = "/sigils/house_slytherin.png";
       break;
     case "hufflepuff":
       houseName = "Hufflepuff";
-      houseImage = "sigils/house_hufflepuff.png";
+      houseImage = "/sigils/house_hufflepuff.png";
       break;
     case "ravenclaw":
       houseName = "Ravenclaw";
-      houseImage = "sigils/house_ravenclaw.png";
+      houseImage = "/sigils/house_ravenclaw.png";
       break;
     default:
   }
@@ -76,7 +62,7 @@ function User() {
         </table>
       </div>
       <div className={classes.sigil}>
-        <img src={houseImage} alt="House sigil" />
+        <img src={process.env.PUBLIC_URL + houseImage} alt="House sigil" />
         <p> House {houseName}</p>
       </div>
       <div className={classes.bio}>

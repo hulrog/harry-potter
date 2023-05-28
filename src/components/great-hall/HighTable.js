@@ -4,6 +4,7 @@ import Seat from "./Seat";
 function HighTable(props) {
   const adminsData = [
     {
+      id: 1,
       firstName: "Albus",
       lastName: "Dumbbelldore",
       country: "Ireland",
@@ -17,6 +18,7 @@ function HighTable(props) {
       bio: "Loremaster",
     },
     {
+      id: 2,
       firstName: "Aleksandar",
       lastName: "Trifunović",
       country: "Serbia",
@@ -30,6 +32,7 @@ function HighTable(props) {
       bio: "Lord of Laravel and master of the data.",
     },
     {
+      id: 3,
       firstName: "Minerva",
       lastName: "McGonagal",
       country: "United Kingdom",
@@ -68,7 +71,7 @@ function arrangeSeats(sortedProfessors) {
   for (let i = 0; i < seatOrder.length; i++) {
     const professorIndex = seatOrder[i];
     const professor = sortedProfessors[professorIndex];
-    seats.push(<Seat student={professor} />);
+    seats.push(<Seat key={professor.id} student={professor} />);
   }
 
   return seats;

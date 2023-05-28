@@ -4,6 +4,7 @@ import Table from "./Table";
 function Floor() {
   const usersData = [
     {
+      id: 1,
       firstName: "Petar",
       lastName: "Tomić",
       country: "Serbia",
@@ -17,6 +18,7 @@ function Floor() {
       bio: "Co-creator of the website and master of the dark arts.",
     },
     {
+      id: 2,
       firstName: "John",
       lastName: "Doe",
       country: "United States",
@@ -30,6 +32,7 @@ function Floor() {
       bio: "Avid reader and lover of all things magical.",
     },
     {
+      id: 3,
       firstName: "Alice",
       lastName: "Smith",
       country: "Canada",
@@ -43,6 +46,7 @@ function Floor() {
       bio: "Enthusiastic potion brewer and aspiring wand maker.",
     },
     {
+      id: 4,
       firstName: "Robert",
       lastName: "Johnson",
       country: "United Kingdom",
@@ -56,6 +60,7 @@ function Floor() {
       bio: "Seeker of hidden knowledge and lover of magical creatures.",
     },
     {
+      id: 5,
       firstName: "Emily",
       lastName: "Wilson",
       country: "Australia",
@@ -69,6 +74,7 @@ function Floor() {
       bio: "Curious mind with a passion for unraveling mysteries.",
     },
     {
+      id: 6,
       firstName: "Daniel",
       lastName: "Lopez",
       country: "Spain",
@@ -82,6 +88,7 @@ function Floor() {
       bio: "Adventurous spirit and skilled Quidditch player.",
     },
     {
+      id: 7,
       firstName: "Sophia",
       lastName: "Chen",
       country: "China",
@@ -95,6 +102,7 @@ function Floor() {
       bio: "Nature lover and caretaker of magical plants.",
     },
     {
+      id: 8,
       firstName: "Sophia",
       lastName: "Chen",
       country: "China",
@@ -108,6 +116,7 @@ function Floor() {
       bio: "Nature lover and caretaker of magical plants.",
     },
     {
+      id: 9,
       firstName: "Number",
       lastName: "Four",
       country: "China",
@@ -121,6 +130,7 @@ function Floor() {
       bio: "Nature lover and caretaker of magical plants.",
     },
     {
+      id: 10,
       firstName: "Number",
       lastName: "Five",
       country: "China",
@@ -134,6 +144,7 @@ function Floor() {
       bio: "Nature lover and caretaker of magical plants.",
     },
     {
+      id: 11,
       firstName: "Schone",
       lastName: "Gorilla",
       country: "Serbia",
