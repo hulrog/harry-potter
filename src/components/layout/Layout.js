@@ -12,7 +12,7 @@ function Layout(props) {
     <div>
       <Navbar expand="lg" className={classes.navbar}>
         <Navbar.Brand href="/" className={classes.logo}>
-          Harry Potter - Fan Blog
+          Harry Potter - Fan Site
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -20,8 +20,8 @@ function Layout(props) {
             <Nav.Link href="/" className={classes.link}>
               Home
             </Nav.Link>
-            <Nav.Link href="/blog" className={classes.link}>
-              Blog
+            <Nav.Link href="/posts" className={classes.link}>
+              Posts
             </Nav.Link>
             <Nav.Link href="/great-hall" className={classes.link}>
               Great Hall
