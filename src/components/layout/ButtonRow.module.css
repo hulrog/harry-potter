@@ -6,7 +6,8 @@
 }
 
 button {
-  background-color: #efefef;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   border: none;
   border-radius: 10px;
   height: 40px;
@@ -18,5 +19,5 @@ button {
 }
 
 button:hover {
-  background-color: #ffdcd0;
+  background-color: var(--primary-color-hover);
 }

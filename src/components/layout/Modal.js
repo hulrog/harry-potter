@@ -3,7 +3,7 @@ import classes from "./Modal.module.css";
 
 function Modal({ onClose, children }) {
   useEffect(() => {
-    // Add event listener for closing modal on Escape key press
+    // Dodaje event listener za zatvaranje kad se pritisne escape
     const handleEscapeKeyPress = (event) => {
       if (event.key === "Escape") {
         onClose();
@@ -12,14 +12,14 @@ function Modal({ onClose, children }) {
 
     document.addEventListener("keydown", handleEscapeKeyPress);
 
-    // Remove event listener on unmount
+    // Skida event listener kad se unmountuje
     return () => {
       document.removeEventListener("keydown", handleEscapeKeyPress);
     };
   }, [onClose]);
 
   const handleBackdropClick = (event) => {
-    // Close modal on clicking the backdrop
+    // Zatvara ga na klik za background
     if (event.target === event.currentTarget) {
       onClose();
     }

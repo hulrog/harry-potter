@@ -3,7 +3,7 @@ import classes from "./Footer.module.css";
 function Footer() {
   return (
     <footer className={classes.footer}>
-      <p>
+      <p className={classes.title}>
         College Project <br></br>
         Internet Technologies, Department of E-business, Faculty of
         Organizational Sciences, University of Belgrade

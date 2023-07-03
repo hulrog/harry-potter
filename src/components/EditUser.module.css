@@ -1,5 +1,8 @@
 .container {
-  width: 100%;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .heading {
@@ -51,11 +54,11 @@ select {
 
 .bioText {
   width: 100%;
-  height: 100px; /* Adjust the height as needed */
+  height: 100px;
   padding: 4px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  resize: vertical; /* Allow vertical resizing */
+  resize: vertical;
   font-size: 14px;
 }
 
@@ -64,7 +67,7 @@ select {
 }
 
 .submitBtn {
-  width: 100%; /* Make the button take up the full width of its container */
+  width: 100%;
   height: 40px;
   text-align: center;
   background-color: #efefef;
@@ -72,5 +75,5 @@ select {
   border: none;
   transition-duration: 200ms;
   outline: none;
-  margin-top: 10px; /* Add margin to separate it from other elements */
+  margin-top: 10px;
 }

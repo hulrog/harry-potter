@@ -6,6 +6,7 @@ import PostsPage from "./components/pages/Posts";
 import HomePage from "./components/pages/Home";
 import ProfilePage from "./components/pages/Profile";
 import GreatHallPage from "./components/pages/GreatHall";
+import "./colors.css";
 
 function App() {
   return (

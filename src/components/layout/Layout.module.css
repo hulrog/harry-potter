@@ -1,9 +1,9 @@
 .navbar {
-  background-color: #2c2a29;
+  background-color: var(--background-color);
 }
 
 .link {
-  color: white;
+  color: var(--text-color);
   font-weight: bold;
   margin-right: 10px;
   text-align: center;
@@ -11,14 +11,14 @@
 }
 
 .link:hover {
-  color: #db3adb;
+  color: var(--primary-color);
 }
 
 .logo {
-  color: white;
+  color: var(--text-color);
   font-weight: bold;
   margin-left: 20px;
 }
 .logo:hover {
-  color: #db3adb;
+  color: var(--primary-color);
 }
