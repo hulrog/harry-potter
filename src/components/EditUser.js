@@ -77,76 +77,68 @@ function EditUser() {
     <form /*onSubmit={handleSubmit*/>
       <div className={classes.container}>
         <h1 className={classes.heading}>Edit Profile</h1>
-        <div className={classes.data}>
-          <table className={classes.table}>
-            <tbody>
-              <tr>
-                <td className={classes.label}>First Name:</td>
-                <td className={classes.value}>
-                  <input
-                    type="text"
-                    value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td className={classes.label}>Last Name:</td>
-                <td className={classes.value}>
-                  <input
-                    type="text"
-                    value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td className={classes.label}>Country:</td>
-                <td className={classes.value}>
-                  <input
-                    type="text"
-                    value={country}
-                    onChange={(event) => setCountry(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td className={classes.label}>Gender:</td>
-                <td className={classes.value}>
-                  <select
-                    value={gender}
-                    onChange={(event) => setGender(event.target.value)}
-                  >
-                    <option value="">Select</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td className={classes.label}>Birthday:</td>
-                <td className={classes.value}>
-                  <input
-                    type="date"
-                    value={birthDate}
-                    onChange={(event) => setBirthDate(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td className={classes.label}>Email:</td>
-                <td className={classes.value}>
-                  <input
-                    type="text"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td className={classes.label}>First Name:</td>
+              <td className={classes.value}>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(event) => setFirstName(event.target.value)}
+                />
+              </td>
+              <td className={classes.label}>Gender:</td>
+              <td className={classes.value}>
+                <select
+                  value={gender}
+                  onChange={(event) => setGender(event.target.value)}
+                >
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td className={classes.label}>Last Name:</td>
+              <td className={classes.value}>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(event) => setLastName(event.target.value)}
+                />
+              </td>
+              <td className={classes.label}>Birthday:</td>
+              <td className={classes.value}>
+                <input
+                  type="date"
+                  value={birthDate}
+                  onChange={(event) => setBirthDate(event.target.value)}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className={classes.label}>Country:</td>
+              <td className={classes.value}>
+                <input
+                  type="text"
+                  value={country}
+                  onChange={(event) => setCountry(event.target.value)}
+                />
+              </td>
+              <td className={classes.label}>Email:</td>
+              <td className={classes.value}>
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <div className={classes.bio}>
           <p className={classes.bioTitle}>Bio</p>
           <textarea

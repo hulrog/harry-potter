@@ -13,6 +13,9 @@
 .link:hover {
   color: var(--primary-color);
 }
+.link:focus {
+  color: var(--primary-color);
+}
 
 .logo {
   color: var(--text-color);
@@ -20,5 +23,8 @@
   margin-left: 20px;
 }
 .logo:hover {
+  color: var(--primary-color);
+}
+.logo:focus {
   color: var(--primary-color);
 }

@@ -1,15 +1,8 @@
-/* :root {
-  --background-color: #292929;
-  --text-color: #ffffff;
-  --primary-color: #ca06b0;
-  --primary-color-hover: #e61dcb;
-  --secondary-color: #5d0292;
-} */
-
 :root {
-  --background-color: #3c3a3a;
+  --background-color: #191825;
+  --background-color-light: #312e47;
   --text-color: #ffffff;
-  --primary-color: #802b2b;
-  --primary-color-hover: #a65151;
+  --primary-color: #e384ff;
+  --primary-color-hover: #ffa3fd;
   --secondary-color: #5a4a41;
 }

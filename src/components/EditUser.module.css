@@ -1,5 +1,6 @@
 .container {
-  width: 500px;
+  width: 800px;
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,6 +10,18 @@
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.data {
+  display: flex;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 50%;
 }
 
 .label {
@@ -24,56 +37,65 @@
   border-bottom: 1px solid #1a1111;
 }
 
-input {
+input,
+select {
+  background-color: var(--background-color-light);
+  color: var(--text-color);
+  border: 1px solid var(--background-color);
   width: 100%;
   height: 30px;
   padding: 4px;
-  border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #fff;
-  color: #333;
   font-size: 14px;
 }
 
-select {
-  width: 100%;
-  height: 30px;
-  padding: 4px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  color: #333;
-  font-size: 14px;
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid var(--primary-color);
 }
 
 .bio {
   width: 100%;
+  display: flex;
+  flex-direction: column;
   margin-top: 10px;
+}
+
+.bioTitle {
+  font-weight: bold;
   text-align: center;
 }
 
 .bioText {
-  width: 100%;
-  height: 100px;
-  padding: 4px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: var(--background-color-light);
+  color: var(--text-color);
+  border: 1px solid var(--background-color);
+  text-align: center;
   resize: vertical;
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  border-radius: 4px;
   font-size: 14px;
 }
 
 .btnRow {
-  text-align: center;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
 
 .submitBtn {
-  width: 100%;
   height: 40px;
   text-align: center;
-  background-color: #efefef;
-  border-radius: 10px;
   border: none;
+  background-color: var(--primary-color);
+  border-radius: 10px;
   transition-duration: 200ms;
   outline: none;
-  margin-top: 10px;
+  width: auto;
+  padding: 10px 20px;
+  margin-left: 10px;
 }
