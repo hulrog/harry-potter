@@ -5,8 +5,8 @@
 .link {
   color: var(--text-color);
   font-weight: bold;
-  margin-right: 10px;
   text-align: center;
+  margin-right: 10px;
   width: 140px;
 }
 

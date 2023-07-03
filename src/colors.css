@@ -5,4 +5,8 @@
   --primary-color: #e384ff;
   --primary-color-hover: #ffa3fd;
   --secondary-color: #5a4a41;
+  --submit-color: #5fbb8a;
+  --submit-color-hover: #84e3b1;
+  --remove-color: #ff5f5f;
+  --remove-color-hover: #ff8484;
 }

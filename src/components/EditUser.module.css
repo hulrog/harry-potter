@@ -80,22 +80,3 @@ textarea:focus {
   border-radius: 4px;
   font-size: 14px;
 }
-
-.btnRow {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
-
-.submitBtn {
-  height: 40px;
-  text-align: center;
-  border: none;
-  background-color: var(--primary-color);
-  border-radius: 10px;
-  transition-duration: 200ms;
-  outline: none;
-  width: auto;
-  padding: 10px 20px;
-  margin-left: 10px;
-}

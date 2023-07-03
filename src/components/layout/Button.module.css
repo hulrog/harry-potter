@@ -1,0 +1,32 @@
+.button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  outline: none;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 10px;
+  height: 40px;
+  margin-right: 10px;
+  transition-duration: 200ms;
+  width: 130px;
+}
+.button:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.submit {
+  background-color: var(--submit-color);
+}
+
+.submit:hover {
+  background-color: var(--submit-color-hover);
+}
+
+.remove {
+  background-color: var(--remove-color);
+}
+
+.remove:hover {
+  background-color: var(--remove-color-hover);
+}

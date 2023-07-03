@@ -1,5 +1,7 @@
 import classes from "./EditUser.module.css";
 import { useState } from "react"; // treba kad se poveze sa backom ubaciti i useEffect
+import Button from "./layout/Button";
+import ButtonRow from "./layout/ButtonRow";
 //import axios from "axios";
 
 function EditUser() {
@@ -147,13 +149,9 @@ function EditUser() {
             onChange={(event) => setBio(event.target.value)}
           ></textarea>
         </div>
-        <div className={classes.btnRow}>
-          <div>
-            <button type="submit" className={classes.submitBtn}>
-              Save Changes
-            </button>
-          </div>
-        </div>
+        <ButtonRow>
+          <Button text="Save Changes" type="submit" />
+        </ButtonRow>
       </div>
     </form>
   );

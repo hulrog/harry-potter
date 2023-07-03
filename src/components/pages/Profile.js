@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import EditUser from "../EditUser";
 import Modal from "../layout/Modal";
 import Loader from "../layout/Loader";
+import Button from "../layout/Button";
 
 function ProfilePage() {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -58,8 +59,8 @@ function ProfilePage() {
 
       <Card>
         <ButtonRow>
-          <button> Log Out </button>
-          <button onClick={handleEditProfileClick}> Edit Profile </button>
+          <Button text="Log Out" />
+          <Button text="Edit Profile" onClick={handleEditProfileClick} />
         </ButtonRow>
       </Card>
 

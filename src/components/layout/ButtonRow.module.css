@@ -3,21 +3,5 @@
   display: flex;
   justify-content: space-evenly;
   margin: auto;
-}
-
-button {
-  background-color: var(--primary-color);
-  color: var(--text-color);
-  border: none;
-  border-radius: 10px;
-  height: 40px;
-  margin-right: 10px;
-  outline: none;
-  text-align: center;
-  transition-duration: 200ms;
-  width: 120px;
-}
-
-button:hover {
-  background-color: var(--primary-color-hover);
+  padding: 20px;
 }
