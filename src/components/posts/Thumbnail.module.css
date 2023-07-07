@@ -38,31 +38,27 @@
   font-size: 20px;
 }
 
-.icon {
-  margin-right: 5px;
-}
-
-.likes {
-  display: flex;
-  align-items: center;
-}
-
-.dislikes {
-  display: flex;
-  align-items: center;
-}
-
+.likes,
+.dislikes,
 .comments {
   display: flex;
   align-items: center;
 }
 
+.icon {
+  margin-right: 5px;
+}
+
+.number {
+  width: 25px;
+}
+
 .dateTimeSection {
   margin: 0px 20px 0px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
-.date {
-  /* Styles for the date element */
+.dateTime {
+  color: var(--text-color-fade);
 }

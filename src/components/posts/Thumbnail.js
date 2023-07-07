@@ -20,13 +20,16 @@ function Thumbnail({ post }) {
       </div>
       <div className={classes.statsSection}>
         <span className={classes.likes}>
-          <AiFillLike className={classes.icon} /> {post.likes}
+          <AiFillLike className={classes.icon} />
+          <span className={classes.number}>{post.likes}</span>
         </span>
         <span className={classes.dislikes}>
-          <AiFillDislike className={classes.icon} /> {post.dislikes}
+          <AiFillDislike className={classes.icon} />
+          <span className={classes.number}>{post.dislikes}</span>
         </span>
         <span className={classes.comments}>
-          <AiOutlineComment className={classes.icon} /> {post.comments.length}
+          <AiOutlineComment className={classes.icon} />
+          <span className={classes.number}>{post.comments.length}</span>
         </span>
       </div>
       <div className={classes.dateTimeSection}>
