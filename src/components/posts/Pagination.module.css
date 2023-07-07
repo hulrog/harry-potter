@@ -1,3 +1,16 @@
 .paginationContainer {
-  background-color: blue;
+  background-color: var(--background-color);
+  padding: 5px;
+}
+
+button {
+  background-color: var(--text-color);
+  color: var(--background-color);
+  margin: 2px;
+  border: none;
+}
+
+.active {
+  background-color: var(--primary-color);
+  font-weight: bold;
 }

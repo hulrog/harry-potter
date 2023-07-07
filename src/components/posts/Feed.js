@@ -15,6 +15,7 @@ function Feed() {
       popularity: 250,
       date: "2023-06-15",
       time: "14:30:00",
+      title: "Title of the Post",
       awards: [{ name: "Best Post" }, { name: "Most Popular" }],
       comments: [
         {
@@ -38,6 +39,7 @@ function Feed() {
       popularity: 120,
       date: "2023-06-17",
       time: "10:45:00",
+      title: "Title of the Post",
       awards: [{ name: "Photo of the Day" }],
       comments: [
         {
@@ -61,6 +63,7 @@ function Feed() {
       popularity: 180,
       date: "2023-06-19",
       time: "18:15:00",
+      title: "Title of the Post",
       awards: [],
       comments: [
         {
@@ -79,6 +82,7 @@ function Feed() {
       popularity: 75,
       date: "2023-06-20",
       time: "09:20:00",
+      title: "Title of the Post",
       awards: [],
       comments: [],
     },
@@ -91,6 +95,7 @@ function Feed() {
       popularity: 200,
       date: "2023-06-22",
       time: "16:00:00",
+      title: "Title of the Post",
       awards: [{ name: "Travel Inspiration" }],
       comments: [
         {
@@ -110,10 +115,20 @@ function Feed() {
       user: "Daniel Thompson",
       likes: 6,
       dislikes: 0,
-      content: "Excited for the upcoming concert!",
+      content: `Hi my name is Ebony Dark'ness Dementia Raven Way and I have long ebony black hair (that's how I got my name) 
+        with purple streaks and red tips that reaches my mid-back and icy blue eyes like limpid tears and a lot of people 
+        tell me I look like Amy Lee (AN: if u don't know who she is get da hell out of here!). I'm not related to 
+        Gerard Way but I wish I was because he's a major fucking hottie. I'm a vampire but my teeth are straight 
+        and white. I have pale white skin. I'm also a witch, and I go to a magic school called Hogwarts in England
+        where I'm in the seventh year (I'm seventeen). I'm a goth (in case you couldn't tell) and I wear mostly black.
+        I love Hot Topic and I buy all my clothes from there. For example today I was wearing a black corset with matching 
+        lace around it and a black leather miniskirt, pink fishnets and black combat boots. I was wearing black lipstick,
+         white foundation, black eyeliner and red eye shadow. I was walking outside Hogwarts. It was snowing and raining 
+         so there was no sun, which I was very happy about. A lot of preps stared at me. I put up my middle finger at them.`,
       popularity: 90,
       date: "2023-06-24",
       time: "20:30:00",
+      title: "Title of the Post",
       awards: [],
       comments: [
         {
@@ -132,6 +147,7 @@ function Feed() {
       popularity: 150,
       date: "2023-06-26",
       time: "12:10:00",
+      title: "Title of the Post",
       awards: [{ name: "Movie Buff" }],
       comments: [
         {
@@ -160,6 +176,7 @@ function Feed() {
       popularity: 100,
       date: "2023-06-28",
       time: "15:45:00",
+      title: "Title of the Post",
       awards: [],
       comments: [
         {
@@ -171,31 +188,32 @@ function Feed() {
     },
   ];
 
-  console.log(postsData);
-
+  // Trenutno prikazana stranica
   const [currentPage, setCurrentPage] = useState(1);
+  // Broj postva po stranici
   const postsPerPage = 5;
 
-  // Get current posts
+  // Odredjuje koji je prvi a koji poslednji post koji treba da prikaze
+  // Slice-uje njih iz niza
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = postsData.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Change page
+  // Funkcija za promenu stranice
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
+    // Mapira postove koje dobije iz API-ja u Thumbnail-ove
     <div className={classes.feedContainer}>
-      {currentPosts.map((post) => (
-        <Thumbnail key={post.id} post={post} />
-      ))}
-
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={postsData.length}
         currentPage={currentPage}
         paginate={paginate}
       />
+      {currentPosts.map((post) => (
+        <Thumbnail key={post.id} post={post} />
+      ))}
     </div>
   );
 }

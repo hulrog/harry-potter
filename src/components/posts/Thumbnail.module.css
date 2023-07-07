@@ -1,3 +1,68 @@
 .thumbnailContainer {
-  background-color: white;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleUserSection {
+  margin: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.user {
+  font-style: italic;
+}
+
+.contentSection {
+  display: flex;
+}
+
+.content {
+  font-size: 20px;
+}
+
+.statsSection {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+}
+
+.dislikes {
+  display: flex;
+  align-items: center;
+}
+
+.comments {
+  display: flex;
+  align-items: center;
+}
+
+.dateTimeSection {
+  margin: 0px 20px 0px;
+  display: flex;
+  justify-content: end;
+}
+
+.date {
+  /* Styles for the date element */
 }
