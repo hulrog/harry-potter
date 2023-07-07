@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiFillLike,
   AiFillDislike,
@@ -8,6 +8,14 @@ import {
 import classes from "./Thumbnail.module.css";
 
 function Thumbnail({ post }) {
+  // TODO ovo je za slucaj ako se house vrati malim slovima, proveriti
+  useEffect(() => {
+    const path = "/sigils/house_" + post.house + ".png";
+    setHouseSigilPath(path);
+  }, [post.house]);
+
+  //Path do slike
+  const [houseSigilPath, setHouseSigilPath] = useState("");
   // Lajkovi i dislajkovi sa thumbnail-a
   const [likes, setLikes] = useState(post.likes);
   const [dislikes, setDislikes] = useState(post.dislikes);
@@ -61,11 +69,21 @@ function Thumbnail({ post }) {
       ? post.content.slice(0, 400) + "..."
       : post.content;
 
+  //TODO prikazati i nagrade
   return (
     <div className={classes.thumbnailContainer}>
+      <div className={classes.categoryAwardsSection}>
+        <span className={classes.category}>{post.category}</span>
+      </div>
       <div className={classes.titleUserSection}>
         <span className={classes.title}>{post.title}</span>
-        <span className={classes.user}>by {post.user}</span>
+        <span className={classes.user}>
+          by {post.user}
+          <img
+            src={process.env.PUBLIC_URL + houseSigilPath}
+            alt="House sigil"
+          />
+        </span>
       </div>
       <div className={classes.contentSection}>
         <p className={classes.content}>{truncatedContent}</p>

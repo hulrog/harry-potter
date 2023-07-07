@@ -1,29 +1,15 @@
 import classes from "./User.module.css";
 
 function User({ userData }) {
-  var houseImage = "sigils/house_unknown.png";
-  var houseName = userData.house;
+  // ovo je za slucaj da dobijam sa malim slovom
+  // TODO ako sa backa dolazi velikim slovom ispraviti
+  // (svuda sam pretpostavljao da dolazi sa malim)
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+  const houseName = capitalizeFirstLetter(userData.house);
+  const houseSigil = `/sigils/house_${userData.house}.png`;
 
-  // ovo mozda i nece trebati ako stavimo velika slova
-  switch (houseName) {
-    case "gryffindor":
-      houseName = "Gryffindor";
-      houseImage = "/sigils/house_gryffindor.png";
-      break;
-    case "slytherin":
-      houseName = "Slytherin";
-      houseImage = "/sigils/house_slytherin.png";
-      break;
-    case "hufflepuff":
-      houseName = "Hufflepuff";
-      houseImage = "/sigils/house_hufflepuff.png";
-      break;
-    case "ravenclaw":
-      houseName = "Ravenclaw";
-      houseImage = "/sigils/house_ravenclaw.png";
-      break;
-    default:
-  }
   return (
     <div className={classes.container}>
       <h1>User Profile</h1>
@@ -62,7 +48,7 @@ function User({ userData }) {
         </table>
       </div>
       <div className={classes.sigil}>
-        <img src={process.env.PUBLIC_URL + houseImage} alt="House sigil" />
+        <img src={process.env.PUBLIC_URL + houseSigil} alt="House sigil" />
         <p> House {houseName}</p>
       </div>
       <div className={classes.bio}>

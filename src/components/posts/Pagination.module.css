@@ -1,12 +1,15 @@
 .paginationContainer {
   background-color: var(--background-color);
   padding: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 button {
   background-color: var(--text-color);
   color: var(--background-color);
   margin: 2px;
+  font-size: 20px;
   border: none;
 }
 
