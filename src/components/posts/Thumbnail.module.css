@@ -36,13 +36,29 @@
   display: flex;
   justify-content: space-between;
   font-size: 20px;
+  margin: 0 40px;
 }
 
 .likes,
 .dislikes,
-.comments {
+.comments,
+.save {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.liked {
+  color: var(--submit-color);
+}
+
+.disliked {
+  color: var(--remove-color);
+}
+
+.saved {
+  color: var(--primary-color);
 }
 
 .icon {
