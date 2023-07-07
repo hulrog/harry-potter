@@ -59,8 +59,16 @@ function Thumbnail({ post }) {
     }
   };
 
+  // Handler za cuvanje posta
   const handleSave = () => {
     setSaved(!saved);
+    // TODO save api
+  };
+
+  // Handler za klik na username - vodi na profil tog korisnika
+  const handleUserProfileClick = () => {
+    const userId = post.user_id;
+    window.location.href = `/profile/${userId}`;
   };
 
   // skracuje prikaz na prvih 400 karaktera
@@ -77,13 +85,13 @@ function Thumbnail({ post }) {
       </div>
       <div className={classes.titleUserSection}>
         <span className={classes.title}>{post.title}</span>
-        <span className={classes.user}>
-          by {post.user}
+        <div className={classes.user} onClick={handleUserProfileClick}>
+          <span>by {post.user}</span>
           <img
             src={process.env.PUBLIC_URL + houseSigilPath}
             alt="House sigil"
           />
-        </span>
+        </div>
       </div>
       <div className={classes.contentSection}>
         <p className={classes.content}>{truncatedContent}</p>

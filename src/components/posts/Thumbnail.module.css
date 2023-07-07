@@ -22,8 +22,15 @@
 }
 
 .user {
+  color: var(--text-color-fade);
   font-style: italic;
   cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+}
+
+.user:hover {
+  color: var(--text-color);
 }
 
 .user img {
