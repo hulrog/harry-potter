@@ -1,12 +1,13 @@
 import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 
+import "./colors.css";
 import Layout from "./components/layout/Layout";
 import PostsPage from "./components/pages/Posts";
 import HomePage from "./components/pages/Home";
 import ProfilePage from "./components/pages/Profile";
 import GreatHallPage from "./components/pages/GreatHall";
-import "./colors.css";
+import Post from "./components/posts/Post";
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/posts" element={<PostsPage />} />
-          <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/great-hall" element={<GreatHallPage />} />
+          <Route path="/posts" element={<PostsPage />} />
+          <Route path="/post/:id" element={<Post />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
         </Routes>
       </Layout>
     </div>
