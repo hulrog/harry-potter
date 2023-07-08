@@ -1,0 +1,36 @@
+.postStatsContainer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30px;
+  margin: 0 100px;
+}
+
+.likes,
+.dislikes,
+.comments,
+.save {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.liked {
+  color: var(--submit-color);
+}
+
+.disliked {
+  color: var(--remove-color);
+}
+
+.saved {
+  color: var(--primary-color);
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.number {
+  width: 25px;
+}
