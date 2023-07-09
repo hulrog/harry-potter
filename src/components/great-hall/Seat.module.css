@@ -16,23 +16,23 @@
 }
 
 .seat.gryffindor {
-  background-color: #740001;
-  color: #eeba30;
+  background-color: var(--gryffindor-background-color);
+  color: var(--gryffindor-text-color);
 }
 
 .seat.ravenclaw {
-  background-color: #222f5b;
-  color: #bebebe;
+  background-color: var(--ravenclaw-background-color);
+  color: var(--ravenclaw-text-color);
 }
 
 .seat.hufflepuff {
-  background-color: #f0c75e;
-  color: #372e29;
+  background-color: var(--hufflepuff-background-color);
+  color: var(--hufflepuff-text-color);
 }
 
 .seat.slytherin {
-  background-color: #1a472a;
-  color: #aaaaaa;
+  background-color: var(--slytherin-background-color);
+  color: var(--slytherin-text-color);
 }
 
 .seat p {

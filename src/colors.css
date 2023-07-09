@@ -10,4 +10,16 @@
   --submit-color-hover: #84e3b1;
   --remove-color: #ff5f5f;
   --remove-color-hover: #ff8484;
+
+  --gryffindor-background-color: #740001;
+  --gryffindor-text-color: #eeba30;
+
+  --ravenclaw-background-color: #222f5b;
+  --ravenclaw-text-color: #bebebe;
+
+  --hufflepuff-background-color: #f0c75e;
+  --hufflepuff-text-color: #372e29;
+
+  --slytherin-background-color: #1a472a;
+  --slytherin-text-color: #aaaaaa;
 }

@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./Post.module.css";
 import PostInfo from "./PostInfo";
 import PostStats from "./PostStats";
+import Button from "../layout/Button";
+import ButtonRow from "../layout/ButtonRow";
 
 function Post() {
   // Handler za klik na ime - vodi na profil tog korisnika
@@ -15,7 +18,7 @@ function Post() {
   // TODO poziv api za individualni post
 
   // TODO mockup jednog posta
-  const post = {
+  const [post, setPost] = useState({
     id: 6,
     category: "Fanfic",
     content: `Hi my name is Ebony Dark'ness Dementia Raven Way and I have long ebony black hair (that's how I got my name) 
@@ -71,7 +74,31 @@ function Post() {
         text: "U r so beautiful",
       },
     ],
+  });
+
+  // Dodavanje komentara
+  // TODO poziv api-ja za dodavanje komentara
+  const [newCommentText, setNewCommentText] = useState("");
+  const handleSubmitComment = () => {
+    const newComment = {
+      comment_id: post.comments.length + 1,
+      user: "Name surname", // TODO zameniti imenom i prezimenog trenutnog
+      user_id: 123, // TODO zameniti ID-jem trenutnog
+      text: newCommentText,
+    };
+
+    // Updatuje state
+    const updatedPost = {
+      ...post,
+      comments: [...post.comments, newComment],
+    };
+    setPost(updatedPost);
+
+    setNewCommentText(""); // Clear polja
   };
+  // Obrtanje da prvo budu prikazani najnoviji
+  const reversedComments = [...post.comments].reverse();
+
   // TODO prikaz kuce ili nekih drugih informacija o korisniku? poziv apija za korisnike
   // koji ostavljaju komentare da se prikazu neke dodatne informacije osim imena?
   return (
@@ -88,7 +115,20 @@ function Post() {
         </span>
       </div>
       <div className={classes.commentsSection}>
-        {post.comments.map((comment) => (
+        <div className={classes.newComment}>
+          <input
+            type="text"
+            placeholder="Add a comment..."
+            value={newCommentText}
+            onChange={(e) => setNewCommentText(e.target.value)}
+          />
+          <ButtonRow>
+            <Button text="Comment" type="submit" onClick={handleSubmitComment}>
+              Submit
+            </Button>
+          </ButtonRow>
+        </div>
+        {reversedComments.map((comment) => (
           <div key={comment.comment_id} className={classes.comment}>
             <span
               className={classes.commentUser}
