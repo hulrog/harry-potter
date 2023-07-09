@@ -34,18 +34,26 @@
   padding: 20px;
   margin: 10px;
   border-radius: 20px;
+
   display: flex;
   flex-direction: row;
 }
 
 .commentUser {
   width: 10%;
-  font-size: 20px;
   border-right: 2px solid var(--text-color);
+  font-size: 20px;
   text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.commentUser:hover {
+  color: var(--primary-color);
 }
 
 .commentText {
   width: 80%;
   margin: 0px 20px;
+  font-size: 18px;
 }

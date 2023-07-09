@@ -17,7 +17,7 @@ function PostInfo({ post }) {
     navigate(`/post/${post.id}`);
   };
 
-  // Handler za klik na username - vodi na profil tog korisnika
+  // Handler za klik na ime - vodi na profil tog korisnika
   const handleUserProfileClick = () => {
     const userId = post.user_id;
     window.location.href = `/profile/${userId}`;
@@ -37,7 +37,7 @@ function PostInfo({ post }) {
         <span className={classes.title} onClick={handleTitleClick}>
           {post.title}
         </span>
-        <div className={classes.user} onClick={handleUserProfileClick}>
+        <div className={classes.user} onClick={() => handleUserProfileClick()}>
           <span>by {post.user}</span>
           <img
             src={process.env.PUBLIC_URL + houseSigilPath}

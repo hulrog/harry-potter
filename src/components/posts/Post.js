@@ -4,6 +4,11 @@ import PostInfo from "./PostInfo";
 import PostStats from "./PostStats";
 
 function Post() {
+  // Handler za klik na ime - vodi na profil tog korisnika
+  const handleCommentProfileClick = (userId) => {
+    window.location.href = `/profile/${userId}`;
+  };
+
   // vadi id sa use params pa po tom id-ju ce naci post
   const { id } = useParams();
 
@@ -42,7 +47,7 @@ function Post() {
         text: "Which band is performing?",
       },
       {
-        comment_id: 1,
+        comment_id: 2,
         user: "Brittney Prep",
         user_id: 3,
         text: "OMG EBOBY SUX",
@@ -54,20 +59,21 @@ function Post() {
         text: "U r so beautiful",
       },
       {
-        comment_id: 3,
+        comment_id: 4,
         user: "Sirius Black",
         user_id: 3,
         text: "U r so beautiful",
       },
       {
-        comment_id: 3,
+        comment_id: 5,
         user: "Sirius Black",
         user_id: 3,
         text: "U r so beautiful",
       },
     ],
   };
-
+  // TODO prikaz kuce ili nekih drugih informacija o korisniku? poziv apija za korisnike
+  // koji ostavljaju komentare da se prikazu neke dodatne informacije osim imena?
   return (
     <div className={classes.postContainer}>
       <PostInfo post={post}></PostInfo>
@@ -84,7 +90,12 @@ function Post() {
       <div className={classes.commentsSection}>
         {post.comments.map((comment) => (
           <div key={comment.comment_id} className={classes.comment}>
-            <span className={classes.commentUser}>{comment.user}</span>
+            <span
+              className={classes.commentUser}
+              onClick={() => handleCommentProfileClick(comment.user_id)}
+            >
+              {comment.user}
+            </span>
             <span className={classes.commentText}>{comment.text}</span>
           </div>
         ))}
