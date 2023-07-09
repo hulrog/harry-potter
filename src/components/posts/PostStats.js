@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./PostStats.module.css";
 import {
   AiFillLike,
@@ -8,6 +9,9 @@ import {
 } from "react-icons/ai";
 
 function PostStats({ post }) {
+  // Za odlazak na stranicu post-a
+  const navigate = useNavigate();
+
   // Lajkovi i dislajkovi
   const [likes, setLikes] = useState(post.likes);
   const [dislikes, setDislikes] = useState(post.dislikes);
@@ -51,6 +55,10 @@ function PostStats({ post }) {
     }
   };
 
+  const handleComment = () => {
+    navigate(`/post/${post.id}`);
+  };
+
   // Handler za cuvanje posta
   const handleSave = () => {
     setSaved(!saved);
@@ -77,7 +85,7 @@ function PostStats({ post }) {
         <AiFillDislike className={classes.icon} />
         <span className={classes.number}>{dislikes}</span>
       </span>
-      <span className={classes.comments}>
+      <span className={classes.comments} onClick={handleComment}>
         <AiOutlineComment className={classes.icon} />
         <span className={classes.number}>{post.comments.length}</span>
       </span>

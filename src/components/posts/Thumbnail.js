@@ -13,7 +13,7 @@ function Thumbnail({ post }) {
       ? post.content.slice(0, 400) + "..."
       : post.content;
 
-  const handleClick = () => {
+  const handleContentClick = () => {
     navigate(`/post/${post.id}`);
   };
 
@@ -22,7 +22,7 @@ function Thumbnail({ post }) {
     <div className={classes.thumbnailContainer}>
       <PostInfo post={post}></PostInfo>
       <div className={classes.contentSection}>
-        <p className={classes.content} onClick={handleClick}>
+        <p className={classes.content} onClick={handleContentClick}>
           {truncatedContent}
         </p>
       </div>

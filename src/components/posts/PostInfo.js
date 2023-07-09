@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
 import classes from "./PostInfo.module.css";
+import { useNavigate } from "react-router-dom";
 
 function PostInfo({ post }) {
+  // Za odlazak na stranicu post-a
+  const navigate = useNavigate();
+
   // TODO ovo je za slucaj ako se house vrati malim slovima, proveriti
   useEffect(() => {
     const path = "/sigils/house_" + post.house + ".png";
     setHouseSigilPath(path);
   }, [post.house]);
+
+  // Handler za klik na naslov da otvori post
+  const handleTitleClick = () => {
+    navigate(`/post/${post.id}`);
+  };
+
   // Handler za klik na username - vodi na profil tog korisnika
   const handleUserProfileClick = () => {
     const userId = post.user_id;
@@ -24,7 +34,9 @@ function PostInfo({ post }) {
         </span>
       </div>
       <div className={classes.titleUserSection}>
-        <span className={classes.title}>{post.title}</span>
+        <span className={classes.title} onClick={handleTitleClick}>
+          {post.title}
+        </span>
         <div className={classes.user} onClick={handleUserProfileClick}>
           <span>by {post.user}</span>
           <img
