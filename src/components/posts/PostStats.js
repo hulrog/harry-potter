@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./PostStats.module.css";
 import {
@@ -18,6 +18,12 @@ function PostStats({ post }) {
   // Moze biti liked i disliked
   const [likeDislikeStatus, setLikeDislikeStatus] = useState("");
   const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    if (post.liked) setLikeDislikeStatus("liked");
+    if (post.disliked) setLikeDislikeStatus("disliked");
+    if (post.saved) setSaved(true);
+  }, [post.liked, post.disliked, post.saved]);
 
   const handleLike = () => {
     if (likeDislikeStatus === "liked") {
