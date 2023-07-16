@@ -8,21 +8,32 @@ function Hourglass({ points, house }) {
     color: "#ffffff",
   };
 
+  const computedStyle = getComputedStyle(document.documentElement);
   switch (house) {
     case "slytherin":
-      barStyle.backgroundColor = "#1a472a";
+      barStyle.backgroundColor = computedStyle.getPropertyValue(
+        "--slytherin-background-color"
+      );
       break;
     case "ravenclaw":
-      barStyle.backgroundColor = "#222f5b";
+      barStyle.backgroundColor = computedStyle.getPropertyValue(
+        "--ravenclaw-background-color"
+      );
       break;
     case "gryffindor":
-      barStyle.backgroundColor = "#740001";
+      barStyle.backgroundColor = computedStyle.getPropertyValue(
+        "--gryffindor-background-color"
+      );
       break;
     case "hufflepuff":
-      barStyle.backgroundColor = "#f0c75e";
+      barStyle.backgroundColor = computedStyle.getPropertyValue(
+        "--hufflepuff-background-color"
+      );
       break;
     default:
+      break;
   }
+
   return (
     <div className={classes.hourglassContainer}>
       <div className={classes.hourglass}>
