@@ -99,47 +99,60 @@ function Post() {
   // Obrtanje da prvo budu prikazani najnoviji
   const reversedComments = [...post.comments].reverse();
 
+  // Klik na pozadinu vraca nazad a propagacija ovog eventa je zaustavljena za ostatak posta
+  const handleBackgroundClick = () => {
+    window.history.back();
+  };
+  const handlePostContainerClick = (e) => {
+    e.stopPropagation();
+  };
   // TODO prikaz kuce ili nekih drugih informacija o korisniku? poziv apija za korisnike
   // koji ostavljaju komentare da se prikazu neke dodatne informacije osim imena?
   return (
-    <div className={classes.postContainer}>
-      <PostInfo post={post}></PostInfo>
-      <div className={classes.contentSection}>
-        <p className={classes.content}>{post.content}</p>
-      </div>
-      <PostStats post={post}></PostStats>
-      <div className={classes.detailsSection}>
-        <span className={classes.id}> ID:{id}</span>
-        <span className={classes.popularity}>
-          Popularity: {post.popularity}
-        </span>
-      </div>
-      <div className={classes.commentsSection}>
-        <div className={classes.newComment}>
-          <input
-            type="text"
-            placeholder="Add a comment..."
-            value={newCommentText}
-            onChange={(e) => setNewCommentText(e.target.value)}
-          />
-          <ButtonRow>
-            <Button text="Comment" type="submit" onClick={handleSubmitComment}>
-              Submit
-            </Button>
-          </ButtonRow>
+    <div className={classes.background} onClick={handleBackgroundClick}>
+      <div className={classes.postContainer} onClick={handlePostContainerClick}>
+        <PostInfo post={post}></PostInfo>
+        <div className={classes.contentSection}>
+          <p className={classes.content}>{post.content}</p>
         </div>
-        <div className={classes.scrollableComments}>
-          {reversedComments.map((comment) => (
-            <div key={comment.comment_id} className={classes.comment}>
-              <span
-                className={classes.commentUser}
-                onClick={() => handleCommentProfileClick(comment.user_id)}
+        <PostStats post={post}></PostStats>
+        <div className={classes.detailsSection}>
+          <span className={classes.id}> ID:{id}</span>
+          <span className={classes.popularity}>
+            Popularity: {post.popularity}
+          </span>
+        </div>
+        <div className={classes.commentsSection}>
+          <div className={classes.newComment}>
+            <input
+              type="text"
+              placeholder="Add a comment..."
+              value={newCommentText}
+              onChange={(e) => setNewCommentText(e.target.value)}
+            />
+            <ButtonRow>
+              <Button
+                text="Comment"
+                type="submit"
+                onClick={handleSubmitComment}
               >
-                {comment.user}
-              </span>
-              <span className={classes.commentText}>{comment.text}</span>
-            </div>
-          ))}
+                Submit
+              </Button>
+            </ButtonRow>
+          </div>
+          <div className={classes.scrollableComments}>
+            {reversedComments.map((comment) => (
+              <div key={comment.comment_id} className={classes.comment}>
+                <span
+                  className={classes.commentUser}
+                  onClick={() => handleCommentProfileClick(comment.user_id)}
+                >
+                  {comment.user}
+                </span>
+                <span className={classes.commentText}>{comment.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
