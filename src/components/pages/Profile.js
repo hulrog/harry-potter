@@ -1,9 +1,9 @@
+import classes from "./Profile.module.css";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ButtonRow from "../layout/ButtonRow";
 import Card from "../layout/Card";
 import User from "../User";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
 import EditUser from "../EditUser";
 import Modal from "../layout/Modal";
 import Loader from "../layout/Loader";
@@ -52,7 +52,7 @@ function ProfilePage() {
   }
 
   return (
-    <div>
+    <div className={classes.profileContainer}>
       <Card>
         <User userData={userData}></User>
       </Card>

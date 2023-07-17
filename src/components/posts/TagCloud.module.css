@@ -1,0 +1,23 @@
+.tagCloudContainer {
+  background-color: var(--background-color-light);
+  margin: 60px 20px;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.category {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  margin: 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-style: italic;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  word-break: break-word;
+}

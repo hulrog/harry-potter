@@ -1,0 +1,4 @@
+.greatHallContainer {
+  display: flex;
+  flex-direction: column;
+}
