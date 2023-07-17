@@ -21,7 +21,7 @@ function TagCloud() {
     const data = [
       {
         category_name: "Hogwarts",
-        popularity: 200,
+        popularity: 150,
       },
       {
         category_name: "Fanfiction",

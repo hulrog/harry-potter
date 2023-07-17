@@ -44,6 +44,22 @@
   border-radius: 20px;
   padding: 20px;
 }
+
+.flashRed {
+  animation: flash 0.5s 1;
+}
+@keyframes flash {
+  0% {
+    background-color: var(--background-color-light);
+  }
+  50% {
+    background-color: var(--remove-color);
+  }
+  100% {
+    background-color: var(--background-color-light);
+  }
+}
+
 /* Scrollbar podesavanja */
 .scrollableComments {
   max-height: 300px;

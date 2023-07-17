@@ -7,11 +7,6 @@ import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
 
 function Post() {
-  // Handler za klik na ime - vodi na profil tog korisnika
-  const handleCommentProfileClick = (userId) => {
-    window.location.href = `/profile/${userId}`;
-  };
-
   // vadi id sa use params pa po tom id-ju ce naci post
   const { id } = useParams();
 
@@ -76,10 +71,49 @@ function Post() {
     ],
   });
 
+  // Klik na pozadinu vraca nazad a propagacija ovog eventa je zaustavljena za ostatak posta
+  const handleBackgroundClick = () => {
+    window.history.back();
+  };
+  const handlePostContainerClick = (e) => {
+    e.stopPropagation();
+  };
+
+  // Handler za klik na ime - vodi na profil tog korisnika
+  const handleCommentProfileClick = (userId) => {
+    window.location.href = `/profile/${userId}`;
+  };
+
   // Dodavanje komentara
   // TODO poziv api-ja za dodavanje komentara
   const [newCommentText, setNewCommentText] = useState("");
-  const handleSubmitComment = () => {
+  const [containsProfanity, setContainsProfanity] = useState(false);
+
+  // Funkcija koja proverava da li komentar sadrzi ruzne reci
+  const checkProfanity = async (text) => {
+    const apiUrl = `https://www.purgomalum.com/service/containsprofanity?text=${encodeURIComponent(
+      text
+    )}`;
+    try {
+      const response = await fetch(apiUrl);
+      const containsProfanity = await response.text();
+      // Ovaj api vraca "true" ako sadrzi i "false" ako ne sadrzi ruzne reci
+      return containsProfanity === "true";
+    } catch (error) {
+      console.error("Error checking profanity:", error);
+      return false;
+    }
+  };
+
+  const handleSubmitComment = async () => {
+    // Provera da li sadrzi ruzne reci
+    // pauzira egzekuciju ove async funkcije dok se checkProfanity funkcija ne izvrsi
+    setContainsProfanity(false);
+    const isProfane = await checkProfanity(newCommentText);
+    if (isProfane) {
+      setContainsProfanity(true);
+      return;
+    }
     const newComment = {
       comment_id: post.comments.length + 1,
       user: "Name surname", // TODO zameniti imenom i prezimenog trenutnog
@@ -99,13 +133,6 @@ function Post() {
   // Obrtanje da prvo budu prikazani najnoviji
   const reversedComments = [...post.comments].reverse();
 
-  // Klik na pozadinu vraca nazad a propagacija ovog eventa je zaustavljena za ostatak posta
-  const handleBackgroundClick = () => {
-    window.history.back();
-  };
-  const handlePostContainerClick = (e) => {
-    e.stopPropagation();
-  };
   // TODO prikaz kuce ili nekih drugih informacija o korisniku? poziv apija za korisnike
   // koji ostavljaju komentare da se prikazu neke dodatne informacije osim imena?
   return (
@@ -125,10 +152,12 @@ function Post() {
         <div className={classes.commentsSection}>
           <div className={classes.newComment}>
             <input
-              type="text"
-              placeholder="Add a comment..."
-              value={newCommentText}
+              className={containsProfanity ? classes.flashRed : ""}
               onChange={(e) => setNewCommentText(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSubmitComment()}
+              placeholder="Add a comment..."
+              type="text"
+              value={newCommentText}
             />
             <ButtonRow>
               <Button
