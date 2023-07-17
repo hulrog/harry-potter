@@ -44,6 +44,27 @@
   border-radius: 20px;
   padding: 20px;
 }
+/* Scrollbar podesavanja */
+.scrollableComments {
+  max-height: 300px;
+  overflow-y: auto;
+}
+.scrollableComments::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollableComments::-webkit-scrollbar-track {
+  background-color: var(--background-color-light);
+}
+
+.scrollableComments::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 50px;
+}
+
+.scrollableComments::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-color-hover);
+}
 
 .comment {
   background-color: var(--background-color-light);

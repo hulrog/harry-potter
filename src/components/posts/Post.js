@@ -128,17 +128,19 @@ function Post() {
             </Button>
           </ButtonRow>
         </div>
-        {reversedComments.map((comment) => (
-          <div key={comment.comment_id} className={classes.comment}>
-            <span
-              className={classes.commentUser}
-              onClick={() => handleCommentProfileClick(comment.user_id)}
-            >
-              {comment.user}
-            </span>
-            <span className={classes.commentText}>{comment.text}</span>
-          </div>
-        ))}
+        <div className={classes.scrollableComments}>
+          {reversedComments.map((comment) => (
+            <div key={comment.comment_id} className={classes.comment}>
+              <span
+                className={classes.commentUser}
+                onClick={() => handleCommentProfileClick(comment.user_id)}
+              >
+                {comment.user}
+              </span>
+              <span className={classes.commentText}>{comment.text}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
