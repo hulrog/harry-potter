@@ -8,6 +8,7 @@ import HomePage from "./components/pages/Home";
 import ProfilePage from "./components/pages/Profile";
 import GreatHallPage from "./components/pages/GreatHall";
 import Post from "./components/posts/Post";
+import RegisterPage from "./components/pages/Register";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </Layout>
     </div>

@@ -150,7 +150,7 @@ function EditUser() {
           ></textarea>
         </div>
         <ButtonRow>
-          <Button text="Save Changes" type="submit" />
+          <Button text="Save" type="submit" />
         </ButtonRow>
       </div>
     </form>

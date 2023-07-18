@@ -1,6 +1,16 @@
-.container {
-  width: 800px;
+.registerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.registerForm {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
   background-color: var(--background-color);
+  color: var(--text-color);
+  width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,18 +20,6 @@
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 20px;
-}
-
-.data {
-  display: flex;
-}
-
-.left {
-  width: 50%;
-}
-
-.right {
-  width: 50%;
 }
 
 .label {
@@ -54,6 +52,31 @@ textarea:focus {
   border: 1px solid var(--primary-color);
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 5000px var(--background-color-light) inset;
+  -webkit-text-fill-color: var(--text-color) !important;
+}
+
+.rolesRow {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.roleContainer {
+  font-size: 25px;
+  width: 100px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.activeRole {
+  color: var(--primary-color);
+}
+
 .bio {
   width: 100%;
   display: flex;
@@ -77,4 +100,8 @@ textarea:focus {
   padding: 10px;
   border-radius: 4px;
   font-size: 14px;
+}
+
+.formValidationMessage {
+  color: var(--remove-color);
 }

@@ -33,6 +33,9 @@ function Layout(props) {
             >
               Profile
             </Nav.Link>
+            <Nav.Link href={`/register`} className={classes.link}>
+              Register
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
