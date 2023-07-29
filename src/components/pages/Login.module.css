@@ -1,10 +1,10 @@
-.registerContainer {
+.loginContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.registerForm {
+.loginForm {
   margin: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -26,15 +26,16 @@
   font-weight: bold;
   padding: 10px;
   text-align: right;
+  width: 20%;
 }
 
 .value {
   padding: 20px;
   text-align: left;
+  width: 80%;
 }
 
-input,
-select {
+input {
   background-color: var(--background-color-light);
   color: var(--text-color);
   border: 1px solid var(--background-color);
@@ -45,9 +46,7 @@ select {
   font-size: 14px;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+input:focus {
   outline: none;
   border: 1px solid var(--primary-color);
 }
@@ -57,57 +56,11 @@ input:-webkit-autofill {
   -webkit-text-fill-color: var(--text-color) !important;
 }
 
-.rolesRow {
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.roleContainer {
-  font-size: 25px;
-  width: 100px;
-  cursor: pointer;
-  user-select: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.activeRole {
-  color: var(--primary-color);
-}
-
-.bio {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.bioTitle {
-  font-weight: bold;
-  text-align: center;
-}
-
-.bioText {
-  background-color: var(--background-color-light);
-  color: var(--text-color);
-  border: 1px solid var(--background-color);
-  text-align: center;
-  resize: vertical;
-  width: 90%;
-  height: 150px;
-  padding: 10px;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.logInOption {
+.registerOption {
   font-weight: bold;
 }
 
-.logInLink {
+.registerLink {
   color: var(--primary-color);
   margin: 0px 10px;
   cursor: pointer;

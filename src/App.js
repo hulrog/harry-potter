@@ -9,6 +9,7 @@ import ProfilePage from "./components/pages/Profile";
 import GreatHallPage from "./components/pages/GreatHall";
 import Post from "./components/posts/Post";
 import RegisterPage from "./components/pages/Register";
+import LoginPage from "./components/pages/Login";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/great-hall" element={<GreatHallPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/profile/:id" element={<ProfilePage />} />

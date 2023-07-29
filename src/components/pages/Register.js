@@ -58,6 +58,10 @@ function RegisterPage() {
     setShowQuizModal(true);
   };
 
+  const handleLogInClick = () => {
+    window.location.href = `/login`;
+  };
+
   const handleModalClose = () => {
     setShowQuizModal(false);
   };
@@ -166,6 +170,12 @@ function RegisterPage() {
         <ButtonRow>
           <Button text="Register" type="submit" />
         </ButtonRow>
+        <p className={classes.logInOption}>
+          Already have an account?
+          <span className={classes.logInLink} onClick={handleLogInClick}>
+            Log In.
+          </span>
+        </p>
         {!formIsValid && (
           <p className={classes.formValidationMessage}>
             Please fill in all the fields, then try again.
