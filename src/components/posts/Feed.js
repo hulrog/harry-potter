@@ -190,7 +190,7 @@ function Feed() {
       date: "2023-06-26",
       dislikes: 4,
       disliked: true,
-      house: "Slytherin",
+      house: "Hogwarts",
       likes: 20,
       liked: false,
       popularity: 180,

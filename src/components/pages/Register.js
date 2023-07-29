@@ -2,14 +2,14 @@ import { useState } from "react";
 import classes from "./Register.module.css";
 import ButtonRow from "../layout/ButtonRow";
 import Button from "../layout/Button";
-import Modal from "../layout/Modal";
-import HouseQuiz from "../HouseQuiz";
 import { AiOutlineUser, AiOutlineTool } from "react-icons/ai";
 // TODO da li je user ili student, admin ili professor u role?
 function RegisterPage() {
   const [formData, setFormData] = useState({
     username: "",
     country: "",
+    email: "",
+    password: "",
     firstName: "",
     lastName: "",
     gender: "",
@@ -17,7 +17,6 @@ function RegisterPage() {
     role: "",
     bio: "",
   });
-  const [showQuizModal, setShowQuizModal] = useState(false);
   const [formIsValid, setFormIsValid] = useState(true);
 
   const handleChange = (e) => {
@@ -46,24 +45,27 @@ function RegisterPage() {
       return;
     }
 
-    // Dodavanje datuma na objekat
+    // Dodavanje datuma i default kuce   na objekat
     const currentDate = new Date().toISOString().split("T")[0];
     const updatedFormData = {
       ...formData,
+      house: "hogwarts",
       memberSince: currentDate,
     };
 
-    // TODO: i pozvati api za registraciju
     console.log(updatedFormData);
-    setShowQuizModal(true);
+    // TODO: i pozvati api za registraciju
+    // callRegisterAPI(updatedFormData)
+    //   .then((response) => {
+    //   })
+    //   .catch((error) => {
+    //   });
+
+    window.location.href = `/`;
   };
 
   const handleLogInClick = () => {
     window.location.href = `/login`;
-  };
-
-  const handleModalClose = () => {
-    setShowQuizModal(false);
   };
 
   return (
@@ -88,6 +90,26 @@ function RegisterPage() {
                   type="text"
                   name="country"
                   value={formData.country}
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className={classes.label}>E-mail:</td>
+              <td className={classes.value}>
+                <input
+                  type="text"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </td>
+              <td className={classes.label}>Password:</td>
+              <td className={classes.value}>
+                <input
+                  type="text"
+                  name="password"
+                  value={formData.password}
                   onChange={handleChange}
                 />
               </td>
@@ -182,11 +204,6 @@ function RegisterPage() {
           </p>
         )}
       </form>
-      {showQuizModal && (
-        <Modal onClose={handleModalClose}>
-          <HouseQuiz />
-        </Modal>
-      )}
     </div>
   );
 }
