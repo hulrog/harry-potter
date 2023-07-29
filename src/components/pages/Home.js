@@ -1,10 +1,23 @@
+import Button from "../layout/Button";
+import ButtonRow from "../layout/ButtonRow";
+import Card from "../layout/Card";
 import classes from "./Home.module.css";
 
 function HomePage() {
+  const handleHouseQuizClick = () => {
+    window.location.href = "/house-quiz";
+  };
   return (
     <div className={classes.homeContainer}>
-      <h1> Home Page </h1>
-      <p style={{ textAlign: "center" }}>Home text</p>
+      <Card>
+        <ButtonRow>
+          <Button
+            type="submit"
+            text="House Quiz"
+            onClick={handleHouseQuizClick}
+          />
+        </ButtonRow>
+      </Card>
     </div>
   );
 }

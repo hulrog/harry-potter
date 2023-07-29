@@ -3,13 +3,14 @@ import { Routes } from "react-router-dom";
 
 import "./colors.css";
 import Layout from "./components/layout/Layout";
-import PostsPage from "./components/pages/Posts";
-import HomePage from "./components/pages/Home";
-import ProfilePage from "./components/pages/Profile";
 import GreatHallPage from "./components/pages/GreatHall";
-import Post from "./components/posts/Post";
-import RegisterPage from "./components/pages/Register";
+import HomePage from "./components/pages/Home";
+import HouseQuiz from "./components/pages/HouseQuiz";
 import LoginPage from "./components/pages/Login";
+import PostsPage from "./components/pages/Posts";
+import ProfilePage from "./components/pages/Profile";
+import RegisterPage from "./components/pages/Register";
+import Post from "./components/posts/Post";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/great-hall" element={<GreatHallPage />} />
+          <Route path="/house-quiz" element={<HouseQuiz />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/post/:id" element={<Post />} />

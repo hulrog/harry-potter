@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./HouseQuiz.module.css";
-import Button from "./layout/Button";
-import ButtonRow from "./layout/ButtonRow";
+import ButtonRow from "../layout/ButtonRow";
+import Button from "../layout/Button";
 
 function HouseQuiz() {
   const [selectedHouse, setSelectedHouse] = useState("");
