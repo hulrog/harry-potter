@@ -330,9 +330,7 @@ function HouseQuiz() {
   };
 
   const handleQuizComplete = () => {
-    const winningHouse = getMaxHouse();
-    console.log("The winning house is:", winningHouse);
-    // TODO:
+    window.location.href = "/";
   };
 
   const handleQuizRestart = () => {
@@ -349,9 +347,23 @@ function HouseQuiz() {
         />
       ) : (
         // Kviz zavrsen
-        <div>
-          <p>Quiz completed! Here are the results:</p>
-          <p>The winning house is: {getMaxHouse()}</p>
+        <div className={classes.resultContainer}>
+          <p>Sorting completed! Here is your result:</p>
+          <p>
+            You've been sorted into:
+            <span className={classes.houseText}>
+              {" "}
+              {getMaxHouse().charAt(0).toUpperCase() + getMaxHouse().slice(1)}!
+            </span>
+          </p>
+
+          <img
+            className={classes.houseImg}
+            src={
+              process.env.PUBLIC_URL + "/sigils/house_" + getMaxHouse() + ".png"
+            }
+            alt="Unknown"
+          />
           <ButtonRow>
             <Button
               type="submit"
