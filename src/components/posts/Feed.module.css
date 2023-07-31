@@ -1,3 +1,23 @@
 .feedContainer {
   width: 70%;
 }
+
+.tabsContainer {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 0% 20%;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab {
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.activeTab {
+  border-bottom: 5px solid var(--primary-color);
+  font-weight: bold;
+}
