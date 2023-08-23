@@ -4,6 +4,7 @@ import { Routes } from "react-router-dom";
 import "./colors.css";
 import Layout from "./components/layout/Layout";
 import GreatHallPage from "./components/pages/GreatHall";
+import AdminPage from "./components/pages/Admin";
 import HomePage from "./components/pages/Home";
 import HouseQuiz from "./components/pages/HouseQuiz";
 import LoginPage from "./components/pages/Login";
@@ -18,6 +19,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/great-hall" element={<GreatHallPage />} />
           <Route path="/house-quiz" element={<HouseQuiz />} />
           <Route path="/login" element={<LoginPage />} />

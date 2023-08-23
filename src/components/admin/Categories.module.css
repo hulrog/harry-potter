@@ -1,0 +1,42 @@
+.categoriesContainer {
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categoriesList {
+  background-color: var(--background-color-light);
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.categoryItem {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.removeButton {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.addCategoryContainer {
+  width: 50%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.addCategoryContainer input {
+  font-size: 20px;
+  height: 45px;
+  width: 50%;
+}
