@@ -7,6 +7,7 @@ function Floor() {
       id: 1,
       firstName: "Petar",
       lastName: "Tomić",
+      username: "hulrog",
       country: "Serbia",
       gender: "male",
       email: "petar99t@gmail.com",
@@ -21,6 +22,7 @@ function Floor() {
       id: 2,
       firstName: "John",
       lastName: "Doe",
+      username: "hulrog",
       country: "United States",
       gender: "male",
       email: "johndoe@gmail.com",
@@ -35,6 +37,7 @@ function Floor() {
       id: 3,
       firstName: "Alice",
       lastName: "Smith",
+      username: "schone",
       country: "Canada",
       gender: "female",
       email: "alice.smith@example.com",
@@ -49,6 +52,7 @@ function Floor() {
       id: 4,
       firstName: "Robert",
       lastName: "Johnson",
+      username: "schone",
       country: "United Kingdom",
       gender: "male",
       email: "robertjohnson@gmail.com",
@@ -63,6 +67,7 @@ function Floor() {
       id: 5,
       firstName: "Emily",
       lastName: "Wilson",
+      username: "schone",
       country: "Australia",
       gender: "female",
       email: "emily.wilson@example.com",
@@ -77,6 +82,7 @@ function Floor() {
       id: 6,
       firstName: "Daniel",
       lastName: "Lopez",
+      username: "schone",
       country: "Spain",
       gender: "male",
       email: "daniel.lopez@example.com",
@@ -91,6 +97,7 @@ function Floor() {
       id: 7,
       firstName: "Sophia",
       lastName: "Chen",
+      username: "schone",
       country: "China",
       gender: "female",
       email: "sophia.chen@example.com",
@@ -106,6 +113,7 @@ function Floor() {
       firstName: "Sophia",
       lastName: "Chen",
       country: "China",
+      username: "schone",
       gender: "female",
       email: "sophia.chen@example.com",
       house: "ravenclaw",
@@ -119,6 +127,7 @@ function Floor() {
       id: 9,
       firstName: "Number",
       lastName: "Four",
+      username: "schone",
       country: "China",
       gender: "female",
       email: "sophia.chen@example.com",
@@ -133,6 +142,7 @@ function Floor() {
       id: 10,
       firstName: "Number",
       lastName: "Five",
+      username: "schone",
       country: "China",
       gender: "female",
       email: "sophia.chen@example.com",
@@ -147,6 +157,7 @@ function Floor() {
       id: 11,
       firstName: "Schone",
       lastName: "Gorilla",
+      username: "schone",
       country: "Serbia",
       gender: "male",
       email: "schonegorilla@gmail.com",
@@ -160,16 +171,16 @@ function Floor() {
   ];
 
   const slytherinStudents = usersData.filter(
-    (user) => user.house === "slytherin"
+    (user) => user.house === "slytherin" && user.username !== "0"
   );
   const ravenclawStudents = usersData.filter(
-    (user) => user.house === "ravenclaw"
+    (user) => user.house === "ravenclaw" && user.username !== "0"
   );
   const gryffindorStudents = usersData.filter(
-    (user) => user.house === "gryffindor"
+    (user) => user.house === "gryffindor" && user.username !== "0"
   );
   const hufflepuffStudents = usersData.filter(
-    (user) => user.house === "hufflepuff"
+    (user) => user.house === "hufflepuff" && user.username !== "0"
   );
 
   return (

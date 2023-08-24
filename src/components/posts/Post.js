@@ -33,38 +33,38 @@ function Post() {
     popularity: 90,
     time: "20:30:00",
     title: "My Immortal",
-    user: "Tara Way",
+    user: "Tara Way (enoby)",
     user_id: 323,
 
     awards: [],
     comments: [
       {
         comment_id: 1,
-        user: "Raven Girl",
+        user: "Raven Girl (raven)",
         user_id: 2,
         text: "Which band is performing?",
       },
       {
         comment_id: 2,
-        user: "Brittney Prep",
+        user: "Brittney Prep (0)",
         user_id: 3,
         text: "OMG EBOBY SUX",
       },
       {
         comment_id: 3,
-        user: "Sirius Black",
+        user: "Sirius Black (dog)",
         user_id: 3,
         text: "U r so beautiful",
       },
       {
         comment_id: 4,
-        user: "Sirius Black",
+        user: "Sirius Black (dog)",
         user_id: 3,
         text: "U r so beautiful",
       },
       {
         comment_id: 5,
-        user: "Sirius Black",
+        user: "Sirius Black (dog)",
         user_id: 3,
         text: "U r so beautiful",
       },
@@ -176,7 +176,11 @@ function Post() {
                   className={classes.commentUser}
                   onClick={() => handleCommentProfileClick(comment.user_id)}
                 >
-                  {comment.user}
+                  {comment.user.includes("(0)") ? (
+                    "[deleted]"
+                  ) : (
+                    <span>{comment.user}</span>
+                  )}
                 </span>
                 <span className={classes.commentText}>{comment.text}</span>
               </div>

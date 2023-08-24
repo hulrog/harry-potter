@@ -38,7 +38,10 @@ function PostInfo({ post }) {
           {post.title}
         </span>
         <div className={classes.user} onClick={() => handleUserProfileClick()}>
-          <span>by {post.user}</span>
+          <span>
+            by{" "}
+            {post.user.includes("(0)") ? "[deleted]" : <span>{post.user}</span>}
+          </span>
           <img
             src={process.env.PUBLIC_URL + houseSigilPath}
             alt="House sigil"

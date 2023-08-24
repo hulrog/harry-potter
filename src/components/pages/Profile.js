@@ -27,6 +27,7 @@ function ProfilePage() {
     setUserData({
       firstName: "Schone",
       lastName: "Gorilla",
+      username: "schone",
       country: "Serbia",
       gender: "male",
       email: "schonegorilla@gmail.com",

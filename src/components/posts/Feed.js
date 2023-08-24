@@ -22,7 +22,7 @@ function Feed() {
       saved: true,
       time: "14:30:00",
       title: "Title of the Post",
-      user: "John Doe",
+      user: "John Doe (0)",
       user_id: 1,
       awards: [{ name: "Best Post" }, { name: "Most Popular" }],
       comments: [
@@ -54,7 +54,7 @@ function Feed() {
       saved: true,
       time: "10:45:00",
       title: "Title of the Post",
-      user: "Alice Brown",
+      user: "Alice Brown (hulrog)",
       user_id: 1,
       awards: [{ name: "Photo of the Day" }],
       comments: [
@@ -86,7 +86,7 @@ function Feed() {
       saved: true,
       time: "18:15:00",
       title: "Title of the Post",
-      user: "Emily Johnson",
+      user: "Emily Johnson (hulrog)",
       user_id: 1,
       awards: [],
       comments: [
@@ -112,7 +112,7 @@ function Feed() {
       saved: true,
       time: "09:20:00",
       title: "Title of the Post",
-      user: "Michael Wilson",
+      user: "Michael Wilson (hulrog)",
       user_id: 231,
       awards: [],
       comments: [],
@@ -131,7 +131,7 @@ function Feed() {
       saved: true,
       time: "16:00:00",
       title: "Title of the Post",
-      user: "Sophia Clark",
+      user: "Sophia Clark (hulrog)",
       user_id: 52,
       awards: [{ name: "Travel Inspiration" }],
       comments: [
@@ -172,7 +172,7 @@ function Feed() {
       saved: true,
       time: "20:30:00",
       title: "My Immortal",
-      user: "Daniel Thompson",
+      user: "Tara Way (enoby)",
       user_id: 323,
 
       awards: [],
@@ -199,7 +199,7 @@ function Feed() {
       saved: true,
       time: "12:10:00",
       title: "Title of the Post",
-      user: "Olivia Green",
+      user: "Olivia Green (hulrog)",
       user_id: 5,
       awards: [{ name: "Movie Buff" }],
       comments: [
@@ -237,7 +237,7 @@ function Feed() {
       saved: true,
       time: "15:45:00",
       title: "Title of the Post",
-      user: "Grace Anderson",
+      user: "Grace Anderson (hulrog)",
       user_id: 2,
       awards: [],
       comments: [
@@ -265,7 +265,7 @@ function Feed() {
       saved: true,
       time: "15:45:00",
       title: "Title of the Post",
-      user: "Grace Anderson",
+      user: "Grace Anderson (hulrog)",
       user_id: 2,
       awards: [],
       comments: [
@@ -293,7 +293,7 @@ function Feed() {
       saved: true,
       time: "16:00:00",
       title: "Title of the Post",
-      user: "Sophia Clark",
+      user: "Sophia Clark (hulrog)",
       user_id: 52,
       awards: [{ name: "Travel Inspiration" }],
       comments: [
@@ -334,7 +334,7 @@ function Feed() {
       saved: true,
       time: "20:30:00",
       title: "My Immortal",
-      user: "Daniel Thompson",
+      user: "Daniel Thompson (hulrog)",
       user_id: 323,
 
       awards: [],
@@ -361,7 +361,7 @@ function Feed() {
       saved: true,
       time: "12:10:00",
       title: "Title of the Post",
-      user: "Olivia Green",
+      user: "Olivia Green (hulrog)",
       user_id: 5,
       awards: [{ name: "Movie Buff" }],
       comments: [
@@ -399,7 +399,7 @@ function Feed() {
       saved: true,
       time: "15:45:00",
       title: "Title of the Post",
-      user: "Grace Anderson",
+      user: "Grace Anderson (grace)",
       user_id: 2,
       awards: [],
       comments: [
@@ -427,7 +427,7 @@ function Feed() {
       saved: true,
       time: "16:00:00",
       title: "Title of the Post",
-      user: "Sophia Clark",
+      user: "Sophia Clark (schone)",
       user_id: 52,
       awards: [{ name: "Travel Inspiration" }],
       comments: [
@@ -468,7 +468,7 @@ function Feed() {
       saved: true,
       time: "20:30:00",
       title: "My Immortal",
-      user: "Daniel Thompson",
+      user: "Daniel Thompson (hulrog)",
       user_id: 323,
 
       awards: [],
@@ -495,7 +495,7 @@ function Feed() {
       saved: true,
       time: "15:45:00",
       title: "Title of the Post",
-      user: "Grace Anderson",
+      user: "Grace Anderson (0)",
       user_id: 2,
       awards: [],
       comments: [
