@@ -238,7 +238,7 @@ function Feed() {
       time: "15:45:00",
       title: "Title of the Post",
       user: "Grace Anderson (hulrog)",
-      user_id: 2,
+      user_id: 10,
       awards: [],
       comments: [
         {

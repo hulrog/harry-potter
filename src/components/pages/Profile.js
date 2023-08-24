@@ -14,7 +14,7 @@ function ProfilePage() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [userData, setUserData] = useState(null);
   const { id } = useParams();
-  const { setAuthenticated, setCurrentUser } = useAuth();
+  const { setAuthenticated, setCurrentUser, currentUser } = useAuth();
   const navigate = useNavigate();
 
   // TODO: dohvatiti datu sa API-ja
@@ -28,6 +28,7 @@ function ProfilePage() {
     //     console.error("Error fetching user data:", error);
     //   });
     setUserData({
+      id: 10,
       firstName: "Schone",
       lastName: "Gorilla",
       username: "schone",
@@ -67,12 +68,14 @@ function ProfilePage() {
         <User userData={userData}></User>
       </Card>
 
-      <Card>
-        <ButtonRow>
-          <Button text="Log Out" onClick={handleLogoutClick} />
-          <Button text="Edit Profile" onClick={handleEditProfileClick} />
-        </ButtonRow>
-      </Card>
+      {currentUser.id === parseInt(id) && (
+        <Card>
+          <ButtonRow>
+            <Button text="Log Out" onClick={handleLogoutClick} />
+            <Button text="Edit Profile" onClick={handleEditProfileClick} />
+          </ButtonRow>
+        </Card>
+      )}
 
       {showEditModal && (
         <Modal onClose={handleModalClose}>
