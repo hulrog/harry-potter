@@ -582,9 +582,11 @@ function Feed() {
         currentPage={currentPage}
         paginate={paginate}
       />
-      {currentPosts.map((post) => (
-        <Thumbnail key={post.id} post={post} />
-      ))}
+      <div className={classes.thumbnailList}>
+        {currentPosts.map((post) => (
+          <Thumbnail key={post.id} post={post} />
+        ))}
+      </div>
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={totalPosts}
