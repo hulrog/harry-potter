@@ -3,8 +3,10 @@ import classes from "./HouseQuiz.module.css";
 import Question from "../house-quizz/Question";
 import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
+import { useNavigate } from "react-router-dom";
 
 function HouseQuiz() {
+  const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [housePoints, setHousePoints] = useState({
     gryffindor: 0,
@@ -330,11 +332,11 @@ function HouseQuiz() {
   };
 
   const handleQuizComplete = () => {
-    window.location.href = "/";
+    navigate("/");
   };
 
   const handleQuizRestart = () => {
-    window.location.href = "/house-quiz";
+    navigate("/house-quiz");
   };
 
   return (

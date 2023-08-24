@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import classes from "./Students.module.css";
 import Button from "../layout/Button";
+import { useNavigate } from "react-router-dom";
 
 function Students() {
+  const navigate = useNavigate();
   const [studentsData, setStudentsData] = useState([]);
   const [searchText, setSearchText] = useState("");
 
@@ -187,7 +189,7 @@ function Students() {
   };
 
   const handleUsernameClick = (userId) => {
-    window.location.href = `/profile/${userId}`;
+    navigate(`/profile/${userId}`);
   };
 
   const filteredStudents = studentsData.filter(
@@ -211,7 +213,7 @@ function Students() {
       <div className={classes.studentsList}>
         {filteredStudents.map((student) => (
           <div className={classes.studentItem} key={student.id}>
-            <span>{student.id}</span>
+            <span>User id: {student.id}</span>
             <span
               className={classes.username}
               onClick={() => handleUsernameClick(student.id)}

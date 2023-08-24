@@ -12,20 +12,42 @@ import PostsPage from "./components/pages/Posts";
 import ProfilePage from "./components/pages/Profile";
 import RegisterPage from "./components/pages/Register";
 import Post from "./components/posts/Post";
+import PrivateRoute from "./components/auth/PrivateRoute";
 
 function App() {
   return (
     <div>
       <Layout>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/great-hall" element={<GreatHallPage />} />
-          <Route path="/house-quiz" element={<HouseQuiz />} />
+          <Route
+            path="/"
+            element={<PrivateRoute element={<HomePage />}></PrivateRoute>}
+          />
+          <Route
+            path="/admin"
+            element={<PrivateRoute element={<AdminPage />}></PrivateRoute>}
+          />
+          <Route
+            path="/great-hall"
+            element={<PrivateRoute element={<GreatHallPage />}></PrivateRoute>}
+          />
+          <Route
+            path="/house-quiz"
+            element={<PrivateRoute element={<HouseQuiz />}></PrivateRoute>}
+          />
+          <Route
+            path="/posts"
+            element={<PrivateRoute element={<PostsPage />}></PrivateRoute>}
+          />
+          <Route
+            path="/post/:id"
+            element={<PrivateRoute element={<Post />}></PrivateRoute>}
+          />
+          <Route
+            path="/profile/:id"
+            element={<PrivateRoute element={<ProfilePage />}></PrivateRoute>}
+          />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/posts" element={<PostsPage />} />
-          <Route path="/post/:id" element={<Post />} />
-          <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </Layout>

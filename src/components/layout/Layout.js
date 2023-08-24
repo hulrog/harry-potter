@@ -1,42 +1,48 @@
 import { Navbar, Nav } from "react-bootstrap";
 import classes from "./Layout.module.css";
 import Footer from "./Footer";
+import { Link } from "react-router-dom"; // Import the Link component
+import { useAuth } from "../auth/AuthContext";
 
 function Layout(props) {
   // TODO: Staviti currentUser da je useAuth i izbrisati mock
-  //const { currentUser } = useAuth(); // Assuming you have a way to access the currently logged-in user
-  const currentUser = {
-    id: 1,
-  };
+  const { currentUser } = useAuth();
   return (
     <div>
       <Navbar expand="lg" className={classes.navbar}>
-        <Navbar.Brand href="/" className={classes.logo}>
+        <Navbar.Brand as={Link} to="/" className={classes.logo}>
           Harry Potter - Fan Site
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto justify-content-end w-100">
-            <Nav.Link href="/" className={classes.link}>
-              Home
-            </Nav.Link>
-            <Nav.Link href="/posts" className={classes.link}>
-              Posts
-            </Nav.Link>
-            <Nav.Link href="/great-hall" className={classes.link}>
-              Great Hall
-            </Nav.Link>
-            {/* TODO: Staviti taj id od ulogvanog korisnika */}
-            <Nav.Link
-              href={`/profile/${currentUser.id}`}
-              className={classes.link}
-            >
-              Profile
-            </Nav.Link>
-            <Nav.Link href={`/admin`} className={classes.link}>
-              Admin
-            </Nav.Link>
-            <Nav.Link href={`/register`} className={classes.link}>
+            {currentUser && (
+              <>
+                <Nav.Link as={Link} to="/" className={classes.link}>
+                  Home
+                </Nav.Link>
+                <Nav.Link as={Link} to="/posts" className={classes.link}>
+                  Posts
+                </Nav.Link>
+                <Nav.Link as={Link} to="/great-hall" className={classes.link}>
+                  Great Hall
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to={`/profile/${currentUser.id}`}
+                  className={classes.link}
+                >
+                  Profile
+                </Nav.Link>
+
+                {currentUser.role === "admin" && (
+                  <Nav.Link as={Link} to={`/admin`} className={classes.link}>
+                    Admin
+                  </Nav.Link>
+                )}
+              </>
+            )}
+            <Nav.Link as={Link} to={`/register`} className={classes.link}>
               Register
             </Nav.Link>
           </Nav>

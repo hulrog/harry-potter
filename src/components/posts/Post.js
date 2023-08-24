@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import classes from "./Post.module.css";
 import PostInfo from "./PostInfo";
 import PostStats from "./PostStats";
@@ -9,6 +9,7 @@ import ButtonRow from "../layout/ButtonRow";
 function Post() {
   // vadi id sa use params pa po tom id-ju ce naci post
   const { id } = useParams();
+  const navigate = useNavigate();
 
   // TODO poziv api za individualni post
 
@@ -81,7 +82,7 @@ function Post() {
 
   // Handler za klik na ime - vodi na profil tog korisnika
   const handleCommentProfileClick = (userId) => {
-    window.location.href = `/profile/${userId}`;
+    navigate(`/profile/${userId}`);
   };
 
   // Dodavanje komentara

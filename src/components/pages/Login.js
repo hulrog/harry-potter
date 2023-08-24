@@ -2,8 +2,14 @@ import { useState } from "react";
 import classes from "./Login.module.css";
 import ButtonRow from "../layout/ButtonRow";
 import Button from "../layout/Button";
+import { useAuth } from "../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 // TODO da li je user ili student, admin ili professor u role?
 function LoginPage() {
+  const { setAuthenticated, setCurrentUser } = useAuth();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -29,13 +35,28 @@ function LoginPage() {
       return;
     }
 
-    // TODO: i pozvati api za registraciju
+    console.log("formdata sa login.js: ");
     console.log(formData);
-    window.location.href = `/`;
+    // Simulacija
+    let user = {
+      username: formData.username,
+      password: formData.password,
+      role: "admin",
+      id: 10,
+      firstName: "TestFirstName",
+      lastName: "TestLastNase",
+    };
+    // TODO ovde treba api call
+    // cekanja i neki loader dok ne prodje, i onda
+    // setovanje authenticated usera na to sto vrati login
+    // a vratice ceo objekat user
+    setAuthenticated(true);
+    setCurrentUser(user);
+    navigate(`/`);
   };
 
   const handleRegisterClick = () => {
-    window.location.href = `/register`;
+    navigate(`/register`);
   };
 
   return (
@@ -61,7 +82,7 @@ function LoginPage() {
                 <input
                   type="text"
                   name="password"
-                  value={formData.country}
+                  value={formData.password}
                   onChange={handleChange}
                 />
               </td>

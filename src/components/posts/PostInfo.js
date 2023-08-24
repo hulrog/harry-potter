@@ -20,7 +20,7 @@ function PostInfo({ post }) {
   // Handler za klik na ime - vodi na profil tog korisnika
   const handleUserProfileClick = () => {
     const userId = post.user_id;
-    window.location.href = `/profile/${userId}`;
+    navigate(`/profile/${userId}`);
   };
   //Path do slike
   const [houseSigilPath, setHouseSigilPath] = useState("");

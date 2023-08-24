@@ -1,6 +1,6 @@
 import classes from "./Profile.module.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ButtonRow from "../layout/ButtonRow";
 import Card from "../layout/Card";
 import User from "../User";
@@ -8,11 +8,14 @@ import EditUser from "../EditUser";
 import Modal from "../layout/Modal";
 import Loader from "../layout/Loader";
 import Button from "../layout/Button";
+import { useAuth } from "../auth/AuthContext";
 
 function ProfilePage() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [userData, setUserData] = useState(null);
   const { id } = useParams();
+  const { setAuthenticated, setCurrentUser } = useAuth();
+  const navigate = useNavigate();
 
   // TODO: dohvatiti datu sa API-ja
   // napisati funkciju getUserData ispod u ovom fajlu i izbrisati mock
@@ -44,6 +47,12 @@ function ProfilePage() {
     setShowEditModal(true);
   };
 
+  const handleLogoutClick = () => {
+    setAuthenticated(false);
+    setCurrentUser(null);
+    navigate("/login");
+  };
+
   const handleModalClose = () => {
     setShowEditModal(false);
   };
@@ -60,7 +69,7 @@ function ProfilePage() {
 
       <Card>
         <ButtonRow>
-          <Button text="Log Out" />
+          <Button text="Log Out" onClick={handleLogoutClick} />
           <Button text="Edit Profile" onClick={handleEditProfileClick} />
         </ButtonRow>
       </Card>

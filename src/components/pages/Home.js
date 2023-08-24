@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
 import Card from "../layout/Card";
 import classes from "./Home.module.css";
 
 function HomePage() {
+  const navigate = useNavigate();
   const handleHouseQuizClick = () => {
-    window.location.href = "/house-quiz";
+    navigate("/house-quiz");
   };
   return (
     <div className={classes.homeContainer}>

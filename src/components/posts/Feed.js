@@ -260,7 +260,7 @@ function Feed() {
       disliked: true,
       house: "Hufflepuff",
       likes: 14,
-      liked: false,
+      liked: true,
       popularity: 100,
       saved: true,
       time: "15:45:00",
