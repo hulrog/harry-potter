@@ -1,0 +1,25 @@
+.awardList {
+  display: flex;
+  flex-direction: row;
+}
+
+.awardItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  border: 2px solid var(--text-color);
+  border-radius: 20px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.disabledAwardItem {
+  opacity: 0.3;
+}
+
+.removeButton {
+  color: #f44336;
+  cursor: pointer;
+  font-size: 20px;
+}

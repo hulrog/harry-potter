@@ -5,15 +5,19 @@ import PostInfo from "./PostInfo";
 import PostStats from "./PostStats";
 import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
+import AddAwardModal from "./AddAwardModal";
+import Award from "./Award";
 
 function Post() {
   // vadi id sa use params pa po tom id-ju ce naci post
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // TODO poziv api za individualni post
+  const [isAddAwardModalOpen, setIsAddAwardModalOpen] = useState(false);
 
-  // TODO mockup jednog posta
+  // TODO  ovde isto treba API i u useEffectu postaviti koje awardove je trenutni user vec dao ovom postu
+  const [awardedAwards, setAwardedAwards] = useState([]);
+  // TODO poziv api za individualni post
   const [post, setPost] = useState({
     id: 6,
     category: "Fanfic",
@@ -165,7 +169,7 @@ function Post() {
     }
     const newComment = {
       comment_id: post.comments.length + 1,
-      user: "Name surname", // TODO zameniti imenom i prezimenog trenutnog
+      user: "Name surname (username)", // TODO zameniti imenom i prezimenog i usernamom trenutnog
       user_id: 123, // TODO zameniti ID-jem trenutnog
       text: newCommentText,
     };
@@ -181,6 +185,27 @@ function Post() {
   };
   // Obrtanje da prvo budu prikazani najnoviji
   const reversedComments = [...post.comments].reverse();
+
+  // Nagradjivanje
+  const handleOpenAddAwardModal = () => {
+    setIsAddAwardModalOpen(true);
+  };
+  const handleCloseAddAwardModal = () => {
+    setIsAddAwardModalOpen(false);
+  };
+
+  const handleAddAwards = (awardsToAdd) => {
+    const newAwards = awardsToAdd.filter(
+      (award) =>
+        !awardedAwards.some(
+          (awardedAward) => awardedAward.award_id === award.award_id
+        )
+    );
+
+    if (newAwards.length > 0) {
+      setAwardedAwards((prevAwards) => [...prevAwards, ...newAwards]);
+    }
+  };
 
   // TODO prikaz kuce ili nekih drugih informacija o korisniku? poziv apija za korisnike
   // koji ostavljaju komentare da se prikazu neke dodatne informacije osim imena?
@@ -213,11 +238,33 @@ function Post() {
                 text="Comment"
                 type="submit"
                 onClick={handleSubmitComment}
-              >
-                Submit
-              </Button>
+              ></Button>
+              <Button
+                text="Award"
+                type="submit"
+                onClick={handleOpenAddAwardModal}
+              />
             </ButtonRow>
+            <div className={classes.awardedAwards}>
+              {awardedAwards.length > 0 &&
+                awardedAwards.map((awardedAward) => (
+                  <Award
+                    key={awardedAward.award_id}
+                    award_id={awardedAward.award_id}
+                    description={awardedAward.description}
+                    name={awardedAward.name}
+                  />
+                ))}
+            </div>
           </div>
+          {isAddAwardModalOpen && (
+            <AddAwardModal
+              onClose={handleCloseAddAwardModal}
+              onAddAward={handleAddAwards}
+              awardedAwards={awardedAwards}
+            />
+          )}
+
           <div className={classes.scrollableComments}>
             {reversedComments.map((comment) => (
               <div key={comment.comment_id} className={classes.comment}>
