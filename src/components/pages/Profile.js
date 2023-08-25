@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ButtonRow from "../layout/ButtonRow";
 import Card from "../layout/Card";
-import User from "../User";
-import EditUser from "../EditUser";
 import Modal from "../layout/Modal";
 import Loader from "../layout/Loader";
 import Button from "../layout/Button";
 import { useAuth } from "../auth/AuthContext";
+import EditUser from "../profile/EditUser";
+import User from "../profile/User";
 
 function ProfilePage() {
   const [showEditModal, setShowEditModal] = useState(false);

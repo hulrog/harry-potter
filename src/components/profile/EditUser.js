@@ -1,7 +1,7 @@
 import classes from "./EditUser.module.css";
 import { useState } from "react"; // treba kad se poveze sa backom ubaciti i useEffect
-import Button from "./layout/Button";
-import ButtonRow from "./layout/ButtonRow";
+import Button from "../layout/Button";
+import ButtonRow from "../layout/ButtonRow";
 //import axios from "axios";
 
 function EditUser() {
