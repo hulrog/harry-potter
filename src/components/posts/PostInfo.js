@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import classes from "./PostInfo.module.css";
 import { useNavigate } from "react-router-dom";
+import Award from "./Award";
 
 function PostInfo({ post }) {
   // Za odlazak na stranicu post-a
@@ -29,6 +30,16 @@ function PostInfo({ post }) {
     <div className={classes.postInfoContainer}>
       <div className={classes.categoryAwardsDateSection}>
         <span className={classes.category}>{post.category}</span>
+        <span className={classes.awardList}>
+          {post.awards.map((award) => (
+            <Award
+              key={award.award_id}
+              award_id={award.award_id}
+              name={award.name}
+              description={award.description}
+            />
+          ))}
+        </span>
         <span className={classes.dateTime}>
           {post.date} at {post.time}
         </span>

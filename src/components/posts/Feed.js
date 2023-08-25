@@ -24,7 +24,15 @@ function Feed() {
       title: "Title of the Post",
       user: "John Doe (0)",
       user_id: 1,
-      awards: [{ name: "Best Post" }, { name: "Most Popular" }],
+      awards: [
+        {
+          award_id: 5,
+          award_type: "community",
+          name: "Order of Merlin",
+          descprition:
+            "This post offers outstanding service to the Wizarding community.",
+        },
+      ],
       comments: [
         {
           comment_id: 1,
@@ -56,7 +64,14 @@ function Feed() {
       title: "Title of the Post",
       user: "Alice Brown (hulrog)",
       user_id: 1,
-      awards: [{ name: "Photo of the Day" }],
+      awards: [
+        {
+          award_id: 5,
+          award_type: "community",
+          name: "Order of Merlin",
+          descprition: "",
+        },
+      ],
       comments: [
         {
           comment_id: 1,
@@ -88,7 +103,14 @@ function Feed() {
       title: "Title of the Post",
       user: "Emily Johnson (hulrog)",
       user_id: 1,
-      awards: [],
+      awards: [
+        {
+          award_id: 5,
+          award_type: "community",
+          name: "Order of Merlin",
+          descprition: "",
+        },
+      ],
       comments: [
         {
           comment_id: 1,
@@ -133,7 +155,15 @@ function Feed() {
       title: "Title of the Post",
       user: "Sophia Clark (hulrog)",
       user_id: 52,
-      awards: [{ name: "Travel Inspiration" }],
+      awards: [
+        {
+          award_id: 5,
+          award_type: "community",
+          name: "Order of Merlin",
+          descprition:
+            "This post offers outstanding service to the Wizarding community.",
+        },
+      ],
       comments: [
         {
           comment_id: 1,
@@ -201,7 +231,7 @@ function Feed() {
       title: "Title of the Post",
       user: "Olivia Green (hulrog)",
       user_id: 5,
-      awards: [{ name: "Movie Buff" }],
+      awards: [],
       comments: [
         {
           comment_id: 1,
@@ -239,7 +269,29 @@ function Feed() {
       title: "Title of the Post",
       user: "Grace Anderson (hulrog)",
       user_id: 10,
-      awards: [],
+      awards: [
+        {
+          award_id: 1,
+          award_type: "knowledge",
+          name: "Historian of Magic",
+          descprition:
+            "This post contributes to or demonstrates vast knowledge of the Wizarding World's history and lore.",
+        },
+        {
+          award_id: 2,
+          award_type: "knowledge",
+          name: "Muggle Studies Expert",
+          descprition:
+            "This post draws connections between the real world and Wizarding world or provides useful news about Muggles.",
+        },
+        {
+          award_id: 5,
+          award_type: "community",
+          name: "Order of Merlin",
+          descprition:
+            "This post offers outstanding service to the Wizarding community.",
+        },
+      ],
       comments: [
         {
           comment_id: 1,
@@ -295,7 +347,15 @@ function Feed() {
       title: "Title of the Post",
       user: "Sophia Clark (hulrog)",
       user_id: 52,
-      awards: [{ name: "Travel Inspiration" }],
+      awards: [
+        {
+          award_id: 5,
+          award_type: "community",
+          name: "Order of Merlin",
+          descprition:
+            "This post offers outstanding service to the Wizarding community.",
+        },
+      ],
       comments: [
         {
           comment_id: 1,
@@ -363,7 +423,14 @@ function Feed() {
       title: "Title of the Post",
       user: "Olivia Green (hulrog)",
       user_id: 5,
-      awards: [{ name: "Movie Buff" }],
+      awards: [
+        {
+          award_id: 5,
+          award_type: "community",
+          name: "Order of Merlin",
+          description: "",
+        },
+      ],
       comments: [
         {
           comment_id: 1,

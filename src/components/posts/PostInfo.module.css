@@ -21,6 +21,10 @@
   user-select: none;
 }
 
+.awardList {
+  display: flex;
+}
+
 .dateTime {
   color: var(--text-color-fade);
 }

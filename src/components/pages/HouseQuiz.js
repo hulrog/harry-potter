@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./HouseQuiz.module.css";
-import Question from "../house-quizz/Question";
+import Question from "../house-quiz/Question";
 import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
 import { useNavigate } from "react-router-dom";
