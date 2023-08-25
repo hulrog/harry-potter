@@ -35,8 +35,9 @@ function PostInfo({ post }) {
             <Award
               key={award.award_id}
               award_id={award.award_id}
-              name={award.name}
               description={award.description}
+              name={award.name}
+              amount={award.amount}
             />
           ))}
         </span>

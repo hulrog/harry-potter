@@ -29,7 +29,7 @@ function Feed() {
           award_id: 5,
           award_type: "community",
           name: "Order of Merlin",
-          descprition:
+          description:
             "This post offers outstanding service to the Wizarding community.",
         },
       ],
@@ -69,7 +69,7 @@ function Feed() {
           award_id: 5,
           award_type: "community",
           name: "Order of Merlin",
-          descprition: "",
+          description: "",
         },
       ],
       comments: [
@@ -108,7 +108,7 @@ function Feed() {
           award_id: 5,
           award_type: "community",
           name: "Order of Merlin",
-          descprition: "",
+          description: "",
         },
       ],
       comments: [
@@ -160,7 +160,7 @@ function Feed() {
           award_id: 5,
           award_type: "community",
           name: "Order of Merlin",
-          descprition:
+          description:
             "This post offers outstanding service to the Wizarding community.",
         },
       ],
@@ -274,21 +274,21 @@ function Feed() {
           award_id: 1,
           award_type: "knowledge",
           name: "Historian of Magic",
-          descprition:
+          description:
             "This post contributes to or demonstrates vast knowledge of the Wizarding World's history and lore.",
         },
         {
           award_id: 2,
           award_type: "knowledge",
           name: "Muggle Studies Expert",
-          descprition:
+          description:
             "This post draws connections between the real world and Wizarding world or provides useful news about Muggles.",
         },
         {
           award_id: 5,
           award_type: "community",
           name: "Order of Merlin",
-          descprition:
+          description:
             "This post offers outstanding service to the Wizarding community.",
         },
       ],
@@ -352,8 +352,14 @@ function Feed() {
           award_id: 5,
           award_type: "community",
           name: "Order of Merlin",
-          descprition:
+          description:
             "This post offers outstanding service to the Wizarding community.",
+        },
+        {
+          award_id: 3,
+          award_type: "creativity",
+          name: "Fanfiction Virtuoso",
+          description: "This post is an artwork of fanfiction.",
         },
       ],
       comments: [
@@ -394,10 +400,58 @@ function Feed() {
       saved: true,
       time: "20:30:00",
       title: "My Immortal",
-      user: "Daniel Thompson (hulrog)",
+      user: "Tara Way (ebony)",
       user_id: 323,
 
-      awards: [],
+      awards: [
+        {
+          award_id: 1,
+          award_type: "knowledge",
+          name: "Historian of Magic",
+          description:
+            "This post contributes to or demonstrates vast knowledge of the Wizarding World's history and lore.",
+          amount: 1,
+        },
+        {
+          award_id: 2,
+          award_type: "knowledge",
+          name: "Muggle Studies Expert",
+          description:
+            "This post draws connections between the real world and Wizarding world or provides useful news about Muggles.",
+          amount: 3,
+        },
+        {
+          award_id: 3,
+          award_type: "creativity",
+          name: "Fanfiction Virtuoso",
+          description: "This post is an artwork of fanfiction.",
+          amount: 25,
+        },
+        {
+          award_id: 4,
+          award_type: "creativity",
+          name: "Master of Role-play",
+          description:
+            "This post is a challanging and engaging RP prompt or offers insight into RP skills.",
+          amount: 25,
+        },
+        {
+          award_id: 5,
+          award_type: "community",
+          name: "Order of Merlin",
+          description:
+            "This post offers outstanding service to the Wizarding community.",
+          amount: 11,
+        },
+        {
+          award_id: 6,
+          award_type: "creativity",
+          name: "Student Prefect",
+          description:
+            "This post encourages and promotes community standards and positive behaviour.",
+          amount: 25,
+        },
+      ],
       comments: [
         {
           comment_id: 1,
@@ -496,7 +550,7 @@ function Feed() {
       title: "Title of the Post",
       user: "Sophia Clark (schone)",
       user_id: 52,
-      awards: [{ name: "Travel Inspiration" }],
+      awards: [],
       comments: [
         {
           comment_id: 1,
