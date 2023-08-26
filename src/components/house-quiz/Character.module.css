@@ -1,0 +1,39 @@
+.characterContainer {
+  display: flex;
+  margin: 20px;
+}
+
+.characterLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  padding-right: 20px;
+}
+
+.characterRight {
+  width: 70%;
+  padding-left: 20px;
+}
+
+.characterImage {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.characterOtherInfo p {
+  margin: 5px 0;
+}
+
+.characterInfoTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.characterInfoTable th,
+.characterInfoTable td {
+  border: 1px solid var(--text-color);
+  padding: 8px;
+}
