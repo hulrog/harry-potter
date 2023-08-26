@@ -1,0 +1,18 @@
+.userStatsContainer {
+  width: 100%;
+}
+
+.statsHeader {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 20px;
+  padding: 30px;
+}
+
+.awardCounts {
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: space-evenly;
+}

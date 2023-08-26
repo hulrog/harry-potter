@@ -9,6 +9,7 @@ import Button from "../layout/Button";
 import { useAuth } from "../auth/AuthContext";
 import EditUser from "../profile/EditUser";
 import User from "../profile/User";
+import UserStats from "../profile/UserStats";
 
 function ProfilePage() {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -82,6 +83,7 @@ function ProfilePage() {
           <EditUser />
         </Modal>
       )}
+      <UserStats></UserStats>
     </div>
   );
 }

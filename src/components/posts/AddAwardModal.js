@@ -16,7 +16,6 @@ function AddAwardModal({ onClose, onAddAward, awardedAwards }) {
       name: "Historian of Magic",
       description:
         "This post contributes to or demonstrates vast knowledge of the Wizarding World's history and lore.",
-      amount: 1,
     },
     {
       award_id: 2,
@@ -24,14 +23,12 @@ function AddAwardModal({ onClose, onAddAward, awardedAwards }) {
       name: "Muggle Studies Expert",
       description:
         "This post draws connections between the real world and Wizarding world or provides useful news about Muggles.",
-      amount: 3,
     },
     {
       award_id: 3,
       award_type: "creativity",
       name: "Fanfiction Virtuoso",
       description: "This post is an artwork of fanfiction.",
-      amount: 25,
     },
     {
       award_id: 4,
@@ -39,7 +36,6 @@ function AddAwardModal({ onClose, onAddAward, awardedAwards }) {
       name: "Master of Role-play",
       description:
         "This post is a challanging and engaging RP prompt or offers insight into RP skills.",
-      amount: 25,
     },
     {
       award_id: 5,
@@ -47,7 +43,6 @@ function AddAwardModal({ onClose, onAddAward, awardedAwards }) {
       name: "Order of Merlin",
       description:
         "This post offers outstanding service to the Wizarding community.",
-      amount: 11,
     },
     {
       award_id: 6,
@@ -55,7 +50,6 @@ function AddAwardModal({ onClose, onAddAward, awardedAwards }) {
       name: "Student Prefect",
       description:
         "This post encourages and promotes community standards and positive behaviour.",
-      amount: 25,
     },
   ];
 
