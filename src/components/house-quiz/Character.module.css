@@ -1,6 +1,12 @@
 .characterContainer {
   display: flex;
   margin: 20px;
+  min-width: 600px;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-radius: 20px;
+  user-select: none;
 }
 
 .characterLeft {
@@ -17,13 +23,12 @@
 }
 
 .characterImage {
-  width: 100px;
   height: 150px;
   object-fit: cover;
 }
 
 .characterOtherInfo p {
-  margin: 5px 0;
+  margin: 0px;
 }
 
 .characterInfoTable {

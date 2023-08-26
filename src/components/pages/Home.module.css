@@ -4,6 +4,7 @@
 }
 
 .crestContainer {
+  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -13,4 +14,10 @@
 .crestContainer img {
   height: 200px;
   margin: 20px;
+  cursor: pointer;
+}
+
+.selectedCrest {
+  transition: filter 0.5s ease-in-out;
+  filter: drop-shadow(0px 0px 20px var(--primary-color));
 }

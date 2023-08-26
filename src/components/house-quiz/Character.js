@@ -10,6 +10,7 @@ function Character({ character }) {
             src={character.image}
             alt={character.name}
             className={classes.characterImage}
+            draggable="false"
           />
         ) : (
           <img
@@ -18,26 +19,25 @@ function Character({ character }) {
             }
             alt="house"
             className={classes.characterImage}
+            draggable="false"
           />
         )}
 
         <div className={classes.characterOtherInfo}>
-          <p>Patronus: {character.patronus}</p>
+          <p>
+            Patronus:
+            <br></br>
+            {character.patronus}
+          </p>
           <p>Eye Colour: {character.eyeColour}</p>
           <p>Hair Colour: {character.hairColour}</p>
           <p>Alive: {character.alive ? "Yes" : "No"}</p>
-          <p>Hogwarts Student: {character.hogwartsStudent ? "Yes" : "No"}</p>
-          <p>Hogwarts Staff: {character.hogwartsStaff ? "Yes" : "No"}</p>
         </div>
       </div>
       <div className={classes.characterRight}>
         <h2>{character.name}</h2>
         <table className={classes.characterInfoTable}>
           <tbody>
-            <tr>
-              <td>Actor:</td>
-              <td>{character.actor}</td>
-            </tr>
             <tr>
               <td>Gender:</td>
               <td>{character.gender}</td>
@@ -63,6 +63,10 @@ function Character({ character }) {
                 <br />
                 Length: {character.wand.length} inches
               </td>
+            </tr>
+            <tr>
+              <td>Actor:</td>
+              <td>{character.actor}</td>
             </tr>
           </tbody>
         </table>

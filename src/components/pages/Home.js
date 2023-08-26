@@ -20,15 +20,6 @@ function HomePage() {
 
   return (
     <div className={classes.homeContainer}>
-      <Card>
-        <ButtonRow>
-          <Button
-            type="submit"
-            text="House Quiz"
-            onClick={handleHouseQuizClick}
-          />
-        </ButtonRow>
-      </Card>
       <div className={classes.crestContainer}>
         <img
           src={process.env.PUBLIC_URL + "sigils/house_slytherin.png"}
@@ -64,6 +55,15 @@ function HomePage() {
         />
       </div>
       {displayedHouse && <House house={displayedHouse} />}
+      <Card>
+        <ButtonRow>
+          <Button
+            type="submit"
+            text="House Quiz"
+            onClick={handleHouseQuizClick}
+          />
+        </ButtonRow>
+      </Card>
     </div>
   );
 }
