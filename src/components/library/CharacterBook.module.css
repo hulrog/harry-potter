@@ -1,0 +1,25 @@
+.characterBookContainer {
+  background: var(--background-color-light);
+  color: var(--text-color);
+  margin: 10px;
+  min-height: 95%;
+  max-height: 95%;
+  min-width: 15%;
+  max-width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  border: 5px solid black;
+}
+
+.characterName {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.characterImage {
+  max-width: 60%;
+  max-height: 60%;
+  border-radius: 20px;
+}

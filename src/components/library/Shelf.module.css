@@ -13,7 +13,7 @@
 .shelfRow {
   display: flex;
   justify-content: space-between;
-  height: 300px;
+  height: 50vh;
 }
 
 .shelfVertical {
@@ -22,4 +22,11 @@
   height: 100%;
   border: 5px solid black;
   border-radius: 5px;
+}
+
+.bookList {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 }
