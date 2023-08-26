@@ -13,6 +13,7 @@ import ProfilePage from "./components/pages/Profile";
 import RegisterPage from "./components/pages/Register";
 import Post from "./components/posts/Post";
 import PrivateRoute from "./components/auth/PrivateRoute";
+import Library from "./components/library/Library";
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
           <Route
             path="/house-quiz"
             element={<PrivateRoute element={<HouseQuiz />}></PrivateRoute>}
+          />
+          <Route
+            path="/library"
+            element={<PrivateRoute element={<Library />}></PrivateRoute>}
           />
           <Route
             path="/posts"

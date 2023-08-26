@@ -27,6 +27,9 @@ function Layout(props) {
                 <Nav.Link as={Link} to="/great-hall" className={classes.link}>
                   Great Hall
                 </Nav.Link>
+                <Nav.Link as={Link} to="/library" className={classes.link}>
+                  Library
+                </Nav.Link>
                 <Nav.Link
                   as={Link}
                   to={`/profile/${currentUser.id}`}
