@@ -1,7 +1,6 @@
 .houseQuizContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .resultContainer {
@@ -17,5 +16,5 @@
 }
 
 .houseImg {
-  width: 40%;
+  width: 400px;
 }

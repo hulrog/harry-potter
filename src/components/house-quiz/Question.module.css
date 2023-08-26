@@ -3,6 +3,7 @@
   color: var(--text-color);
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 40px;
   padding: 40px;
   border-radius: 40px;

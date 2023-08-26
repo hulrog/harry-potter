@@ -4,6 +4,7 @@ import Question from "../house-quiz/Question";
 import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
 import { useNavigate } from "react-router-dom";
+import House from "../house-quiz/House";
 
 function HouseQuiz() {
   const navigate = useNavigate();
@@ -336,6 +337,13 @@ function HouseQuiz() {
   };
 
   const handleQuizRestart = () => {
+    setCurrentQuestionIndex(0);
+    setHousePoints({
+      gryffindor: 0,
+      ravenclaw: 0,
+      hufflepuff: 0,
+      slytherin: 0,
+    });
     navigate("/house-quiz");
   };
 
@@ -352,7 +360,7 @@ function HouseQuiz() {
         <div className={classes.resultContainer}>
           <p>Sorting completed! Here is your result:</p>
           <p>
-            You've been sorted into:
+            You've been sorted into
             <span className={classes.houseText}>
               {" "}
               {getMaxHouse().charAt(0).toUpperCase() + getMaxHouse().slice(1)}!
@@ -378,6 +386,7 @@ function HouseQuiz() {
               onClick={handleQuizRestart}
             />
           </ButtonRow>
+          <House house={getMaxHouse()} />
         </div>
       )}
     </div>
