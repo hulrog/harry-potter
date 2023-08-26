@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
 import classes from "./CharacterSection.module.css";
+import Shelf from "./Shelf";
 
 function CharacterSection() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,15 +14,23 @@ function CharacterSection() {
     )
       .then((response) => response.json())
       .then((data) => {
-        setCharacterData(data);
+        setCharacterData(data.data);
       })
       .catch((error) => {
         console.error("Error fetching character data:", error);
       });
   };
 
+  // po 5 u policu
+  const characterGroups = [];
+  if (characterData) {
+    for (let i = 0; i < characterData.length; i += 5) {
+      characterGroups.push(characterData.slice(i, i + 5));
+    }
+  }
+
   return (
-    <div className={classes.characterSearchContainer}>
+    <div className={classes.characterSectionContainer}>
       <input
         type="text"
         placeholder="Enter character name"
@@ -31,10 +40,9 @@ function CharacterSection() {
       <ButtonRow>
         <Button type="submit" text="Search" onClick={handleSearchSubmit} />
       </ButtonRow>
-      <div className={classes.shelfHorizontal}> </div>
-      <div classnName={classes.shelfVertical}> </div>
-      <div className={classes.shelfHorizontal}> </div>
-      {characterData && <div>{JSON.stringify(characterData, null, 2)}</div>}
+      {characterGroups.map((characters, index) => (
+        <Shelf key={index} characters={characters} />
+      ))}
     </div>
   );
 }

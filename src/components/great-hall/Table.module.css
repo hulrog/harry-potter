@@ -9,7 +9,7 @@
 .table {
   width: 10vw;
   height: 60vh;
-  background-color: #553624;
+  background-color: var(--wood-color);
   margin: 2px;
   border: 5px solid black;
   border-radius: 5px;

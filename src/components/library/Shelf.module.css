@@ -1,0 +1,25 @@
+.shelf {
+  width: 95%;
+}
+
+.shelfHorizontal {
+  background-color: var(--wood-color);
+  width: 100%;
+  height: 5vh;
+  border: 5px solid black;
+  border-radius: 5px;
+}
+
+.shelfRow {
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.shelfVertical {
+  background-color: var(--wood-color);
+  width: 5vh;
+  height: 100%;
+  border: 5px solid black;
+  border-radius: 5px;
+}

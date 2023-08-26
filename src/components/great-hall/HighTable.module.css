@@ -16,7 +16,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +27,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +37,7 @@
 .highTable {
   width: 60vw;
   height: 10vh;
-  background-color: #553624;
+  background-color: var(--wood-color);
   margin-bottom: 20px;
   border: 5px solid black;
   border-radius: 5px;
