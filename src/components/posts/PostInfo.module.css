@@ -19,6 +19,8 @@
   font-style: italic;
   cursor: pointer;
   user-select: none;
+  width: 10%;
+  text-align: center;
 }
 
 .awardList {
@@ -27,6 +29,7 @@
 
 .dateTime {
   color: var(--text-color-fade);
+  width: 10%;
 }
 
 .titleUserSection {
