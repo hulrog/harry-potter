@@ -7,6 +7,7 @@ import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
 import AddAwardModal from "./AddAwardModal";
 import Award from "./Award";
+import { useAuth } from "../auth/AuthContext";
 
 function Post() {
   // vadi id sa use params pa po tom id-ju ce naci post
@@ -14,6 +15,7 @@ function Post() {
   const navigate = useNavigate();
 
   const [isAddAwardModalOpen, setIsAddAwardModalOpen] = useState(false);
+  const { currentUser } = useAuth();
 
   // TODO  ovde isto treba API i u useEffectu postaviti koje awardove je trenutni user vec dao ovom postu
   const [awardedAwards, setAwardedAwards] = useState([]);
@@ -217,12 +219,14 @@ function Post() {
           <p className={classes.content}>{post.content}</p>
         </div>
         <PostStats post={post}></PostStats>
-        <div className={classes.detailsSection}>
-          <span className={classes.id}> ID:{id}</span>
-          <span className={classes.popularity}>
-            Popularity: {post.popularity}
-          </span>
-        </div>
+        {currentUser.role === "admin" && (
+          <div className={classes.detailsSection}>
+            <span className={classes.id}> ID: {id}</span>
+            <span className={classes.popularity}>
+              Popularity: {post.popularity}
+            </span>
+          </div>
+        )}
         <div className={classes.commentsSection}>
           <div className={classes.newComment}>
             <input
