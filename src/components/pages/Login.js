@@ -42,6 +42,7 @@ function LoginPage() {
       username: formData.username,
       password: formData.password,
       role: "admin",
+      house: "gryffindor",
       id: 10,
       firstName: "TestFirstName",
       lastName: "TestLastNase",

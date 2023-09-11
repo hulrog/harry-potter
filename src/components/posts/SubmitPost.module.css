@@ -1,0 +1,78 @@
+.submitPostContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submitPostForm {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: bold;
+  padding: 10px;
+  text-align: right;
+}
+
+input,
+select {
+  background-color: var(--background-color-light);
+  color: var(--text-color);
+  border: 1px solid var(--background-color);
+  height: 30px;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid var(--primary-color);
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 5000px var(--background-color-light) inset;
+  -webkit-text-fill-color: var(--text-color) !important;
+}
+
+.postContent {
+  background-color: var(--background-color-light);
+  color: var(--text-color);
+  border: 1px solid var(--background-color);
+  resize: none;
+  width: 800px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.logInOption {
+  font-weight: bold;
+}
+
+.logInLink {
+  color: var(--primary-color);
+  margin: 0px 10px;
+  cursor: pointer;
+}
+
+.formValidationMessage {
+  color: var(--remove-color);
+}

@@ -14,6 +14,7 @@ import RegisterPage from "./components/pages/Register";
 import Post from "./components/posts/Post";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import Library from "./components/library/Library";
+import SubmitPost from "./components/posts/SubmitPost";
 
 function App() {
   return (
@@ -47,6 +48,10 @@ function App() {
           <Route
             path="/post/:id"
             element={<PrivateRoute element={<Post />}></PrivateRoute>}
+          />
+          <Route
+            path="/submit-post"
+            element={<PrivateRoute element={<SubmitPost />}></PrivateRoute>}
           />
           <Route
             path="/profile/:id"
