@@ -4,7 +4,8 @@ import Pagination from "./Pagination";
 import Thumbnail from "./Thumbnail";
 
 function Feed() {
-  const [selectedOption, setSelectedOption] = useState("for_you"); // Default state
+  const [selectedOption, setSelectedOption] = useState("for_you");
+  const [searchQuery, setSearchQuery] = useState(""); // State for the search query
 
   //TODO - poziv za svaki API na useEffect - get post-ova preko API-ja
   const forYouPostsData = [
@@ -751,12 +752,39 @@ function Feed() {
     totalPosts = newPostsData.length;
   }
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    // Reset pagination when searching
+    setCurrentPage(1);
+  };
+
+  let filteredPosts = currentPosts;
+  if (searchQuery) {
+    const searchQueryLower = searchQuery.toLowerCase();
+    filteredPosts = currentPosts.filter((post) => {
+      const titleLower = post.title.toLowerCase();
+      const contentLower = post.content.toLowerCase();
+      return (
+        titleLower.includes(searchQueryLower) ||
+        contentLower.includes(searchQueryLower)
+      );
+    });
+  }
+
   // Funkcija za promenu stranice
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     // Mapira postove koje dobije iz API-ja u Thumbnail-ove
     <div className={classes.feedContainer}>
+      <div className={classes.searchBar}>
+        <input
+          type="text"
+          placeholder="Search posts by title or content"
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+      </div>
       <div className={classes.tabsContainer}>
         <div
           className={`${classes.tab} ${
@@ -806,7 +834,7 @@ function Feed() {
         paginate={paginate}
       />
       <div className={classes.thumbnailList}>
-        {currentPosts.map((post) => (
+        {filteredPosts.map((post) => (
           <Thumbnail key={post.id} post={post} />
         ))}
       </div>
