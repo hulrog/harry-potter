@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Feed.module.css";
 import Pagination from "./Pagination";
 import Thumbnail from "./Thumbnail";
@@ -629,9 +629,100 @@ function Feed() {
       ],
     },
   ];
+  const newPostsData = [
+    {
+      id: 5,
+      category: "Hogwarts",
+      content: "Throwback to my amazing vacation.",
+      date: "2023-09-02",
+      dislikes: 0,
+      disliked: true,
+      house: "Slytherin",
+      likes: 20,
+      liked: false,
+      popularity: 180,
+      saved: true,
+      time: "16:00:00",
+      title: "Newest post",
+      user: "Sophia Clark (schone)",
+      user_id: 52,
+      awards: [],
+      comments: [
+        {
+          comment_id: 1,
+          user: "Oliver Harris",
+          user_id: 66,
+          text: "Looks like a dream destination!",
+        },
+        {
+          comment_id: 2,
+          user: "Emma Davis",
+          user_id: 63,
+          text: "I wish I could go there too.",
+        },
+      ],
+    },
+    {
+      id: 6,
+      category: "Fanfic",
+      content: `Some new post`,
+      date: "2023-09-01",
+      dislikes: 323,
+      disliked: true,
+      house: "Slytherin",
+      likes: 20,
+      liked: false,
+      popularity: 180,
+      saved: true,
+      time: "20:30:00",
+      title: "New Post 2",
+      user: "Daniel Thompson (hulrog)",
+      user_id: 323,
+
+      awards: [],
+      comments: [
+        {
+          comment_id: 1,
+          user: "Lily Turner",
+          user_id: 2,
+          text: "Which band is performing?",
+        },
+      ],
+    },
+    {
+      id: 8,
+      category: "J.K. Rowling",
+      content: "Trying out a new recipe today.",
+      date: "2023-08-28",
+      dislikes: 2,
+      disliked: true,
+      house: "Hufflepuff",
+      likes: 14,
+      liked: false,
+      popularity: 100,
+      saved: true,
+      time: "15:45:00",
+      title: "Title of the Post",
+      user: "Grace Anderson (0)",
+      user_id: 2,
+      awards: [],
+      comments: [
+        {
+          comment_id: 1,
+          user: "William Turner",
+          user_id: 500,
+          text: "Letme know how it turns out!",
+        },
+      ],
+    },
+  ];
 
   // Trenutno prikazana stranica
   const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+    // Uvek kad se promeni tab da stavi da je page 1
+    setCurrentPage(1);
+  }, [selectedOption]);
   // Broj postva po stranici
   const postsPerPage = 5;
 
@@ -640,7 +731,7 @@ function Feed() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-  //Koji postovi ce se prikazati - for_you, liked, saved, ili commented
+  //Koji postovi ce se prikazati - for_you, new, liked, saved, ili commented
   let currentPosts = [];
   let totalPosts;
   if (selectedOption === "for_you") {
@@ -655,6 +746,9 @@ function Feed() {
   } else if (selectedOption === "commented") {
     currentPosts = commentedPostsData.slice(indexOfFirstPost, indexOfLastPost);
     totalPosts = commentedPostsData.length;
+  } else if (selectedOption === "new") {
+    currentPosts = newPostsData.slice(indexOfFirstPost, indexOfLastPost);
+    totalPosts = newPostsData.length;
   }
 
   // Funkcija za promenu stranice
@@ -671,6 +765,14 @@ function Feed() {
           onClick={() => setSelectedOption("for_you")}
         >
           For You
+        </div>
+        <div
+          className={`${classes.tab} ${
+            selectedOption === "new" ? classes.activeTab : ""
+          }`}
+          onClick={() => setSelectedOption("new")}
+        >
+          New
         </div>
         <div
           className={`${classes.tab} ${
