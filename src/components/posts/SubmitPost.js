@@ -63,8 +63,6 @@ function SubmitPost() {
 
     // Validacija forme
     setFormIsValid(true);
-
-    // Check if required fields are filled
     const requiredFields = ["title", "content", "category"];
     const isFormValid = requiredFields.every((field) => formData[field] !== "");
 
@@ -73,7 +71,7 @@ function SubmitPost() {
       return;
     }
 
-    // Create the post object
+    // Post objekat za slanje na API
     const postObject = {
       user_id: currentUser.id,
       category_id: formData.category_id,
@@ -92,7 +90,6 @@ function SubmitPost() {
     //     // Handle error
     //   });
 
-    // Redirect to a different route or perform any other necessary actions
     navigate(`/posts`);
   };
 

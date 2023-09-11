@@ -15,6 +15,7 @@ import Post from "./components/posts/Post";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import Library from "./components/library/Library";
 import SubmitPost from "./components/posts/SubmitPost";
+import EditPost from "./components/posts/EditPost";
 
 function App() {
   return (
@@ -52,6 +53,10 @@ function App() {
           <Route
             path="/submit-post"
             element={<PrivateRoute element={<SubmitPost />}></PrivateRoute>}
+          />
+          <Route
+            path="/edit-post/:id"
+            element={<PrivateRoute element={<EditPost />}></PrivateRoute>}
           />
           <Route
             path="/profile/:id"

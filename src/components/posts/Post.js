@@ -209,6 +209,15 @@ function Post() {
     }
   };
 
+  const handleDeleteClick = () => {
+    //poziv API-ja za delete
+    navigate("/posts");
+  };
+
+  const handleEditClick = () => {
+    navigate("/edit-post/" + id);
+  };
+
   // TODO prikaz kuce ili nekih drugih informacija o korisniku? poziv apija za korisnike
   // koji ostavljaju komentare da se prikazu neke dodatne informacije osim imena?
   return (
@@ -287,6 +296,16 @@ function Post() {
             ))}
           </div>
         </div>
+        {(currentUser.role === "admin" || currentUser.id === post.user_id) && (
+          <ButtonRow>
+            <Button
+              text="Delete"
+              type="remove"
+              onClick={handleDeleteClick}
+            ></Button>
+            <Button text="Edit" type="submit" onClick={handleEditClick} />
+          </ButtonRow>
+        )}
       </div>
     </div>
   );

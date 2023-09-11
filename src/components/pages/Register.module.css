@@ -99,8 +99,8 @@ input:-webkit-autofill {
   width: 90%;
   height: 100px;
   padding: 10px;
-  border-radius: 4px;
-  font-size: 14px;
+  border-radius: 10px;
+  font-size: 20px;
 }
 
 .logInOption {

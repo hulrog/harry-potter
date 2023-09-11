@@ -1,7 +1,7 @@
 .postContainer {
   background-color: var(--background-color);
   color: var(--text-color);
-  margin: 20px 40px;
+  margin: 20px 40px 150px 40px;
   padding: 20px;
   border-radius: 20px;
   display: flex;
