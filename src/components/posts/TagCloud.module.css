@@ -20,4 +20,10 @@
   user-select: none;
   white-space: nowrap;
   word-break: break-word;
+  transition-duration: 300ms;
+}
+
+.selectedCategory {
+  background-color: var(--text-color);
+  color: var(--background-color);
 }

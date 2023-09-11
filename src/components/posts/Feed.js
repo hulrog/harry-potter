@@ -3,9 +3,9 @@ import classes from "./Feed.module.css";
 import Pagination from "./Pagination";
 import Thumbnail from "./Thumbnail";
 
-function Feed() {
+function Feed({ selectedCategory }) {
   const [selectedOption, setSelectedOption] = useState("for_you");
-  const [searchQuery, setSearchQuery] = useState(""); // State for the search query
+  const [searchQuery, setSearchQuery] = useState("");
 
   //TODO - poziv za svaki API na useEffect - get post-ova preko API-ja
   const forYouPostsData = [
@@ -717,6 +717,198 @@ function Feed() {
       ],
     },
   ];
+  const [categorizedPostsData, setCategorizedpostsData] = useState(null);
+  useEffect(() => {
+    setSelectedOption("categorized");
+    // TODO api call za kategorije, obrisi ovaj switch
+    switch (selectedCategory) {
+      case "Hogwarts":
+        setCategorizedpostsData([
+          {
+            id: 5,
+            category: "Hogwarts",
+            content: "Throwback to my amazing vacation.",
+            date: "2023-09-02",
+            dislikes: 0,
+            disliked: true,
+            house: "Slytherin",
+            likes: 20,
+            liked: false,
+            popularity: 180,
+            saved: true,
+            time: "16:00:00",
+            title: "Newest post",
+            user: "Sophia Clark (schone)",
+            user_id: 52,
+            awards: [],
+            comments: [
+              {
+                comment_id: 1,
+                user: "Oliver Harris",
+                user_id: 66,
+                text: "Looks like a dream destination!",
+              },
+              {
+                comment_id: 2,
+                user: "Emma Davis",
+                user_id: 63,
+                text: "I wish I could go there too.",
+              },
+            ],
+          },
+          {
+            id: 6,
+            category: "Fanfic",
+            content: `Some new post`,
+            date: "2023-09-01",
+            dislikes: 323,
+            disliked: true,
+            house: "Slytherin",
+            likes: 20,
+            liked: false,
+            popularity: 180,
+            saved: true,
+            time: "20:30:00",
+            title: "New Post 2",
+            user: "Daniel Thompson (hulrog)",
+            user_id: 323,
+
+            awards: [],
+            comments: [
+              {
+                comment_id: 1,
+                user: "Lily Turner",
+                user_id: 2,
+                text: "Which band is performing?",
+              },
+            ],
+          },
+          {
+            id: 8,
+            category: "J.K. Rowling",
+            content: "Trying out a new recipe today.",
+            date: "2023-08-28",
+            dislikes: 2,
+            disliked: true,
+            house: "Hufflepuff",
+            likes: 14,
+            liked: false,
+            popularity: 100,
+            saved: true,
+            time: "15:45:00",
+            title: "Title of the Post",
+            user: "Grace Anderson (0)",
+            user_id: 2,
+            awards: [],
+            comments: [
+              {
+                comment_id: 1,
+                user: "William Turner",
+                user_id: 500,
+                text: "Letme know how it turns out!",
+              },
+            ],
+          },
+        ]);
+        break;
+      case "Movies":
+        setCategorizedpostsData([
+          {
+            id: 5,
+            category: "Movies",
+            content: "Throwback to my amazing vacation.",
+            date: "2023-09-02",
+            dislikes: 0,
+            disliked: true,
+            house: "Slytherin",
+            likes: 20,
+            liked: false,
+            popularity: 180,
+            saved: true,
+            time: "16:00:00",
+            title: "Newest post",
+            user: "Sophia Clark (schone)",
+            user_id: 52,
+            awards: [],
+            comments: [
+              {
+                comment_id: 1,
+                user: "Oliver Harris",
+                user_id: 66,
+                text: "Looks like a dream destination!",
+              },
+              {
+                comment_id: 2,
+                user: "Emma Davis",
+                user_id: 63,
+                text: "I wish I could go there too.",
+              },
+            ],
+          },
+          {
+            id: 6,
+            category: "Movies",
+            content: `Some new post`,
+            date: "2023-09-01",
+            dislikes: 323,
+            disliked: true,
+            house: "Slytherin",
+            likes: 20,
+            liked: false,
+            popularity: 180,
+            saved: true,
+            time: "20:30:00",
+            title: "New Post 2",
+            user: "Daniel Thompson (hulrog)",
+            user_id: 323,
+
+            awards: [],
+            comments: [
+              {
+                comment_id: 1,
+                user: "Lily Turner",
+                user_id: 2,
+                text: "Which band is performing?",
+              },
+            ],
+          },
+          {
+            id: 8,
+            category: "Movies",
+            content: "Trying out a new recipe today.",
+            date: "2023-08-28",
+            dislikes: 2,
+            disliked: true,
+            house: "Hufflepuff",
+            likes: 14,
+            liked: false,
+            popularity: 100,
+            saved: true,
+            time: "15:45:00",
+            title: "Title of the Post",
+            user: "Grace Anderson (0)",
+            user_id: 2,
+            awards: [],
+            comments: [
+              {
+                comment_id: 1,
+                user: "William Turner",
+                user_id: 500,
+                text: "Letme know how it turns out!",
+              },
+            ],
+          },
+        ]);
+        break;
+      default:
+        setCategorizedpostsData([]);
+    }
+  }, [selectedCategory]);
+
+  // Da po defaultu bude for_you
+  useEffect(() => {
+    setSelectedOption("for_you");
+  }, []);
 
   // Trenutno prikazana stranica
   const [currentPage, setCurrentPage] = useState(1);
@@ -750,11 +942,16 @@ function Feed() {
   } else if (selectedOption === "new") {
     currentPosts = newPostsData.slice(indexOfFirstPost, indexOfLastPost);
     totalPosts = newPostsData.length;
+  } else if (selectedOption === "categorized") {
+    currentPosts = categorizedPostsData.slice(
+      indexOfFirstPost,
+      indexOfLastPost
+    );
+    totalPosts = categorizedPostsData.length;
   }
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-    // Reset pagination when searching
     setCurrentPage(1);
   };
 
@@ -826,6 +1023,14 @@ function Feed() {
         >
           Commented
         </div>
+        <div
+          className={`${classes.tab} ${
+            selectedOption === "categorized" ? classes.activeTab : ""
+          }`}
+          onClick={() => setSelectedOption("categorized")}
+        >
+          Categorized
+        </div>
       </div>
       <Pagination
         postsPerPage={postsPerPage}
@@ -834,9 +1039,20 @@ function Feed() {
         paginate={paginate}
       />
       <div className={classes.thumbnailList}>
-        {filteredPosts.map((post) => (
-          <Thumbnail key={post.id} post={post} />
-        ))}
+        <div className={classes.thumbnailList}>
+          {selectedOption === "categorized" && (
+            <div className={classes.emptyCategoryMessage}>
+              Category: {selectedCategory}
+            </div>
+          )}
+          {filteredPosts.length === 0 ? (
+            <div className={classes.emptyCategoryMessage}>
+              There doesn't seem to be anything here!
+            </div>
+          ) : (
+            filteredPosts.map((post) => <Thumbnail key={post.id} post={post} />)
+          )}
+        </div>
       </div>
       <Pagination
         postsPerPage={postsPerPage}
