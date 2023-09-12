@@ -436,6 +436,17 @@ function UserStats() {
     });
   });
 
+  //GRAFIKONI
+  const categoryCounts = {};
+  userPosts.forEach((post) => {
+    const category = post.category;
+    if (categoryCounts[category]) {
+      categoryCounts[category]++;
+    } else {
+      categoryCounts[category] = 1;
+    }
+  });
+
   return (
     <div className={classes.userStatsContainer}>
       <div className={classes.statsHeader}>
@@ -443,6 +454,21 @@ function UserStats() {
         <p>Number of Posts: {numberOfPosts}</p>
         <p>Comments Recieved: {totalComments}</p>
         <p>Awards Received: {totalAwards}</p>
+      </div>
+      <div className={classes.chartSection}>
+        <div className={classes.barChart}>
+          {Object.entries(categoryCounts).map(([category, count]) => (
+            <div key={category} className={classes.bar}>
+              <div className={classes.barLabel}>{category}</div>
+              <div
+                className={classes.barFill}
+                style={{ width: `${count * 20}px` }}
+              >
+                {count}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       <div className={classes.awardCounts}>
         <div className={classes.awardCounts}>
