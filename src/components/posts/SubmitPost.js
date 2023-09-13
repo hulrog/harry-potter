@@ -17,37 +17,21 @@ function SubmitPost() {
   const [categoriesData, setCategoriesData] = useState([]);
 
   useEffect(() => {
-    // Fetch categories data from the API
-    // fetchCategoriesData()
-    //   .then((data) => {
-    //     setCategoriesData(data);
-    //   })
-    //   .catch((error) => console.error(error));
-    const data = [
-      {
-        category_id: 1,
-        category_name: "Hogwarts",
-      },
-      {
-        category_id: 2,
-        category_name: "Fanfiction",
-      },
-      {
-        category_id: 3,
-        category_name: "TV Show",
-      },
-      {
-        category_id: 4,
-        category_name: "Movies",
-      },
-      {
-        category_id: 5,
-        category_name: "Books",
-      },
-    ];
-    setCategoriesData(data);
+    fetch("http://127.0.0.1:8000/getAllCategories")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setCategoriesData(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
   }, []);
-
   const [formIsValid, setFormIsValid] = useState(true);
 
   const handleChange = (e) => {
