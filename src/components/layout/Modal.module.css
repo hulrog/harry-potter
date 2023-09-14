@@ -13,7 +13,12 @@
 .modal {
   background-color: var(--background-color);
   color: var(--text-color);
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0 0 20px var(--primary-color);
-  padding: 2rem;
+  padding: 2%;
+
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
 }
