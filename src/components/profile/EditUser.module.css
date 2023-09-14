@@ -33,18 +33,6 @@
   text-align: left;
 }
 
-.container input,
-.container select {
-  background-color: var(--background-color-light);
-  color: var(--text-color);
-  border: 1px solid var(--background-color);
-  height: 40px;
-  width: 100%;
-  padding: 0px 10px;
-  border-radius: 10px;
-  font-size: 20px;
-}
-
 .bio {
   width: 100%;
   display: flex;

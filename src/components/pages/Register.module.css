@@ -33,30 +33,6 @@
   text-align: left;
 }
 
-.registerForm input,
-.registerForm select {
-  background-color: var(--background-color-light);
-  color: var(--text-color);
-  border: 1px solid var(--background-color);
-  height: 50px;
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 20px;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border: 1px solid var(--primary-color);
-}
-
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 5000px var(--background-color-light) inset;
-  -webkit-text-fill-color: var(--text-color) !important;
-}
-
 .rolesRow {
   width: 40%;
   display: flex;
