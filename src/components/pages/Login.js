@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 // TODO da li je user ili student, admin ili professor u role?
 function LoginPage() {
   const { setAuthenticated, setCurrentUser } = useAuth();
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -26,6 +27,7 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setInvalidCredentials(false);
 
     // Validacija forme
     setFormIsValid(true);
@@ -35,27 +37,38 @@ function LoginPage() {
       return;
     }
 
-    console.log("formdata sa login.js: ");
-    console.log(formData);
-    // Simulacija
-    let user = {
-      username: formData.username,
-      password: formData.password,
-      role: "admin",
-      house: "gryffindor",
-      id: 10,
-      firstName: "TestFirstName",
-      lastName: "TestLastNase",
-    };
-    // TODO ovde treba api call
-    // cekanja i neki loader dok ne prodje, i onda
-    // setovanje authenticated usera na to sto vrati login
-    // a vratice ceo objekat user
-    setAuthenticated(true);
-    setCurrentUser(user);
-    navigate(`/`);
+    fetch("http://127.0.0.1:8000/api/loginUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        console.log(response);
+        if (response.status === 401) {
+          setInvalidCredentials(true);
+          throw new Error("Unauthorized");
+        }
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        const user = data.data;
+        setAuthenticated(true);
+        setCurrentUser(user);
+        navigate(`/`);
+      })
+      .catch((error) => {
+        if (error.message !== "Unauthorized") {
+          console.error("There was a problem with the fetch operation:", error);
+          // Handle other errors or show a user-friendly error message here
+        }
+      });
   };
-
   const handleRegisterClick = () => {
     navigate(`/register`);
   };
@@ -103,6 +116,9 @@ function LoginPage() {
           <p className={classes.formValidationMessage}>
             Please fill in all the fields, then try again.
           </p>
+        )}
+        {invalidCredentials && (
+          <p className={classes.formValidationMessage}>Invalid credentials.</p>
         )}
       </form>
     </div>

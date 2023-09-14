@@ -21,6 +21,7 @@
   color: var(--text-color);
   font-weight: bold;
   margin-left: 20px;
+  transition-duration: 300ms;
 }
 .logo:hover {
   color: var(--primary-color);

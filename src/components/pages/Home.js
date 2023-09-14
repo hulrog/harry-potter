@@ -5,6 +5,7 @@ import ButtonRow from "../layout/ButtonRow";
 import Card from "../layout/Card";
 import classes from "./Home.module.css";
 import House from "../house-quiz/House";
+import WelcomeMessage from "../auth/WelcomeMessage";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function HomePage() {
 
   return (
     <div className={classes.homeContainer}>
+      <WelcomeMessage> </WelcomeMessage>
       <div className={classes.crestContainer}>
         <img
           src={process.env.PUBLIC_URL + "sigils/house_slytherin.png"}

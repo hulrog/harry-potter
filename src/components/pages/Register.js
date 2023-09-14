@@ -20,6 +20,7 @@ function RegisterPage() {
     bio: "",
   });
   const [formIsValid, setFormIsValid] = useState(true);
+  const [usernameTaken, setUsernameTaken] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +40,9 @@ function RegisterPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // clear poruke da je username taken
+    setUsernameTaken(false);
+
     // Validacija forme
     setFormIsValid(true);
     const isFormValid = Object.values(formData).every((value) => value !== "");
@@ -47,24 +51,42 @@ function RegisterPage() {
       return;
     }
 
-    // Dodavanje datuma i default kuce   na objekat
-    const currentDate = new Date().toISOString().split("T")[0];
-    const updatedFormData = {
+    // Formatiranje podataka pogodno za API
+    const requestData = {
       ...formData,
       house: "hogwarts",
-      memberSince: currentDate,
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      birth_date: formData.birthDate,
+      biography: formData.bio,
     };
+    delete requestData.firstName;
+    delete requestData.lastName;
+    delete requestData.birthDate;
+    delete requestData.bio;
 
-    console.log(updatedFormData);
-    // TODO: i pozvati api za registraciju
-    // callRegisterAPI(updatedFormData)
-    //   .then((response) => {
-    //   })
-    //   .catch((error) => {
-    //   });
-
-    // stavio sam da baca na login
-    navigate(`/login`);
+    console.log(requestData);
+    fetch("http://127.0.0.1:8000/api/createUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          if (response.status === 422) {
+            setUsernameTaken(true);
+          }
+          return response.json();
+        } else {
+          navigate("/login");
+        }
+      })
+      .catch((error) => {
+        console.log("There was a problem with the fetch operation", error);
+      });
   };
 
   const handleLogInClick = () => {
@@ -204,6 +226,11 @@ function RegisterPage() {
         {!formIsValid && (
           <p className={classes.formValidationMessage}>
             Please fill in all the fields, then try again.
+          </p>
+        )}
+        {usernameTaken && (
+          <p className={classes.formValidationMessage}>
+            Username is already taken.
           </p>
         )}
       </form>
