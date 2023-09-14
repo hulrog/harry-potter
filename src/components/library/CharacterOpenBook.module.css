@@ -1,0 +1,53 @@
+.characterBookContainer {
+  width: 60vw;
+  height: 70vh;
+  display: flex;
+  font-size: 2vh;
+  color: black;
+}
+
+.leftPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 29vw;
+  background-color: var(--paper-color);
+  border-radius: 20px 0px 0px 20px;
+  border: 0.3vw solid black;
+  padding: 2%;
+}
+
+.leftPage p {
+  font-size: 2.5vh;
+  text-align: center;
+}
+
+.spine {
+  width: 2vw;
+  background-color: var(--paper-color);
+  border-top: 0.3vw solid black;
+  border-bottom: 0.3vw solid black;
+}
+
+.rightPage {
+  display: flex;
+  flex-direction: column;
+  width: 29vw;
+  background-color: var(--paper-color);
+  border: 0.3vw solid black;
+  border-radius: 0px 20px 20px 0px;
+  padding: 2%;
+}
+
+.rightPage p {
+  font-size: 2.5vh;
+  text-align: center;
+}
+
+.characterImage {
+  max-height: 25vh;
+  max-width: 25vw;
+  border-radius: 20px;
+  margin: 2%;
+  border: 0.3vw solid black;
+}

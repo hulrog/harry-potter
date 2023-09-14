@@ -3,6 +3,7 @@ import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
 import classes from "./CharacterSection.module.css";
 import Shelf from "./Shelf";
+import Card from "../layout/Card";
 
 function CharacterSection() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,15 +32,19 @@ function CharacterSection() {
 
   return (
     <div className={classes.characterSectionContainer}>
-      <input
-        type="text"
-        placeholder="Enter character name"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <ButtonRow>
-        <Button type="submit" text="Search" onClick={handleSearchSubmit} />
-      </ButtonRow>
+      <Card>
+        <input
+          type="text"
+          placeholder="Enter character name"
+          value={searchTerm}
+          className={classes.characterSearchBar}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <ButtonRow>
+          <Button type="submit" text="Search" onClick={handleSearchSubmit} />
+        </ButtonRow>
+      </Card>
+
       {characterGroups.map((characters, index) => (
         <Shelf key={index} characters={characters} />
       ))}

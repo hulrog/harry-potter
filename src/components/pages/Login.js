@@ -5,7 +5,6 @@ import Button from "../layout/Button";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-// TODO da li je user ili student, admin ili professor u role?
 function LoginPage() {
   const { setAuthenticated, setCurrentUser } = useAuth();
   const [invalidCredentials, setInvalidCredentials] = useState(false);
@@ -65,7 +64,6 @@ function LoginPage() {
       .catch((error) => {
         if (error.message !== "Unauthorized") {
           console.error("There was a problem with the fetch operation:", error);
-          // Handle other errors or show a user-friendly error message here
         }
       });
   };

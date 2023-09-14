@@ -5,7 +5,7 @@ import Button from "../layout/Button";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 
-function SubmitPost() {
+function SubmitPost({ prepoulatedTitle }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
@@ -47,6 +47,9 @@ function SubmitPost() {
 
     // Validacija forme
     setFormIsValid(true);
+    if (prepoulatedTitle) {
+      formData.title = prepoulatedTitle;
+    }
     const requiredFields = ["title", "content", "category"];
     const isFormValid = requiredFields.every((field) => formData[field] !== "");
 
@@ -89,8 +92,9 @@ function SubmitPost() {
                 <input
                   type="text"
                   name="title"
-                  value={formData.title}
+                  value={formData.title || prepoulatedTitle}
                   onChange={handleChange}
+                  disabled={prepoulatedTitle ? true : false}
                 />
               </td>
             </tr>

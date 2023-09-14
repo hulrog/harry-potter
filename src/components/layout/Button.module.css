@@ -10,6 +10,7 @@
   margin-right: 10px;
   transition-duration: 200ms;
   width: 130px;
+  user-select: none;
 }
 .button:hover {
   background-color: var(--primary-color-hover);

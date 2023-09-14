@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "./AuthContext";
 import classes from "./WelcomeMessage.module.css";
+import Card from "../layout/Card";
 
 function WelcomeMessage() {
   const { currentUser } = useAuth();
@@ -21,10 +22,13 @@ function WelcomeMessage() {
 
   return (
     <div className={classes.welcomeMessageContainer}>
-      <p>
-        Welcome {title} {currentUser.last_name}
-      </p>
-      <p>To Hogwarts School of Witchcraft and Wizardry!</p>
+      <Card>
+        <p>
+          Welcome {title} {currentUser.last_name}
+          <br />
+          To Hogwarts School of Witchcraft and Wizardry!
+        </p>
+      </Card>
     </div>
   );
 }
