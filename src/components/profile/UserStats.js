@@ -280,7 +280,7 @@ function UserStats() {
       id: 14,
       category: "TV Show",
       content: "Thoughts on the latest movie release?",
-      date: "2023-06-26",
+      date: "2020-06-26",
       dislikes: 4,
       disliked: true,
       house: "Hogwarts",
@@ -326,7 +326,7 @@ function UserStats() {
       id: 22,
       category: "J.K. Rowling",
       content: "Trying out a new recipe today.",
-      date: "2023-06-28",
+      date: "2023-02-01",
       dislikes: 2,
       disliked: false,
       house: "Hufflepuff",
@@ -446,6 +446,7 @@ function UserStats() {
       categoryCounts[category] = 1;
     }
   });
+  const maxCountCategory = Math.max(...Object.values(categoryCounts));
 
   const awardTypeCounts = {};
   userPosts.forEach((post) => {
@@ -458,8 +459,9 @@ function UserStats() {
       }
     });
   });
+  const maxCountAwardType = Math.max(...Object.values(awardTypeCounts));
 
-  const likesPerMonth = {};
+  let likesPerMonth = {};
   userPosts.forEach((post) => {
     const [year, month] = post.date.split("-").map(Number);
     const monthKey = `${year}-${month}`;
@@ -470,7 +472,13 @@ function UserStats() {
       likesPerMonth[monthKey] = post.likes;
     }
   });
-
+  const maxCountLikesPerMonth = Math.max(...Object.values(likesPerMonth));
+  //sortiranje meseci po datumu
+  const sortedMonths = Object.keys(likesPerMonth).sort((a, b) => {
+    const dateA = new Date(a);
+    const dateB = new Date(b);
+    return dateB - dateA;
+  });
   return (
     <div className={classes.userStatsContainer}>
       <div className={classes.statsHeader}>
@@ -482,44 +490,66 @@ function UserStats() {
       <div className={classes.chartSection}>
         <div className={classes.smallCharts}>
           <div className={classes.smallBarChart}>
-            <h3> Posts by category </h3>
-            {Object.entries(categoryCounts).map(([category, count]) => (
-              <div key={category} className={classes.bar}>
-                <div className={classes.barLabel}>{category}</div>
-                <div
-                  className={classes.barFill}
-                  style={{ width: `${count * 20}px` }}
-                >
-                  {count}
+            <h3>Posts by category </h3>
+            {Object.entries(categoryCounts).map(([category, count]) => {
+              const scaleFactor = (count / maxCountCategory) * 100;
+
+              return (
+                <div key={category} className={classes.bar}>
+                  <div className={classes.barLabel}>{category}</div>
+                  <div className={classes.barFillSpace}>
+                    <div
+                      className={classes.barFill}
+                      style={{ width: `${scaleFactor}%` }}
+                    >
+                      {count}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <div className={classes.smallBarChart}>
-            <h3> Awards by type </h3>
-            {Object.entries(awardTypeCounts).map(([awardType, count]) => (
-              <div key={awardType} className={classes.bar}>
-                <div className={classes.barLabel}>{awardType}</div>
-                <div
-                  className={classes.barFill}
-                  style={{ width: `${count * 20}px` }}
-                >
-                  {count}
+            <h3>Awards by type </h3>
+            {Object.entries(awardTypeCounts).map(([awardType, count]) => {
+              const scaleFactor = (count / maxCountAwardType) * 100;
+
+              return (
+                <div key={awardType} className={classes.bar}>
+                  <div className={classes.barLabel}>{awardType}</div>
+                  <div className={classes.barFillSpace}>
+                    <div
+                      className={classes.barFill}
+                      style={{ width: `${scaleFactor}%` }}
+                    >
+                      {count}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
         <div className={classes.bigBarChart}>
-          <h3> Likes per month </h3>
-          {Object.entries(likesPerMonth).map(([monthKey, count]) => (
-            <div key={monthKey} className={classes.bar}>
-              <div className={classes.barLabel}>{monthKey}</div>
-              <div className={classes.barFill} style={{ width: `${count}px` }}>
-                {count}
+          <h3>Likes per month</h3>
+          {sortedMonths.map((monthKey) => {
+            const count = likesPerMonth[monthKey];
+            const scaleFactor = (count / maxCountLikesPerMonth) * 100;
+
+            return (
+              <div key={monthKey} className={classes.bar}>
+                <div className={classes.barLabel}>{monthKey}</div>
+                <div className={classes.barFillSpace}>
+                  <div
+                    className={classes.barFill}
+                    style={{ width: `${scaleFactor}%` }}
+                  >
+                    {count}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

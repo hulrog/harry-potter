@@ -56,12 +56,17 @@
   display: flex;
   margin-bottom: 10px;
   align-items: center;
+  width: 100%;
 }
 
 .barLabel {
-  width: 100px;
+  width: 20%;
   text-align: left;
   padding-right: 10px;
+}
+
+.barFillSpace {
+  width: 80%;
 }
 
 .barFill {
