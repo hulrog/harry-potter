@@ -34,7 +34,7 @@ const Award = ({ award_id, amount, description, name }) => {
         alt={`Award ${award_id}`}
         title={`${name}\n${description}`}
       />
-      {amount !== 1 && <span className={classes.amount}>{amount}</span>}
+      {amount > 1 && <span className={classes.amount}>{amount}</span>}
     </div>
   );
 };
