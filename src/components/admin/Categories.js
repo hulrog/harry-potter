@@ -7,42 +7,53 @@ function Categories() {
   const [newCategoryName, setNewCategoryName] = useState("");
 
   useEffect(() => {
-    // TODO api za dohvatanje
-    const data = [
-      {
-        category_name: "Hogwarts",
-        popularity: 150,
-      },
-      {
-        category_name: "Fanfiction",
-        popularity: 100,
-      },
-      {
-        category_name: "TV Show",
-        popularity: 60,
-      },
-      {
-        category_name: "Movies",
-        popularity: 30,
-      },
-      {
-        category_name: "Books",
-        popularity: 70,
-      },
-    ];
-    setCategoriesData(data);
+    fetch("http://127.0.0.1:8000/getAllCategories")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setCategoriesData(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
   }, []);
 
   const handleAddCategory = () => {
     if (newCategoryName.trim() !== "") {
-      // TODO api za add
+      const requestData = {
+        category_name: newCategoryName,
+      };
 
-      setCategoriesData((prevData) => [
-        ...prevData,
-        { category_name: newCategoryName, popularity: 0 },
-      ]);
+      fetch("http://127.0.0.1:8000/api/createCategory", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
 
-      setNewCategoryName("");
+          console.log(categoriesData);
+          setCategoriesData((prevData) => [...prevData, data.data]);
+          console.log(categoriesData);
+
+          setNewCategoryName("");
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+        });
     }
   };
 
