@@ -182,7 +182,7 @@ function UserStats() {
       id: 10,
       category: "J.K. Rowling",
       content: "Trying out a new recipe today.",
-      date: "2023-06-28",
+      date: "2023-05-28",
       dislikes: 2,
       disliked: true,
       house: "Hufflepuff",
@@ -208,7 +208,7 @@ function UserStats() {
       id: 11,
       category: "TV Show",
       content: "Thoughts on the latest movie release?",
-      date: "2023-06-26",
+      date: "2023-09-26",
       dislikes: 4,
       disliked: true,
       house: "Hogwarts",
@@ -447,6 +447,30 @@ function UserStats() {
     }
   });
 
+  const awardTypeCounts = {};
+  userPosts.forEach((post) => {
+    post.awards.forEach((award) => {
+      const awardType = award.award_type;
+      if (awardTypeCounts[awardType]) {
+        awardTypeCounts[awardType]++;
+      } else {
+        awardTypeCounts[awardType] = 1;
+      }
+    });
+  });
+
+  const likesPerMonth = {};
+  userPosts.forEach((post) => {
+    const [year, month] = post.date.split("-").map(Number);
+    const monthKey = `${year}-${month}`;
+
+    if (likesPerMonth[monthKey]) {
+      likesPerMonth[monthKey] += post.likes;
+    } else {
+      likesPerMonth[monthKey] = post.likes;
+    }
+  });
+
   return (
     <div className={classes.userStatsContainer}>
       <div className={classes.statsHeader}>
@@ -456,20 +480,49 @@ function UserStats() {
         <p>Awards Received: {totalAwards}</p>
       </div>
       <div className={classes.chartSection}>
-        <div className={classes.barChart}>
-          {Object.entries(categoryCounts).map(([category, count]) => (
-            <div key={category} className={classes.bar}>
-              <div className={classes.barLabel}>{category}</div>
-              <div
-                className={classes.barFill}
-                style={{ width: `${count * 20}px` }}
-              >
+        <div className={classes.smallCharts}>
+          <div className={classes.smallBarChart}>
+            <h3> Posts by category </h3>
+            {Object.entries(categoryCounts).map(([category, count]) => (
+              <div key={category} className={classes.bar}>
+                <div className={classes.barLabel}>{category}</div>
+                <div
+                  className={classes.barFill}
+                  style={{ width: `${count * 20}px` }}
+                >
+                  {count}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className={classes.smallBarChart}>
+            <h3> Awards by type </h3>
+            {Object.entries(awardTypeCounts).map(([awardType, count]) => (
+              <div key={awardType} className={classes.bar}>
+                <div className={classes.barLabel}>{awardType}</div>
+                <div
+                  className={classes.barFill}
+                  style={{ width: `${count * 20}px` }}
+                >
+                  {count}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className={classes.bigBarChart}>
+          <h3> Likes per month </h3>
+          {Object.entries(likesPerMonth).map(([monthKey, count]) => (
+            <div key={monthKey} className={classes.bar}>
+              <div className={classes.barLabel}>{monthKey}</div>
+              <div className={classes.barFill} style={{ width: `${count}px` }}>
                 {count}
               </div>
             </div>
           ))}
         </div>
       </div>
+
       <div className={classes.awardCounts}>
         <div className={classes.awardCounts}>
           {awards.map((award) => (
