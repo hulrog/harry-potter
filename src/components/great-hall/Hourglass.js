@@ -1,10 +1,10 @@
 import classes from "./Hourglass.module.css";
 
-function Hourglass({ points, house }) {
-  const pointsScaled = Math.min(100, points / 100);
+function Hourglass({ totalPoints, points, house }) {
+  const pointsScaled = Math.min(1, points / totalPoints);
 
   const barStyle = {
-    height: `${pointsScaled}%`,
+    height: `${pointsScaled * 100}%`,
     color: "#ffffff",
   };
 
@@ -36,11 +36,13 @@ function Hourglass({ points, house }) {
 
   return (
     <div className={classes.hourglassContainer}>
+      <div className={classes.horizontalEdge}></div>
       <div className={classes.hourglass}>
         <div className={classes.bar} style={barStyle}>
           <p className={classes.points}>{points}</p>
         </div>
       </div>
+      <div className={classes.horizontalEdge}></div>
     </div>
   );
 }

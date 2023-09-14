@@ -2,6 +2,7 @@ import classes from "./Floor.module.css";
 import Table from "./Table";
 
 function Floor() {
+  // TODO sa apija
   const usersData = [
     {
       id: 1,
@@ -13,7 +14,7 @@ function Floor() {
       email: "petar99t@gmail.com",
       house: "ravenclaw",
       role: "admin",
-      popularity: 2000,
+      popularity: 10000,
       birthDate: "1999-11-06",
       memberSince: "2023-05-19",
       bio: "Co-creator of the website and master of the dark arts.",
@@ -163,12 +164,17 @@ function Floor() {
       email: "schonegorilla@gmail.com",
       house: "slytherin",
       role: "user",
-      popularity: 1200,
+      popularity: 1300,
       birthDate: "1999-02-27",
       memberSince: "2023-02-18",
       bio: "Enthusiast of the banana and lover of monkeys.",
     },
   ];
+
+  let totalPoints = 0;
+  for (const student of usersData) {
+    totalPoints += student.popularity;
+  }
 
   const slytherinStudents = usersData.filter(
     (user) => user.house === "slytherin" && user.username !== "0"
@@ -185,10 +191,10 @@ function Floor() {
 
   return (
     <div className={classes.floor}>
-      <Table students={slytherinStudents} />
-      <Table students={ravenclawStudents} />
-      <Table students={gryffindorStudents} />
-      <Table students={hufflepuffStudents} />
+      <Table students={slytherinStudents} totalPoints={totalPoints} />
+      <Table students={ravenclawStudents} totalPoints={totalPoints} />
+      <Table students={gryffindorStudents} totalPoints={totalPoints} />
+      <Table students={hufflepuffStudents} totalPoints={totalPoints} />
     </div>
   );
 }
