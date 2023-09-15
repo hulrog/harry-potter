@@ -100,7 +100,7 @@ function SubmitPost({ prepoulatedTitle }) {
                 <input
                   type="text"
                   name="title"
-                  value={formData.title || prepoulatedTitle}
+                  value={prepoulatedTitle ? prepoulatedTitle : formData.title}
                   onChange={handleChange}
                   disabled={prepoulatedTitle ? true : false}
                 />
@@ -114,7 +114,7 @@ function SubmitPost({ prepoulatedTitle }) {
                   value={formData.category_id}
                   onChange={handleChange}
                 >
-                  <option value="5">Select a category</option>
+                  <option value="">Select a category</option>
                   {categoriesData.map((category, index) => (
                     <option key={index} value={String(category.category_id)}>
                       {category.category_name}

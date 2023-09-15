@@ -3,11 +3,15 @@ import classes from "./EditPost.module.css";
 import ButtonRow from "../layout/ButtonRow";
 import Button from "../layout/Button";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 
 function EditPost() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
+  const { currentUser } = useAuth();
+  const currentUserId = currentUser.id;
+
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -18,134 +22,36 @@ function EditPost() {
   const [categoriesData, setCategoriesData] = useState([]);
 
   useEffect(() => {
-    // TODO Fetch categories data from the API
-    // fetchCategoriesData()
-    //   .then((data) => {
-    //     setCategoriesData(data);
-    //   })
-    //   .catch((error) => console.error(error));
-    const data = [
-      {
-        category_id: 1,
-        category_name: "Hogwarts",
-      },
-      {
-        category_id: 2,
-        category_name: "Fanfiction",
-      },
-      {
-        category_id: 3,
-        category_name: "TV Show",
-      },
-      {
-        category_id: 4,
-        category_name: "Movies",
-      },
-      {
-        category_id: 5,
-        category_name: "Books",
-      },
-    ];
-    setCategoriesData(data);
+    fetch("http://127.0.0.1:8000/getAllCategories")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setCategoriesData(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      })
+      .finally(() => {});
 
-    // TODO Fetch posta
-    setPost({
-      id: 6,
-      category: "Hogwarts",
-      content: `Hi my name is Ebony Dark'ness Dementia Raven Way and I have long ebony black hair (that's how I got my name) with purple streaks.`,
-      date: "2023-06-24",
-      dislikes: 0,
-      house: "Slytherin",
-      likes: 6,
-      popularity: 90,
-      time: "20:30:00",
-      title: "My Immortal",
-      user: "Tara Way (enoby)",
-      user_id: 323,
-
-      awards: [
-        {
-          award_id: 1,
-          award_type: "knowledge",
-          name: "Historian of Magic",
-          description:
-            "This post contributes to or demonstrates vast knowledge of the Wizarding World's history and lore.",
-          amount: 1,
-        },
-        {
-          award_id: 2,
-          award_type: "knowledge",
-          name: "Muggle Studies Expert",
-          description:
-            "This post draws connections between the real world and Wizarding world or provides useful news about Muggles.",
-          amount: 3,
-        },
-        {
-          award_id: 3,
-          award_type: "creativity",
-          name: "Fanfiction Virtuoso",
-          description: "This post is an artwork of fanfiction.",
-          amount: 25,
-        },
-        {
-          award_id: 4,
-          award_type: "creativity",
-          name: "Master of Role-play",
-          description:
-            "This post is a challanging and engaging RP prompt or offers insight into RP skills.",
-          amount: 25,
-        },
-        {
-          award_id: 5,
-          award_type: "community",
-          name: "Order of Merlin",
-          description:
-            "This post offers outstanding service to the Wizarding community.",
-          amount: 11,
-        },
-        {
-          award_id: 6,
-          award_type: "creativity",
-          name: "Student Prefect",
-          description:
-            "This post encourages and promotes community standards and positive behaviour.",
-          amount: 25,
-        },
-      ],
-      comments: [
-        {
-          comment_id: 1,
-          user: "Raven Girl (raven)",
-          user_id: 2,
-          text: "Which band is performing?",
-        },
-        {
-          comment_id: 2,
-          user: "Brittney Prep (0)",
-          user_id: 3,
-          text: "OMG EBOBY SUX",
-        },
-        {
-          comment_id: 3,
-          user: "Sirius Black (dog)",
-          user_id: 3,
-          text: "U r so beautiful",
-        },
-        {
-          comment_id: 4,
-          user: "Sirius Black (dog)",
-          user_id: 3,
-          text: "U r so beautiful",
-        },
-        {
-          comment_id: 5,
-          user: "Sirius Black (dog)",
-          user_id: 3,
-          text: "U r so beautiful",
-        },
-      ],
-    });
-  }, []);
+    fetch(`http://127.0.0.1:8000/getPostById/${id}/${currentUserId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPost(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  }, [currentUserId, id]);
 
   useEffect(() => {
     setFormData({
@@ -188,25 +94,33 @@ function EditPost() {
     const selectedCategoryId = findCategoryIdByName(formData.category_name);
 
     // Post objekat za slanje na API
-    const postObject = {
+    const requestData = {
       post_id: id,
       category_id: selectedCategoryId,
       title: formData.title,
       content: formData.content,
     };
 
-    console.log(postObject);
+    console.log(requestData);
 
-    // TODO: Edit post api
-    // editPostApi(postObject)
-    //   .then((response) => {
-    //     // Handle success
-    //   })
-    //   .catch((error) => {
-    //     // Handle error
-    //   });
-
-    navigate(`/post/` + id);
+    fetch("http://127.0.0.1:8000/api/editPost", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {})
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+    navigate(`/post/${id}`);
   };
 
   return (

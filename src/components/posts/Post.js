@@ -39,7 +39,7 @@ function Post() {
 
   // Klik na pozadinu vraca nazad a propagacija ovog eventa je zaustavljena za ostatak posta
   const handleBackgroundClick = () => {
-    window.history.back();
+    navigate("/posts");
   };
   const handlePostContainerClick = (e) => {
     e.stopPropagation();
@@ -82,8 +82,8 @@ function Post() {
     }
     const newComment = {
       comment_id: post.comments.length + 1,
-      user: "Name surname (username)", // TODO zameniti imenom i prezimenog i usernamom trenutnog
-      user_id: 123, // TODO zameniti ID-jem trenutnog
+      user: currentUser.user,
+      user_id: currentUser.id,
       text: newCommentText,
     };
 
@@ -124,7 +124,28 @@ function Post() {
   };
 
   const handleDeleteClick = () => {
-    //poziv API-ja za delete
+    const requestData = {
+      post_id: id,
+    };
+
+    fetch("http://127.0.0.1:8000/api/deletePost", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {})
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+    navigate(`/post/${id}`);
     navigate("/posts");
   };
 

@@ -3,6 +3,7 @@ import classes from "./Feed.module.css";
 import Pagination from "./Pagination";
 import Thumbnail from "./Thumbnail";
 import { useAuth } from "../auth/AuthContext";
+import Loader from "../layout/Loader";
 
 function Feed({ selectedCategory }) {
   const { currentUser } = useAuth();
@@ -18,7 +19,10 @@ function Feed({ selectedCategory }) {
   const [savedPostsData, setSavedPostsData] = useState([]);
   const [categorizedPostsData, setCategorizedPostsData] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    setIsLoading(true);
     fetch(`http://127.0.0.1:8000/api/getForYouPage/${id}`)
       .then((response) => {
         if (!response.ok) {
@@ -102,10 +106,12 @@ function Feed({ selectedCategory }) {
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
       });
+    setIsLoading(false);
   }, [id]);
 
   useEffect(() => {
     if (selectedCategory) {
+      setIsLoading(true);
       setSelectedOption("categorized");
       console.log(selectedCategory);
       fetch(
@@ -123,6 +129,7 @@ function Feed({ selectedCategory }) {
         .catch((error) => {
           console.error("There was a problem with the fetch operation:", error);
         });
+      setIsLoading(false);
     }
   }, [selectedCategory, id]);
 
@@ -259,22 +266,28 @@ function Feed({ selectedCategory }) {
         currentPage={currentPage}
         paginate={paginate}
       />
-      <div className={classes.thumbnailList}>
+      {isLoading ? (
+        <Loader> </Loader>
+      ) : (
         <div className={classes.thumbnailList}>
-          {selectedOption === "categorized" && (
-            <div className={classes.emptyCategoryMessage}>
-              Category: {selectedCategory}
-            </div>
-          )}
-          {filteredPosts.length === 0 ? (
-            <div className={classes.emptyCategoryMessage}>
-              There doesn't seem to be anything here!
-            </div>
-          ) : (
-            filteredPosts.map((post) => <Thumbnail key={post.id} post={post} />)
-          )}
+          <div className={classes.thumbnailList}>
+            {selectedOption === "categorized" && (
+              <div className={classes.emptyCategoryMessage}>
+                Category: {selectedCategory}
+              </div>
+            )}
+            {filteredPosts.length === 0 ? (
+              <div className={classes.emptyCategoryMessage}>
+                There doesn't seem to be anything here!
+              </div>
+            ) : (
+              filteredPosts.map((post) => (
+                <Thumbnail key={post.id} post={post} />
+              ))
+            )}
+          </div>
         </div>
-      </div>
+      )}
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={totalPosts}
