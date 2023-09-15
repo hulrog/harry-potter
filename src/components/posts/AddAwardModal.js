@@ -9,8 +9,6 @@ function AddAwardModal({ onClose, onAddAward, awardedAwards }) {
   const [awards, setAwards] = useState([]);
   const [selectedAwards, setSelectedAwards] = useState([]);
 
-  // TODO API za dohvatanje
-
   useEffect(() => {
     fetch("http://127.0.0.1:8000/getAllAwards")
       .then((response) => {

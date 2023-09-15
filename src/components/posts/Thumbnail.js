@@ -17,7 +17,6 @@ function Thumbnail({ post }) {
     navigate(`/post/${post.id}`);
   };
 
-  //TODO prikazati i nagrade
   return (
     <div className={classes.thumbnailContainer}>
       <PostInfo post={post}></PostInfo>

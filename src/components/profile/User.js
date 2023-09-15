@@ -1,9 +1,6 @@
 import classes from "./User.module.css";
 
 function User({ userData }) {
-  // ovo je za slucaj da dobijam sa malim slovom
-  // TODO ako sa backa dolazi velikim slovom ispraviti
-  // (svuda sam pretpostavljao da dolazi sa malim)
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };

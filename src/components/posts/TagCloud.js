@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import classes from "./TagCloud.module.css";
-// TODO poziv API-ja za tag cloud tj. popularnost odredjenih kategorija
-// fetchCategoriesData
 
 // ima prop onCategorySelect a to je funkcija koja se izvrsava kada ovde selektujemo kategoriju
 // tu funkciju dobija od sidebara, a Sidebar-a dobija od Posts-a a u Posts-u je deklarisana

@@ -4,7 +4,7 @@ import ButtonRow from "../layout/ButtonRow";
 import Button from "../layout/Button";
 import { AiOutlineUser, AiOutlineTool } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-// TODO da li je user ili student, admin ili professor u role?
+
 function RegisterPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

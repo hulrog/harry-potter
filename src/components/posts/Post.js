@@ -51,7 +51,6 @@ function Post() {
   };
 
   // Dodavanje komentara
-  // TODO poziv api-ja za dodavanje komentara
   const [newCommentText, setNewCommentText] = useState("");
   const [containsProfanity, setContainsProfanity] = useState(false);
 
@@ -185,8 +184,6 @@ function Post() {
     navigate("/edit-post/" + id);
   };
 
-  // TODO prikaz kuce ili nekih drugih informacija o korisniku? poziv apija za korisnike
-  // koji ostavljaju komentare da se prikazu neke dodatne informacije osim imena?
   return (
     <div className={classes.background} onClick={handleBackgroundClick}>
       {post && (

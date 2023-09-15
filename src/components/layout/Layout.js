@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"; // Import the Link component
 import { useAuth } from "../auth/AuthContext";
 
 function Layout(props) {
-  // TODO: Staviti currentUser da je useAuth i izbrisati mock
   const { currentUser } = useAuth();
   return (
     <div>
