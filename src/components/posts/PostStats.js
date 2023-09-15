@@ -7,8 +7,12 @@ import {
   AiOutlineComment,
   AiFillPushpin,
 } from "react-icons/ai";
+import { useAuth } from "../auth/AuthContext";
 
 function PostStats({ post }) {
+  const { currentUser } = useAuth();
+  const currentUserId = currentUser.id;
+
   // Za odlazak na stranicu post-a
   const navigate = useNavigate();
 
@@ -25,39 +29,62 @@ function PostStats({ post }) {
     if (post.saved) setSaved(true);
   }, [post.liked, post.disliked, post.saved]);
 
+  const callInteractionApi = (type) => {
+    const requestData = {
+      user_id: currentUserId,
+      post_id: post.id,
+      type: type,
+    };
+    console.log(requestData);
+
+    fetch("http://127.0.0.1:8000/api/makeInteraction", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {})
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+    navigate("/posts");
+  };
+
   const handleLike = () => {
+    callInteractionApi("like");
     if (likeDislikeStatus === "liked") {
       setLikes(likes - 1);
       setLikeDislikeStatus("");
-      // TODO unlike api
+      callInteractionApi("like");
     } else if (likeDislikeStatus === "disliked") {
       setLikes(likes + 1);
       setDislikes(dislikes - 1);
       setLikeDislikeStatus("liked");
-      // TODO like api
-      // TODO undislike api
     } else {
       setLikes(likes + 1);
       setLikeDislikeStatus("liked");
-      // TODO like api
     }
   };
 
   const handleDislike = () => {
+    callInteractionApi("dislike");
     if (likeDislikeStatus === "disliked") {
       setDislikes(dislikes - 1);
       setLikeDislikeStatus("");
-      // TODO undislike api
     } else if (likeDislikeStatus === "liked") {
       setDislikes(dislikes + 1);
       setLikes(likes - 1);
       setLikeDislikeStatus("disliked");
-      // TODO dislike api
-      // TODO unlike api
     } else {
       setDislikes(dislikes + 1);
       setLikeDislikeStatus("disliked");
-      // TODO dislike api
     }
   };
 
@@ -68,7 +95,7 @@ function PostStats({ post }) {
   // Handler za cuvanje posta
   const handleSave = () => {
     setSaved(!saved);
-    // TODO save api
+    callInteractionApi("save");
   };
 
   return (

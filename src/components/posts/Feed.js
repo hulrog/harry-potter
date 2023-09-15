@@ -21,23 +21,18 @@ function Feed({ selectedCategory }) {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchData = (option) => {
     setIsLoading(true);
-    fetch(`http://127.0.0.1:8000/api/getForYouPage/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setForYouPostsData(data);
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-      });
+    const fetchURLs = {
+      for_you: `http://127.0.0.1:8000/api/getForYouPage/${id}`,
+      new: `http://127.0.0.1:8000/getNewPosts/${id}`,
+      liked: `http://127.0.0.1:8000/getPostsLikedByUser/${id}`,
+      saved: `http://127.0.0.1:8000/getPostsSavedByUser/${id}`,
+      commented: `http://127.0.0.1:8000/getPostsCommentedByUser/${id}`,
+      categorized: `http://127.0.0.1:8000/getPostsByCategory/${selectedCategory}/${id}`,
+    };
 
-    fetch(`http://127.0.0.1:8000/getNewPosts/${id}`)
+    fetch(fetchURLs[option])
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -45,69 +40,42 @@ function Feed({ selectedCategory }) {
         return response.json();
       })
       .then((data) => {
-        setNewPostsData(data);
+        switch (option) {
+          case "for_you":
+            setForYouPostsData(data);
+            break;
+          case "new":
+            setNewPostsData(data);
+            break;
+          case "liked":
+            setLikedPostsData(data);
+            break;
+          case "saved":
+            setSavedPostsData(data);
+            break;
+          case "commented":
+            setCommentedPostsData(data);
+            break;
+          case "categorized":
+            setCategorizedPostsData(data);
+            break;
+          default:
+            break;
+        }
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
+        setIsLoading(false);
       });
+  };
 
-    fetch(`http://127.0.0.1:8000/getPostsLikedByUser/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setLikedPostsData(data);
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-      });
-
-    fetch(`http://127.0.0.1:8000/getPostsLikedByUser/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setLikedPostsData(data);
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-      });
-
-    fetch(`http://127.0.0.1:8000/getPostsSavedByUser/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setSavedPostsData(data);
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-      });
-
-    fetch(`http://127.0.0.1:8000/getPostsCommentedByUser/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setCommentedPostsData(data);
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-      });
-    setIsLoading(false);
-  }, [id]);
+  useEffect(() => {
+    if (selectedOption === "categorized" && !selectedCategory) {
+      return;
+    }
+    fetchData(selectedOption);
+  }, [selectedOption, selectedCategory]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -267,7 +235,9 @@ function Feed({ selectedCategory }) {
         paginate={paginate}
       />
       {isLoading ? (
-        <Loader> </Loader>
+        <div className={classes.feedLoadingDiv}>
+          <Loader> </Loader>
+        </div>
       ) : (
         <div className={classes.thumbnailList}>
           <div className={classes.thumbnailList}>

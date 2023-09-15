@@ -277,7 +277,7 @@ function Post() {
                 {alreadyGivenMessage && (
                   <span className={classes.alreadyGivenMessage}>
                     <br></br>
-                    Some awards were already there.
+                    You already awarded those!
                   </span>
                 )}
               </p>
