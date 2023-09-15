@@ -1,4 +1,5 @@
 import Categories from "../admin/Categories";
+import Credits from "../admin/Credits";
 import Students from "../admin/Students";
 import classes from "./Admin.module.css";
 
@@ -7,6 +8,7 @@ function AdminPage() {
     <div className={classes.adminContainer}>
       <Categories></Categories>
       <Students></Students>
+      <Credits></Credits>
     </div>
   );
 }
