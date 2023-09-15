@@ -18,31 +18,38 @@ function ProfilePage() {
   const { setAuthenticated, setCurrentUser, currentUser } = useAuth();
   const navigate = useNavigate();
 
-  // TODO: dohvatiti datu sa API-ja
-  // napisati funkciju getUserData ispod u ovom fajlu i izbrisati mock
   useEffect(() => {
-    // getUserData(id)
-    //   .then((data) => {
-    //     setUserData(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching user data:", error);
-    //   });
-    setUserData({
-      id: 10,
-      firstName: "Schone",
-      lastName: "Gorilla",
-      username: "schone",
-      country: "Serbia",
-      gender: "male",
-      email: "schonegorilla@gmail.com",
-      house: "slytherin",
-      role: "user",
-      popularity: 1200,
-      birthDate: "1999-02-27",
-      memberSince: "2023-02-18",
-      bio: "Enthusiast of the banana and lover of monkeys.",
-    });
+    fetch(`http://127.0.0.1:8000/getUserById/${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        const user = data;
+        const transformedData = {
+          id: user.id,
+          firstName: user.first_name,
+          lastName: user.last_name,
+          username: user.username,
+          country: user.country,
+          gender: user.gender,
+          email: user.email,
+          house: user.house,
+          role: user.role,
+          popularity: user.popularity,
+          birthDate: user.birth_date,
+          memberSince: user.member_since,
+          bio: user.bio,
+        };
+
+        setUserData(transformedData);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
   }, [id]);
 
   const handleEditProfileClick = () => {

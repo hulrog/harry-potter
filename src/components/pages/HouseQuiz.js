@@ -5,8 +5,11 @@ import Button from "../layout/Button";
 import ButtonRow from "../layout/ButtonRow";
 import { useNavigate } from "react-router-dom";
 import House from "../house-quiz/House";
+import { useAuth } from "../auth/AuthContext";
 
 function HouseQuiz() {
+  const { currentUser } = useAuth();
+
   const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [housePoints, setHousePoints] = useState({
@@ -333,7 +336,35 @@ function HouseQuiz() {
   };
 
   const handleQuizComplete = () => {
-    navigate("/");
+    const maxHouse = getMaxHouse();
+
+    const requestData = {
+      user_id: currentUser.id,
+      house: maxHouse,
+    };
+
+    console.log(requestData);
+
+    fetch("http://127.0.0.1:8000/api/editUser", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        navigate(`/profile/${currentUser.id}`);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
   };
 
   const handleQuizRestart = () => {
