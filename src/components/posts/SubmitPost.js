@@ -50,7 +50,7 @@ function SubmitPost({ prepoulatedTitle }) {
     if (prepoulatedTitle) {
       formData.title = prepoulatedTitle;
     }
-    const requiredFields = ["title", "content", "category"];
+    const requiredFields = ["title", "content", "category_id"];
     const isFormValid = requiredFields.every((field) => formData[field] !== "");
 
     if (!isFormValid) {
@@ -59,24 +59,32 @@ function SubmitPost({ prepoulatedTitle }) {
     }
 
     // Post objekat za slanje na API
-    const postObject = {
+    const requestData = {
       user_id: currentUser.id,
       category_id: formData.category_id,
       title: formData.title,
       content: formData.content,
     };
 
-    console.log(postObject);
+    console.log(requestData);
 
-    // TODO: Send the postObject to your API to create the post
-    // callCreatePostAPI(postObject)
-    //   .then((response) => {
-    //     // Handle success
-    //   })
-    //   .catch((error) => {
-    //     // Handle error
-    //   });
-
+    fetch("http://127.0.0.1:8000/api/createPost", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {})
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
     navigate(`/posts`);
   };
 
@@ -102,13 +110,13 @@ function SubmitPost({ prepoulatedTitle }) {
               <td className={classes.label}>Category:</td>
               <td className={classes.value}>
                 <select
-                  name="category"
-                  value={formData.category}
+                  name="category_id"
+                  value={formData.category_id}
                   onChange={handleChange}
                 >
-                  <option value="">Select a category</option>
+                  <option value="5">Select a category</option>
                   {categoriesData.map((category, index) => (
-                    <option key={index} value={category.category_id}>
+                    <option key={index} value={String(category.category_id)}>
                       {category.category_name}
                     </option>
                   ))}

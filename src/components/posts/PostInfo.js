@@ -7,7 +7,6 @@ function PostInfo({ post }) {
   // Za odlazak na stranicu post-a
   const navigate = useNavigate();
 
-  // TODO ovo je za slucaj ako se house vrati malim slovima, proveriti
   useEffect(() => {
     const path = "/sigils/house_" + post.house + ".png";
     setHouseSigilPath(path);
@@ -31,15 +30,18 @@ function PostInfo({ post }) {
       <div className={classes.categoryAwardsDateSection}>
         <span className={classes.category}>{post.category}</span>
         <span className={classes.awardList}>
-          {post.awards.map((award) => (
-            <Award
-              key={award.award_id}
-              award_id={award.award_id}
-              description={award.description}
-              name={award.name}
-              amount={award.amount}
-            />
-          ))}
+          {post.awards.map(
+            (award) =>
+              award.amount > 0 && (
+                <Award
+                  key={award.id}
+                  award_id={award.id}
+                  description={award.description}
+                  name={award.name}
+                  amount={award.amount}
+                />
+              )
+          )}
         </span>
         <span className={classes.dateTime}>
           {post.date} at {post.time}

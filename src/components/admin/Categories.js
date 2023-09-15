@@ -7,6 +7,7 @@ function Categories() {
   const [categoriesData, setCategoriesData] = useState([]);
   const [newCategoryName, setNewCategoryName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/getAllCategories")
@@ -29,8 +30,14 @@ function Categories() {
   }, []);
 
   const handleAddCategory = () => {
-    // setIsLoading(true);
     if (newCategoryName.trim() !== "") {
+      if (!/^[a-zA-Z0-9\s]+$/.test(newCategoryName)) {
+        setErrorMessage(
+          "Category name is invalid. It should be one word with no special characters."
+        );
+        return;
+      }
+
       const requestData = {
         category_name: newCategoryName,
       };
@@ -50,21 +57,18 @@ function Categories() {
         })
         .then((data) => {
           setCategoriesData((prevData) => [...prevData, data.data]);
-
           setNewCategoryName("");
+          setErrorMessage("");
         })
         .catch((error) => {
           console.error("There was a problem with the fetch operation:", error);
         });
-      // .finally(() => {
-      //   setIsLoading(false);
-      // });
+    } else {
+      setErrorMessage("Category name cannot be empty.");
     }
   };
 
   const handleRemoveCategory = (categoryId) => {
-    // setIsLoading(true);
-
     const requestData = {
       category_id: categoryId,
     };
@@ -90,9 +94,6 @@ function Categories() {
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
       });
-    // .finally(() => {
-    //   setIsLoading(false);
-    // });
   };
 
   return (
@@ -127,6 +128,9 @@ function Categories() {
               onClick={handleAddCategory}
             ></Button>
           </div>
+          {errorMessage && (
+            <p className={classes.errorMessage}>{errorMessage}</p>
+          )}
         </>
       )}
     </div>

@@ -12,41 +12,24 @@ function TagCloud({ onCategorySelect }) {
   const [maxPopularity, setMaxPopularity] = useState(0);
 
   useEffect(() => {
-    // Fetch categories data from the API
-    // fetchCategoriesData()
-    //   .then((data) => {
-    //     const popularityValues = data.map((category) => category.popularity);
-    //     setMinPopularity(Math.min(...popularityValues));
-    //     setMaxPopularity(Math.max(...popularityValues));
-    //     setCategoriesData(data);
-    //   })
-    //   .catch((error) => console.error(error));
-    const data = [
-      {
-        category_name: "Hogwarts",
-        popularity: 150,
-      },
-      {
-        category_name: "Fanfiction",
-        popularity: 100,
-      },
-      {
-        category_name: "TV Show",
-        popularity: 60,
-      },
-      {
-        category_name: "Movies",
-        popularity: 30,
-      },
-      {
-        category_name: "Books",
-        popularity: 70,
-      },
-    ];
-    const popularityValues = data.map((category) => category.popularity);
-    setMinPopularity(Math.min(...popularityValues));
-    setMaxPopularity(Math.max(...popularityValues));
-    setCategoriesData(data);
+    fetch("http://127.0.0.1:8000/tagCloud")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        const popularityValues = data.map((category) => category.popularity);
+        setMinPopularity(Math.min(...popularityValues));
+        setMaxPopularity(Math.max(...popularityValues));
+        setCategoriesData(data);
+        setCategoriesData(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
   }, []);
 
   const calculateFontSize = (popularity) => {

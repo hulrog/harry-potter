@@ -48,12 +48,15 @@ function ProfilePage() {
         };
 
         setUserData(transformedData);
-        setCurrentUser(user); // da setuje i sesiju ako je nesto menjano
+        // samo kad je current user na profilu setuj ovo
+        if (currentUser.id === parseInt(id)) {
+          setCurrentUser(user);
+        }
       })
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
       });
-  }, [id, refresh, setCurrentUser]);
+  }, [id, refresh, setCurrentUser, currentUser.id]);
 
   const handleEditProfileClick = () => {
     setShowEditModal(true);
