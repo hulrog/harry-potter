@@ -18,7 +18,7 @@ function Post() {
   const { currentUser } = useAuth();
   const currentUserId = currentUser.id;
   const [post, setPost] = useState(null);
-  const [alreadyGiven, setAlreadyGiven] = useState(false);
+  const [alreadyGivenMessage, setAlreadyGivenMessage] = useState(false);
 
   // Ovo je za trentuno otvaranje, a ako nije dat award onda sa backa
   const [awardedAwards, setAwardedAwards] = useState([]);
@@ -152,14 +152,14 @@ function Post() {
     setIsAddAwardModalOpen(false);
   };
 
-  const addAward = (award_id, user_id, post_id) => {
+  const addAward = async (award_id, user_id, post_id) => {
     const requestData = {
       award_id,
       user_id,
       post_id,
     };
 
-    fetch("http://127.0.0.1:8000/api/giveAward", {
+    return fetch("http://127.0.0.1:8000/api/giveAward", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -173,26 +173,26 @@ function Post() {
         return response.json();
       })
       .then((data) => {
-        // Handle success if needed
         console.log(data);
-        if ((data.message = "Award was already given")) {
-        }
+        return data.message === "Award was already given";
       })
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
+        return false;
       });
   };
 
-  const handleAddAwards = (awardsToAdd) => {
-    awardsToAdd.forEach((award) => {
-      addAward(award.award_id, currentUser.id, id);
-    });
-    const newAwards = awardsToAdd.filter(
-      (award) =>
-        !awardedAwards.some(
-          (awardedAward) => awardedAward.award_id === award.award_id
-        )
-    );
+  const handleAddAwards = async (awardsToAdd) => {
+    setAlreadyGivenMessage(false);
+    const newAwards = [];
+    for (const award of awardsToAdd) {
+      const alreadyGiven = await addAward(award.award_id, currentUser.id, id);
+      if (!alreadyGiven) {
+        newAwards.push(award);
+      } else {
+        setAlreadyGivenMessage(true);
+      }
+    }
 
     if (newAwards.length > 0) {
       setAwardedAwards((prevAwards) => [...prevAwards, ...newAwards]);
@@ -272,6 +272,16 @@ function Post() {
                   onClick={handleOpenAddAwardModal}
                 />
               </ButtonRow>
+              <p className={classes.awardsNowLabel}>
+                Awrads you have awarded now:
+                {alreadyGivenMessage && (
+                  <span className={classes.alreadyGivenMessage}>
+                    <br></br>
+                    Some awards were already there.
+                  </span>
+                )}
+              </p>
+
               <div className={classes.awardedAwards}>
                 {awardedAwards.length > 0 &&
                   awardedAwards.map((awardedAward) => (

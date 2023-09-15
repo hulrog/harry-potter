@@ -75,6 +75,19 @@
   }
 }
 
+.alreadyGivenMessage {
+  color: var(--remove-color);
+}
+
+.awardsNowLabel {
+  width: 10%;
+  text-align: center;
+}
+
+.awardedAwards p {
+  font-size: 12px;
+}
+
 /* Scrollbar podesavanja */
 .scrollableComments {
   max-height: 300px;
