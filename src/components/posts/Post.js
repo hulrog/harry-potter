@@ -80,9 +80,42 @@ function Post() {
       setContainsProfanity(true);
       return;
     }
+
+    // za back
+    const requestData = {
+      user_id: currentUser.id,
+      post_id: id,
+      text: newCommentText,
+    };
+
+    fetch("http://127.0.0.1:8000/api/createComment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {})
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+
+    // za front
     const newComment = {
       comment_id: post.comments.length + 1,
-      user: currentUser.user,
+      user:
+        currentUser.first_name +
+        " " +
+        currentUser.last_name +
+        " (" +
+        currentUser.username +
+        ")",
       user_id: currentUser.id,
       text: newCommentText,
     };
@@ -145,7 +178,6 @@ function Post() {
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
       });
-    navigate(`/post/${id}`);
     navigate("/posts");
   };
 
@@ -223,7 +255,7 @@ function Post() {
                     className={classes.commentUser}
                     onClick={() => handleCommentProfileClick(comment.user_id)}
                   >
-                    {comment.user.includes("(0)") ? (
+                    {comment.user && comment.user.includes("(0)") ? (
                       "[deleted]"
                     ) : (
                       <span>{comment.user}</span>
