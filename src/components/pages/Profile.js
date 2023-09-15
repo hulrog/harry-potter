@@ -12,6 +12,8 @@ import User from "../profile/User";
 import UserStats from "../profile/UserStats";
 
 function ProfilePage() {
+  const [refresh, setRefresh] = useState(false);
+
   const [showEditModal, setShowEditModal] = useState(false);
   const [userData, setUserData] = useState(null);
   const { id } = useParams();
@@ -46,11 +48,12 @@ function ProfilePage() {
         };
 
         setUserData(transformedData);
+        setCurrentUser(user); // da setuje i sesiju ako je nesto menjano
       })
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
       });
-  }, [id]);
+  }, [id, refresh, setCurrentUser]);
 
   const handleEditProfileClick = () => {
     setShowEditModal(true);
@@ -64,6 +67,10 @@ function ProfilePage() {
 
   const handleModalClose = () => {
     setShowEditModal(false);
+  };
+
+  const handleRefresh = () => {
+    setRefresh((prevRefresh) => !prevRefresh);
   };
 
   if (!userData) {
@@ -87,7 +94,7 @@ function ProfilePage() {
 
       {showEditModal && (
         <Modal onClose={handleModalClose}>
-          <EditUser />
+          <EditUser refreshData={handleRefresh} />
         </Modal>
       )}
       <UserStats></UserStats>
