@@ -43,6 +43,7 @@ function AddAwardModal({ onClose, onAddAward, awardedAwards }) {
   };
 
   const handleAddAwards = () => {
+    console.log(selectedAwards);
     if (selectedAwards.length > 0) {
       onAddAward(selectedAwards, true);
       console.log(selectedAwards);

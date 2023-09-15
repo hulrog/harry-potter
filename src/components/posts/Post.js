@@ -18,6 +18,7 @@ function Post() {
   const { currentUser } = useAuth();
   const currentUserId = currentUser.id;
   const [post, setPost] = useState(null);
+  const [alreadyGiven, setAlreadyGiven] = useState(false);
 
   // Ovo je za trentuno otvaranje, a ako nije dat award onda sa backa
   const [awardedAwards, setAwardedAwards] = useState([]);
@@ -53,6 +54,7 @@ function Post() {
   // Dodavanje komentara
   const [newCommentText, setNewCommentText] = useState("");
   const [containsProfanity, setContainsProfanity] = useState(false);
+  const [commentIsEmpty, setCommentIsEmpty] = useState(false);
 
   // Funkcija koja proverava da li komentar sadrzi ruzne reci
   const checkProfanity = async (text) => {
@@ -71,12 +73,20 @@ function Post() {
   };
 
   const handleSubmitComment = async () => {
+    setContainsProfanity(false);
+    setCommentIsEmpty(false);
+
     // Provera da li sadrzi ruzne reci
     // pauzira egzekuciju ove async funkcije dok se checkProfanity funkcija ne izvrsi
     setContainsProfanity(false);
     const isProfane = await checkProfanity(newCommentText);
     if (isProfane) {
       setContainsProfanity(true);
+      return;
+    }
+
+    if (newCommentText == null || newCommentText === "") {
+      setCommentIsEmpty(true);
       return;
     }
 
@@ -142,7 +152,41 @@ function Post() {
     setIsAddAwardModalOpen(false);
   };
 
+  const addAward = (award_id, user_id, post_id) => {
+    const requestData = {
+      award_id,
+      user_id,
+      post_id,
+    };
+
+    fetch("http://127.0.0.1:8000/api/giveAward", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Handle success if needed
+        console.log(data);
+        if ((data.message = "Award was already given")) {
+        }
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  };
+
   const handleAddAwards = (awardsToAdd) => {
+    awardsToAdd.forEach((award) => {
+      addAward(award.award_id, currentUser.id, id);
+    });
     const newAwards = awardsToAdd.filter(
       (award) =>
         !awardedAwards.some(
@@ -207,7 +251,9 @@ function Post() {
           <div className={classes.commentsSection}>
             <div className={classes.newComment}>
               <input
-                className={containsProfanity ? classes.flashRed : ""}
+                className={
+                  containsProfanity || commentIsEmpty ? classes.flashRed : ""
+                }
                 onChange={(e) => setNewCommentText(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSubmitComment()}
                 placeholder="Add a comment..."
