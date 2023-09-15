@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./UserStats.module.css";
 import Pagination from "../posts/Pagination";
 import Thumbnail from "../posts/Thumbnail";
 import Award from "../posts/Award";
 
 function UserStats() {
+  const [awards, setAwards] = useState([]);
   // TODO preko apija dohvatiti postove korisnika
   // ovo je mockup
   const userPosts = [
@@ -350,50 +351,22 @@ function UserStats() {
     },
   ];
 
-  // TODO Preko apija dohvatiti moguce awardove
-  const awards = [
-    {
-      award_id: 1,
-      award_type: "knowledge",
-      name: "Historian of Magic",
-      description:
-        "This post contributes to or demonstrates vast knowledge of the Wizarding World's history and lore.",
-    },
-    {
-      award_id: 2,
-      award_type: "knowledge",
-      name: "Muggle Studies Expert",
-      description:
-        "This post draws connections between the real world and Wizarding world or provides useful news about Muggles.",
-    },
-    {
-      award_id: 3,
-      award_type: "creativity",
-      name: "Fanfiction Virtuoso",
-      description: "This post is an artwork of fanfiction.",
-    },
-    {
-      award_id: 4,
-      award_type: "creativity",
-      name: "Master of Role-play",
-      description:
-        "This post is a challanging and engaging RP prompt or offers insight into RP skills.",
-    },
-    {
-      award_id: 5,
-      award_type: "community",
-      name: "Order of Merlin",
-      description:
-        "This post offers outstanding service to the Wizarding community.",
-    },
-    {
-      award_id: 6,
-      award_type: "creativity",
-      name: "Student Prefect",
-      description:
-        "This post encourages and promotes community standards and positive behaviour.",
-    },
-  ];
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/getAllAwards")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setAwards(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  }, []);
 
   // Sortiranje po datumu
   const sortedPosts = userPosts.slice().sort((a, b) => {
@@ -560,7 +533,7 @@ function UserStats() {
               key={award.award_id}
               award_id={award.award_id}
               amount={awardCounts[award.award_id.toString()] || 0}
-              name={award.name}
+              name={award.award_name}
               description={award.description}
             />
           ))}

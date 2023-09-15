@@ -1,3 +1,7 @@
+.addAwardModalContainer {
+  padding: 30px;
+}
+
 .awardList {
   display: flex;
   flex-direction: row;
