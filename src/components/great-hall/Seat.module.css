@@ -34,6 +34,10 @@
   background-color: var(--slytherin-background-color);
   color: var(--slytherin-text-color);
 }
+.seat.hogwarts {
+  background-color: var(--paper-color);
+  color: var(--wood-color);
+}
 
 .seat p {
   font-size: 16px;

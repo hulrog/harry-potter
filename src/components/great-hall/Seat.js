@@ -4,12 +4,12 @@ import classes from "./Seat.module.css";
 function Seat({ student }) {
   const initials =
     student.firstName.charAt(0) + ". " + student.lastName.charAt(0) + ".";
-  const info = `${student.firstName} ${student.lastName} | ${student.country}
+  const info = `${student.firstName} ${student.lastName} 
+    ${student.country}
     ${student.email}
     
     Birthday: ${student.birthDate}
     Joined: ${student.memberSince}
-    ${student.bio}
     Popularity: ${student.popularity}`;
 
   const navigate = useNavigate();

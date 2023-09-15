@@ -1,4 +1,5 @@
 import Seat from "./Seat";
+import classes from "./Bench.module.css";
 
 function Bench(props) {
   const students = props.students;
@@ -7,7 +8,7 @@ function Bench(props) {
     <Seat key={index} student={student} />
   ));
 
-  return <div>{seats}</div>;
+  return <div className={classes.benchContainer}>{seats}</div>;
 }
 
 export default Bench;

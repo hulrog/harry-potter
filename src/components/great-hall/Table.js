@@ -3,6 +3,10 @@ import Hourglass from "./Hourglass";
 import classes from "./Table.module.css";
 
 function Table(props) {
+  if (props.students == null || props.students.length === 0) {
+    console.log(props.students);
+    return;
+  }
   const sortedStudents = [...props.students]
     .sort((a, b) => b.popularity - a.popularity)
     .slice(0, 20); // samo top 20
