@@ -44,9 +44,9 @@ function Layout(props) {
                 )}
               </>
             )}
-            <Nav.Link as={Link} to={`/register`} className={classes.link}>
+            {/* <Nav.Link as={Link} to={`/register`} className={classes.link}>
               Register
-            </Nav.Link>
+            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
