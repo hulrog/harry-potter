@@ -61,7 +61,6 @@ function PostStats({ post }) {
     if (likeDislikeStatus === "liked") {
       setLikes(likes - 1);
       setLikeDislikeStatus("");
-      callInteractionApi("like");
     } else if (likeDislikeStatus === "disliked") {
       setLikes(likes + 1);
       setDislikes(dislikes - 1);
