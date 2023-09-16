@@ -60,32 +60,36 @@
   }
 }
 
+.awardsGivenSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 20px;
+}
+
 .awardedAwards {
   display: flex;
   flex-direction: row;
   font-size: 20px;
-  min-width: 20%;
-  max-width: 20%;
   flex-wrap: wrap;
   align-items: center;
   float: right;
   & img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 }
 
 .alreadyGivenMessage {
+  width: 20%;
   color: var(--remove-color);
-}
-
-.awardsNowLabel {
-  width: 10%;
   text-align: center;
 }
 
-.awardedAwards p {
-  font-size: 12px;
+.newlyGivenMessage {
+  width: 20%;
+  text-align: center;
 }
 
 /* Scrollbar podesavanja */

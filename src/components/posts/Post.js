@@ -8,6 +8,7 @@ import ButtonRow from "../layout/ButtonRow";
 import AddAwardModal from "./AddAwardModal";
 import Award from "./Award";
 import { useAuth } from "../auth/AuthContext";
+import Loader from "../layout/Loader";
 
 function Post() {
   // vadi id sa use params pa po tom id-ju ce naci post
@@ -19,6 +20,7 @@ function Post() {
   const currentUserId = currentUser.id;
   const [post, setPost] = useState(null);
   const [alreadyGivenMessage, setAlreadyGivenMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Ovo je za trentuno otvaranje, a ako nije dat award onda sa backa
   const [awardedAwards, setAwardedAwards] = useState([]);
@@ -183,6 +185,7 @@ function Post() {
   };
 
   const handleAddAwards = async (awardsToAdd) => {
+    setIsLoading(true);
     setAlreadyGivenMessage(false);
     const newAwards = [];
     for (const award of awardsToAdd) {
@@ -197,6 +200,7 @@ function Post() {
     if (newAwards.length > 0) {
       setAwardedAwards((prevAwards) => [...prevAwards, ...newAwards]);
     }
+    setIsLoading(false);
   };
 
   const handleDeleteClick = () => {
@@ -249,6 +253,52 @@ function Post() {
             </div>
           )}
           <div className={classes.commentsSection}>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                <ButtonRow>
+                  <Button
+                    text="Award"
+                    type="submit"
+                    onClick={handleOpenAddAwardModal}
+                  />
+                </ButtonRow>
+                {(awardedAwards.length > 0 || alreadyGivenMessage) && (
+                  <div className={classes.awardsGivenSection}>
+                    {alreadyGivenMessage && (
+                      <p className={classes.alreadyGivenMessage}>
+                        You've already given some of the selected awards.
+                      </p>
+                    )}
+                    {awardedAwards.length > 0 && (
+                      <p className={classes.newlyGivenMessage}>
+                        Newly given awards:
+                      </p>
+                    )}
+
+                    <div className={classes.awardedAwards}>
+                      {awardedAwards.length > 0 &&
+                        awardedAwards.map((awardedAward) => (
+                          <Award
+                            key={awardedAward.award_id}
+                            award_id={awardedAward.award_id}
+                            description={awardedAward.description}
+                            name={awardedAward.name}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+            {isAddAwardModalOpen && (
+              <AddAwardModal
+                onClose={handleCloseAddAwardModal}
+                onAddAward={handleAddAwards}
+                awardedAwards={awardedAwards}
+              />
+            )}
             <div className={classes.newComment}>
               <input
                 className={
@@ -266,41 +316,9 @@ function Post() {
                   type="submit"
                   onClick={handleSubmitComment}
                 ></Button>
-                <Button
-                  text="Award"
-                  type="submit"
-                  onClick={handleOpenAddAwardModal}
-                />
               </ButtonRow>
-              <p className={classes.awardsNowLabel}>
-                Awrads you have awarded now:
-                {alreadyGivenMessage && (
-                  <span className={classes.alreadyGivenMessage}>
-                    <br></br>
-                    You already awarded those!
-                  </span>
-                )}
-              </p>
-
-              <div className={classes.awardedAwards}>
-                {awardedAwards.length > 0 &&
-                  awardedAwards.map((awardedAward) => (
-                    <Award
-                      key={awardedAward.award_id}
-                      award_id={awardedAward.award_id}
-                      description={awardedAward.description}
-                      name={awardedAward.name}
-                    />
-                  ))}
-              </div>
             </div>
-            {isAddAwardModalOpen && (
-              <AddAwardModal
-                onClose={handleCloseAddAwardModal}
-                onAddAward={handleAddAwards}
-                awardedAwards={awardedAwards}
-              />
-            )}
+
             <div className={classes.scrollableComments}>
               {reversedComments.map((comment) => (
                 <div key={comment.comment_id} className={classes.comment}>
@@ -320,7 +338,6 @@ function Post() {
             </div>
           </div>
 
-          <div className={classes.commentsSection}></div>
           {(currentUser.role === "admin" ||
             currentUser.id === post.user_id) && (
             <ButtonRow>

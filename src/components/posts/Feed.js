@@ -21,61 +21,61 @@ function Feed({ selectedCategory }) {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = (option) => {
-    setIsLoading(true);
-    const fetchURLs = {
-      for_you: `http://127.0.0.1:8000/api/getForYouPage/${id}`,
-      new: `http://127.0.0.1:8000/getNewPosts/${id}`,
-      liked: `http://127.0.0.1:8000/getPostsLikedByUser/${id}`,
-      saved: `http://127.0.0.1:8000/getPostsSavedByUser/${id}`,
-      commented: `http://127.0.0.1:8000/getPostsCommentedByUser/${id}`,
-      categorized: `http://127.0.0.1:8000/getPostsByCategory/${selectedCategory}/${id}`,
-    };
-
-    fetch(fetchURLs[option])
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        switch (option) {
-          case "for_you":
-            setForYouPostsData(data);
-            break;
-          case "new":
-            setNewPostsData(data);
-            break;
-          case "liked":
-            setLikedPostsData(data);
-            break;
-          case "saved":
-            setSavedPostsData(data);
-            break;
-          case "commented":
-            setCommentedPostsData(data);
-            break;
-          case "categorized":
-            setCategorizedPostsData(data);
-            break;
-          default:
-            break;
-        }
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-        setIsLoading(false);
-      });
-  };
-
   useEffect(() => {
     if (selectedOption === "categorized" && !selectedCategory) {
       return;
     }
+
+    const fetchData = (option) => {
+      setIsLoading(true);
+      const fetchURLs = {
+        for_you: `http://127.0.0.1:8000/api/getForYouPage/${id}`,
+        new: `http://127.0.0.1:8000/getNewPosts/${id}`,
+        liked: `http://127.0.0.1:8000/getPostsLikedByUser/${id}`,
+        saved: `http://127.0.0.1:8000/getPostsSavedByUser/${id}`,
+        commented: `http://127.0.0.1:8000/getPostsCommentedByUser/${id}`,
+        categorized: `http://127.0.0.1:8000/getPostsByCategory/${selectedCategory}/${id}`,
+      };
+
+      fetch(fetchURLs[option])
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          switch (option) {
+            case "for_you":
+              setForYouPostsData(data);
+              break;
+            case "new":
+              setNewPostsData(data);
+              break;
+            case "liked":
+              setLikedPostsData(data);
+              break;
+            case "saved":
+              setSavedPostsData(data);
+              break;
+            case "commented":
+              setCommentedPostsData(data);
+              break;
+            case "categorized":
+              setCategorizedPostsData(data);
+              break;
+            default:
+              break;
+          }
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error("There was a problem with the fetch operation:", error);
+          setIsLoading(false);
+        });
+    };
     fetchData(selectedOption);
-  }, [selectedOption, selectedCategory]);
+  }, [selectedOption, selectedCategory, id]);
 
   useEffect(() => {
     if (selectedCategory) {
