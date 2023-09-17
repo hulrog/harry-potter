@@ -68,3 +68,37 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Backend
+
+This application communicates with the Laravel backend app:
+[https://github.com/Trifque/Harry_poter_ITEH_proj](https://github.com/Trifque/Harry_poter_ITEH_proj)
+
+It makes the following API calls:
+The url is: http://127.0.0.1:8000/ (if running on the same machine)
+POST api/makeInteraction
+POST api/giveAward
+GET api/getForYouPage/{user_id}
+POST api/createPost
+PUT api/editPost
+DELETE api/deletePost
+POST api/createCategory
+DELETE api/deleteCategory
+PUT api/editUser
+POST api/loginUser
+POST api/createUser
+PUT api/banUser/{user_id}
+POST api/createComment
+GET getAllAdmins
+GET getAllRegularUsers
+GET getUserById/{user_id}
+GET getAllCategories
+GET tagCloud
+GET getAllAwards
+GET getPostById/{post_id}/{user_id}
+GET getPostsMadeByUser/{user_id}
+GET getPostsLikedByUser/{user_id}
+GET getPostsSavedByUser/{user_id}
+GET getPostsCommentedByUser/{user_id}
+GET getNewPosts/{user_id}
+GET getPostsByCategory/{category_name}/{user_id}
